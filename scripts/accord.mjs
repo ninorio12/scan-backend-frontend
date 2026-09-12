@@ -247,11 +247,37 @@ for (const [concept, parTable] of lecturesParConcept) {
    Une table a un propriétaire : le module qui porte son nom. Tout autre module qui y
    écrit passe derrière lui et peut défaire ce qu'il garantit. */
 
-const ECRITURES = ['operation.ecriture', 'champ.ecrit', 'operation.suppression'];
+/* `operation.suppression` a été RETIRÉE de cette liste. L'adaptateur résout la table
+   d'un insert par son littéral (exact) et s'abstient proprement sur un patch qu'il ne
+   sait pas localiser, mais il attribue encore un delete par repli sur la table de la
+   fonction englobante. C'est exactement la maladie qui a tué la règle des lectures, et
+   elle vivait encore ici sur un tiers des entrées. On ne garde que ce qui est établi. */
+const ECRITURES = ['operation.ecriture', 'champ.ecrit'];
 const nomModule = (f) => {
   const sans = (f || '').replace(/\.[jt]sx?$/, '');
   const b = path.basename(sans);
   return /^(route|page|index|handler|actions|action)$/.test(b) ? (path.basename(path.dirname(sans)) || b) : b;
+};
+
+/* QUI POSSÈDE UNE TABLE : sur l'ENSEMBLE des mots, jamais sur un seul.
+   La première version prenait `cleNorm(table).split('|')[0]`, c'est-à-dire le premier
+   mot par ordre ALPHABÉTIQUE. Conséquences mesurées le 12/09/2026 sur QOS :
+     · crm_leads donne « crm|lead », donc le mot retenu était « crm » ; crm_contacts
+       donne « contact|crm », qui contient « crm » : convex/crm_contacts.ts était donc
+       déclaré propriétaire de crm_leads alors que convex/crm_leads.ts existe. Trois
+       signalements sur neuf portaient ce faux propriétaire.
+     · socialPosts était possédée par « posts », contentItems par « content ».
+   Un signalement dont le second côté est faux n'existe pas : c'est notre première loi.
+   On compare donc les ensembles de mots, au singulier près, et on exige l'égalité.
+   Une table dont aucun fichier ne porte le nom n'a pas de propriétaire, et on se tait :
+   mieux vaut un silence qu'un propriétaire inventé. */
+const singulier = (j) => j.replace(/s$/, '');
+const motsDe = (nom) => new Set(cleNorm(nom || '').split('|').filter(Boolean).map(singulier));
+const memeNom = (a, b) => {
+  const A = motsDe(a), B = motsDe(b);
+  if (!A.size || A.size !== B.size) return false;
+  for (const m of A) if (!B.has(m)) return false;
+  return true;
 };
 
 const ecrituresParTable = new Map();    // table → [{fichier, ligne, interne}]
@@ -263,14 +289,14 @@ for (const e of elements) {
   ecrituresParTable.get(e.entite).push({ fichier: e.fichier, ligne: e.ligne, interne: estDuModule(e) });
 }
 
+const chezLeVoisin = [];
 for (const [table, ou] of ecrituresParTable) {
   const ici = ou.find((x) => x.interne);
   if (!ici) continue;                                    // ce module n'écrit pas là : pas son affaire
-  const cle = cleNorm(table).split('|')[0];
-  const proprio = ou.find((x) => !x.interne && cleNorm(nomModule(x.fichier)).split('|').includes(cle));
-  if (!proprio) continue;                                // pas de propriétaire identifié : on se tait
-  if (cleNorm(nomModule(ici.fichier)).split('|').includes(cle)) continue;   // c'est lui, le propriétaire
-  desaccords.push({
+  if (memeNom(nomModule(ici.fichier), table)) continue;  // c'est lui, le propriétaire
+  const proprio = ou.find((x) => !x.interne && memeNom(nomModule(x.fichier), table));
+  if (!proprio) continue;                                // personne ne la possède : on se tait
+  chezLeVoisin.push({
     gravite: 2,
     concept: table,
     phrase: `« ${table} » : ce module écrit dans une table qu'il ne possède pas.`,
@@ -279,11 +305,34 @@ for (const [table, ou] of ecrituresParTable) {
   });
 }
 
+/* UN MODULE DE TRAVERSÉE N'EST PAS UN MODULE FAUTIF.
+   Mesuré le 12/09/2026 : leadIngest.ts écrit dans crm_contacts, crm_leads et
+   prospection_records. Trois constats exacts, et trois non-défauts : c'est le métier
+   même d'un module d'ingestion de traverser les tables. La règle punissait donc
+   l'architecture, et les trois modules les plus signalés de QOS étaient précisément
+   ceux dont le rôle est de faire le lien.
+   La vérification du 12/09 mesurait la VÉRACITÉ d'un signalement, pas sa NOCIVITÉ :
+   cinq exacts ne font pas cinq utiles. Au-delà de deux tables étrangères écrites, ce
+   n'est plus un débordement, c'est une fonction assumée, et on se tait. */
+if (chezLeVoisin.length > 2) {
+  console.log(`\n  (${chezLeVoisin.length} tables étrangères écrites : ce module en traverse plusieurs,`);
+  console.log(`   c'est le propre d'un module d'ingestion ou de synchronisation. Rien signalé à ce titre.)`);
+} else {
+  desaccords.push(...chezLeVoisin);
+}
+
 /* ── 5. LE RAPPORT, CINQ LIGNES AU PLUS ────────────────────────────────────────
    Les plus graves d'abord : écrire chez quelqu'un d'autre casse une garantie, lire
    ailleurs affiche un chiffre faux. Les deux comptent, l'écriture d'abord. */
 
-desaccords.sort((x, y) => (y.gravite - x.gravite) || (y.ailleurs.combien - x.ailleurs.combien));
+/* Le tri départageait sur `ailleurs.combien`, qui vaut 1 en dur pour toute écriture :
+   sur un fichier fourre-tout, c'était donc l'ordre d'itération d'une Map qui décidait
+   des cinq montrés. À gravité égale, on tranche sur le poids de la référence puis sur
+   le nom, ce qui rend au moins la sortie STABLE d'une exécution à l'autre. */
+desaccords.sort((x, y) => (y.gravite - x.gravite)
+  || (y.ailleurs.combien - x.ailleurs.combien)
+  || String(x.concept).localeCompare(String(y.concept))
+  || String(x.ici.ou).localeCompare(String(y.ici.ou)));
 const montres = desaccords.slice(0, PLAFOND);
 
 const nom = path.basename(RACINE);
