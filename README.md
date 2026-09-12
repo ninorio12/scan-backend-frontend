@@ -98,8 +98,10 @@ n'a pas pu être fait, et le script dit pourquoi. Un code 2 ne se lit jamais com
    base va dans le dossier temporaire du système et est supprimé après lecture.
 2. Il **ne clique jamais sur ce qui écrit ou détruit** : `type=submit`, tout bouton dans
    un `<form>`, les verbes d'écriture, écartés nommément et comptés comme tels.
-3. Il **n'envoie rien nulle part** : aucun appel réseau sortant, aucune télémétrie, aucun
-   service tiers. Tout reste sur la machine.
+3. Il **n'envoie rien nulle part** : aucune télémétrie, aucun service tiers, aucun compte.
+   Les seuls appels réseau vont à votre application (celle de `--url`, en local) et, si la
+   base est Convex, à **votre** backend via **votre** CLI (`npx convex export`, lancé par
+   le projet audité). Rien ne sort de chez vous.
 
 Ce n'est pas une promesse, c'est mesuré. Sur l'épreuve d'installation (un Next.js + trois
 bases SQLite), après **1 328 clics** du passage mécanique et des agents, les trois bases
@@ -113,8 +115,10 @@ node scripts/couverture.mjs <repo> --url http://localhost:3000
 md5sum -c /tmp/avant.md5 && git -C <repo> status --porcelain
 ```
 
-Une seule réserve connue, et elle est dite : donné un chemin de dépôt qui **n'existe pas**,
-`reconnaitre.mjs` fabrique l'arborescence au lieu de refuser. Vérifiez le chemin.
+Une réserve connue, et elle est dite : `couverture.mjs` n'a pas d'aide en ligne. Lui passer
+`--help` le fait prendre ce mot pour un chemin de dépôt, et il crée un dossier `./--help/`
+dans le répertoire courant. Les autres scripts refusent correctement (« Dépôt introuvable »,
+code 2). Donnez-lui un chemin de dépôt réel.
 
 ## Le lexique métier
 
