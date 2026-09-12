@@ -25,10 +25,22 @@
  *   DÉBORDE    la page glisse horizontalement, ou un texte sort de sa boîte
  *   TRONQUÉ    un texte est coupé par sa boîte (le client ne lit pas la fin)
  *   CHEVAUCHE  deux éléments cliquables se recouvrent (l'un est inatteignable)
- *   INVISIBLE  un texte dont la couleur est trop proche de son fond
+ *   INVISIBLE  un texte dont la couleur est trop proche de son fond COMPOSÉ
  *   VIDE       un bloc occupe une grande surface et ne contient rien
  *   CASSÉ      une image ne charge pas
  *   HORS-ÉCRAN un élément cliquable est en dehors de la zone visible
+ *
+ * ⚠️ LE CONTRASTE SE COMPOSE. Une couleur de fond `rgba(242,242,242,0.06)` n'est pas un
+ * gris clair : c'est 6 % de gris clair posés sur ce qu'il y a en dessous. Lue comme
+ * opaque, elle donnait « contraste 1.00, illisible » sur du texte parfaitement lisible :
+ * 40 fausses accusations d'illisibilité sur un projet public, dont une mesurée à 15,87
+ * une fois composée. Et `getComputedStyle` ne rend pas toujours du rgb() : Tailwind 4
+ * rend de l'`oklab()`, dont les trois nombres lus comme du rouge/vert/bleu donnent un
+ * quasi-noir. On fait donc peindre chaque couleur par le navigateur, et on empile les
+ * fonds semi-transparents des parents jusqu'au premier fond opaque.
+ *
+ * Et un texte qu'on ne voit pas parce que son conteneur est replié, masqué ou hors flux
+ * n'est PAS un défaut de contraste : il est dans la liste négative.
  *
  * On contrôle en LARGE et en ÉTROIT : la moitié des défauts de mise en page
  * n'existent qu'à l'une des deux tailles.
@@ -102,6 +114,120 @@ function controler() {
     return p.join(' > ').slice(0, 90);
   };
 
+  /* ── LE CONTRASTE SE COMPOSE, IL NE SE LIT PAS ────────────────────────────────
+     `rgba(242, 242, 242, 0.06)` n'est PAS un gris clair : c'est 6 % de gris clair
+     posés PAR-DESSUS ce qu'il y a en dessous. L'ancienne version lisait cette couleur
+     comme opaque, comparait du texte #F2F2F2 à un fond « #F2F2F2 » et sortait
+     « contraste 1.00, illisible ». Sur un projet public, 40 accusations
+     d'illisibilité, toutes fausses, sur des écrans parfaitement lisibles. Le cas cité
+     par l'épreuve (« 7/13 CONVERTED · $44,800 », #F2F2F2 sur une pastille
+     rgba(242,242,242,0.06) posée sur #0A0A0A) vaut 15,87 une fois composé.
+     On compose donc DEUX fois : le fond (en empilant les fonds semi-transparents des
+     parents jusqu'au premier fond opaque), puis la couleur du texte par-dessus. */
+  /* Lire une couleur CSS, quelle que soit sa syntaxe. Attention : `getComputedStyle`
+     ne rend PAS toujours du rgb(). Tailwind 4 rend `oklab(0.659 0.157 0.069)`, et les
+     trois nombres lus comme du rouge/vert/bleu donnent un quasi-noir : deux textes
+     orange vif de ce projet public sortaient à « contraste 1.06 ». On ne devine donc
+     rien : on fait peindre la couleur au navigateur sur deux fonds connus (noir puis
+     blanc) et on en déduit la couleur ET son alpha. Le résultat est mis en cache :
+     une page a des milliers d'éléments et une vingtaine de couleurs. */
+  const cacheCouleur = new Map();
+  let pinceau = null;
+  const surToile = (css) => {
+    if (!pinceau) {
+      const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+      pinceau = cv.getContext('2d', { willReadFrequently: true });
+    }
+    if (!pinceau) return null;
+    const peindre = (fond) => {
+      pinceau.globalCompositeOperation = 'copy';
+      pinceau.fillStyle = fond; pinceau.fillRect(0, 0, 1, 1);
+      pinceau.globalCompositeOperation = 'source-over';
+      pinceau.fillStyle = css;                  // syntaxe inconnue : le pinceau garde l'ancienne
+      pinceau.fillRect(0, 0, 1, 1);
+      return pinceau.getImageData(0, 0, 1, 1).data;
+    };
+    const N = peindre('#000'), B = peindre('#fff');
+    let a = 0; for (let i = 0; i < 3; i++) a += 1 - (B[i] - N[i]) / 255;
+    a = Math.min(1, Math.max(0, a / 3));
+    if (a < 0.005) return { r: 0, g: 0, b: 0, a: 0 };
+    return { r: N[0] / a, g: N[1] / a, b: N[2] / a, a };
+  };
+  const lireCouleur = (c) => {
+    if (!c) return null;
+    const css = String(c).trim();
+    if (cacheCouleur.has(css)) return cacheCouleur.get(css);
+    let v;
+    const m = /^rgba?\(([^)]*)\)$/.exec(css);
+    if (m) {                                    // le cas courant : exact, sans repasser par la toile
+      const n = m[1].match(/-?[\d.]+/g) || [];
+      v = n.length < 3 ? null : { r: +n[0], g: +n[1], b: +n[2], a: n[3] === undefined ? 1 : +n[3] };
+    } else if (/^(transparent|none)$/i.test(css)) v = { r: 0, g: 0, b: 0, a: 0 };
+    else v = surToile(css);                     // oklab, oklch, lab, color(), color-mix, un mot-clé…
+    cacheCouleur.set(css, v);
+    return v;
+  };
+  // « source-over » : la couche du dessus peinte sur celle du dessous.
+  const poser = (haut, bas) => {
+    const a = haut.a + bas.a * (1 - haut.a);
+    if (a === 0) return { r: 0, g: 0, b: 0, a: 0 };
+    const c = (h, b) => (h * haut.a + b * bas.a * (1 - haut.a)) / a;
+    return { r: c(haut.r, bas.r), g: c(haut.g, bas.g), b: c(haut.b, bas.b), a };
+  };
+  const lumi = ({ r, g, b }) => {
+    const f = (v) => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; };
+    return .2126 * f(r) + .7152 * f(g) + .0722 * f(b);
+  };
+  /* Le fond réellement peint sous un élément. On remonte les parents, on empile chaque
+     fond semi-transparent, on s'arrête au premier fond opaque. Une image ou un dégradé
+     rencontré en chemin : on ne sait pas de quelle couleur est le fond, on ne conclut pas. */
+  const fondEffectif = (e) => {
+    const couches = [];
+    let socle = null;
+    for (let n = e; n; n = n.parentElement) {
+      const st = getComputedStyle(n);
+      if (st.backgroundImage && st.backgroundImage !== 'none') return null;
+      const c = lireCouleur(st.backgroundColor);
+      if (!c || c.a === 0) continue;
+      if (c.a >= 1) { socle = c; break; }             // opaque : rien ne passe en dessous
+      couches.push(c);
+    }
+    // Sans aucun fond opaque, la toile du navigateur est blanche.
+    let fond = socle || { r: 255, g: 255, b: 255, a: 1 };
+    for (let i = couches.length - 1; i >= 0; i--) fond = poser(couches[i], fond);
+    return fond;
+  };
+  const contraste = (e, s) => {
+    const fond = fondEffectif(e);
+    if (!fond) return null;
+    const t = lireCouleur(s.color);
+    if (!t || t.a === 0) return null;                 // texte totalement transparent : un autre défaut, pas celui-ci
+    const A = lumi(t.a >= 1 ? t : poser(t, fond)), B = lumi(fond);
+    return { ratio: (Math.max(A, B) + .05) / (Math.min(A, B) + .05),
+      fond: `rgb(${[fond.r, fond.g, fond.b].map((v) => Math.round(v)).join(', ')})` };
+  };
+  /* LISTE NÉGATIVE DU CONTRASTE. Un texte qu'on ne voit pas parce que son conteneur est
+     replié, masqué ou sorti de l'écran exprès n'est PAS un défaut de contraste : personne
+     n'est censé le lire à ce moment-là. On le dirait « illisible » à tort, et la
+     correction demandée serait absurde (repeindre un accordéon fermé). */
+  const masque = (e) => {
+    for (let n = e; n && n !== document.documentElement; n = n.parentElement) {
+      const st = getComputedStyle(n);
+      if (st.visibility === 'hidden' || st.visibility === 'collapse') return 'masqué';
+      if (st.contentVisibility === 'hidden') return 'contenu masqué';
+      if (Number(st.opacity) < 0.15) return 'presque transparent';
+      if (n.hasAttribute('hidden') || n.getAttribute('aria-hidden') === 'true') return 'masqué aux lecteurs';
+      if (n.tagName === 'DETAILS' && !n.open) return 'replié';
+      const r = n.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return 'replié (boîte de moins de 2 px)';
+      // Le motif « réservé aux lecteurs d'écran » : poussé hors de l'écran exprès.
+      if (r.right <= 0 || r.bottom <= 0 || r.left >= document.documentElement.clientWidth + 2) return 'hors flux';
+      const hmax = parseFloat(st.maxHeight);
+      if (!Number.isNaN(hmax) && hmax <= 1 && /hidden|clip/.test(st.overflowY)) return 'replié (hauteur maximale nulle)';
+    }
+    return null;
+  };
+
   // 1. La page glisse-t-elle horizontalement ?
   const de = document.documentElement;
   if (de.scrollWidth > de.clientWidth + 2) {
@@ -127,25 +253,11 @@ function controler() {
         detail: `${e.scrollHeight}px de hauteur dans ${e.clientHeight}px, le bas est coupé`, ou: ou(e) });
     }
 
-    // 3. Un texte invisible : couleur trop proche du fond.
-    if (propre && texte(e).trim().length > 2) {
-      const lum = (c) => {
-        const m = c.match(/[\d.]+/g); if (!m || m.length < 3) return null;
-        if (m[3] !== undefined && Number(m[3]) === 0) return null;           // transparent
-        const [r0, g0, b0] = m.map(Number).map((v) => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; });
-        return .2126 * r0 + .7152 * g0 + .0722 * b0;
-      };
-      let fond = null;
-      for (let n = e; n && !fond; n = n.parentElement) {
-        const b = getComputedStyle(n).backgroundColor;
-        if (b && !/rgba\(0, 0, 0, 0\)|transparent/.test(b)) fond = b;
-      }
-      const a = lum(s.color), b = lum(fond || 'rgb(255,255,255)');
-      if (a !== null && b !== null) {
-        const ratio = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
-        if (ratio < 1.6) out.push({ type: 'INVISIBLE', quoi: nom(e),
-          detail: `contraste ${ratio.toFixed(2)} contre le fond (illisible en dessous de 3)`, ou: ou(e) });
-      }
+    // 3. Un texte invisible : couleur trop proche du fond RÉELLEMENT PEINT.
+    if (propre && texte(e).trim().length > 2 && !masque(e)) {
+      const c = contraste(e, s);
+      if (c && c.ratio < 1.6) out.push({ type: 'INVISIBLE', quoi: nom(e),
+        detail: `contraste ${c.ratio.toFixed(2)} contre le fond composé ${c.fond} (illisible en dessous de 3)`, ou: ou(e) });
     }
 
     // 4. Un grand bloc parfaitement vide.

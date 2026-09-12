@@ -4,7 +4,8 @@
  * preuve de ce qui n'a pas été regardé.
  *
  *     node couverture.mjs <repo> [--url http://localhost:3000] [--paralleles 3]
- *                                [--rapide] [--sans-base] [--export <zip|dossier>] [--json f]
+ *                                [--rapide] [--sans-base] [--export <zip|dossier>]
+ *                                [--attente 10000] [--json f]
  *
  * POURQUOI CE FICHIER EXISTE
  *
@@ -31,8 +32,23 @@
  *        apparence.mjs       à quoi il ressemble, en grand et en téléphone
  *      L'ÉCRAN est l'unité d'isolation : un processus, un navigateur, un décompte.
  *      Jamais une tranche de boutons : ses boutons partagent un état.
- *   7. decisions.mjs         les questions que seul l'humain peut trancher → questions.json
- *   8. bilan.mjs             le baromètre, un seul document → BILAN.md
+ *   7. parcours.mjs          les rapports des agents entrés dans l'application, vérifiés
+ *                            → .backend/parcours/*.verifie.json et parcours.json
+ *   8. decisions.mjs         les questions que seul l'humain peut trancher → questions.json
+ *   9. bilan.mjs             le baromètre, un seul document → BILAN.md
+ *
+ * LA BASE QUI N'EST PAS CONVEX. `npx convex export` n'existe que sur Convex. Partout
+ * ailleurs, l'export se fabrique à la main et se passe avec `--export <dossier>` : un
+ * DOSSIER, un fichier `.jsonl` par table (une ligne = un document JSON), nommé comme la
+ * table, ou `<table>/documents.jsonl`. Les deux recettes, SQLite et Postgres, sont dans
+ * `references/parcours-reel.md`. Sans cet export, la base n'est pas inspectée et le bilan
+ * le dit en une ligne : il ne dit RIEN D'AUTRE sur la base, ni dans un sens ni dans l'autre.
+ *
+ * L'ÉTAPE DES AGENTS. Elle ne se lance pas d'ici (elle demande de comprendre, donc des
+ * agents), mais elle se RAMASSE ici : les rapports déposés dans `.backend/parcours/` sont
+ * vérifiés et consolidés, et leur décompte entre dans la couverture. Un groupe lancé qui
+ * n'a jamais rendu sort en « non couvert », nommément. La procédure : références
+ * `references/parcours-reel.md`.
  *
  * CE QU'IL NE FAIT PAS : cliquer sur ce qui supprime, vide, déconnecte ou ÉCRIT (type=submit,
  * bouton dans un formulaire, verbe d'écriture). Ces boutons sont comptés « écartés »,
@@ -193,7 +209,18 @@ if (a('--sans-base')) {
     20, F('fausses-en-base.json'));
   R.etapes['nettoyer-base'] = etape(rb);
   console.log(rb.ok ? `✓${rb.defauts ? ' (suspects en base)' : ''}` : `✗ non fait : ${rb.raison}`);
-  if (!rb.ok) nonFait.push(`la base n'a pas été inspectée : ${rb.raison}`);
+  if (!rb.ok) {
+    nonFait.push(`la base n'a pas été inspectée : ${rb.raison}`);
+    /* L'épreuve du 12/09/2026 a buté ici : trois fichiers SQLite, un message qui réclame
+       un export, et le format nulle part. Elle l'a deviné. Plus jamais : on l'écrit. */
+    if (!exp && /n'est pas Convex/i.test(rb.raison || '')) {
+      console.log(`       Cette base n'est pas Convex : l'export se fabrique à la main, puis`);
+      console.log(`       --export <dossier> : un fichier .jsonl par table, une ligne = un document.`);
+      console.log(`       SQLite   : sqlite3 base.db ".mode json" ".once t.jsonl" "SELECT * FROM t;"`);
+      console.log(`       Postgres : psql -c "COPY (SELECT row_to_json(t) FROM t) TO STDOUT" > t.jsonl`);
+      console.log(`       La recette complète : references/parcours-reel.md`);
+    }
+  }
 }
 
 /* ══ 6. CÔTÉ ÉCRAN, un travailleur par écran ═══════════════════════════════ */
@@ -261,7 +288,10 @@ if (!vivante) {
     else {
       const couverts = e.cliques + e.ecartes + e.non_cliques + e.inclus;
       const part = e.recenses ? Math.round(couverts / e.recenses * 100) : 100;
-      ligne(m, `${String(e.cliques).padStart(4)}/${String(e.recenses).padEnd(4)} cliqués · ${String(part).padStart(3)} % couverts`
+      /* « 100 % couverts » à côté de « 3 non cliqués » : les deux ne peuvent pas être
+         vrais ensemble pour un lecteur. Le mot juste est EXPLIQUÉS : chaque bouton a un
+         statut nommé. Le chiffre qui dit ce qui a vraiment été cliqué est celui de gauche. */
+      ligne(m, `${String(e.cliques).padStart(4)}/${String(e.recenses).padEnd(4)} cliqués · ${String(part).padStart(3)} % expliqués`
         + `${e.ecartes ? ` · ${e.ecartes} écartés` : ''}${e.non_cliques ? ` · ${e.non_cliques} non cliqués` : ''}`
         + `  ${e.erreurs ? `⛔${e.erreurs} ` : ''}${e.casses ? `💥${e.casses} ` : ''}${e.morts ? `∅${e.morts} ` : ''}`
         + `${ap ? (e.apparence ? `👁${e.apparence}` : '') : `👁 non fait : ${e.apparence_statut.replace(/^non fait : /, '')}`}`
@@ -281,7 +311,44 @@ for (const m of mods.filter((x) => x.dynamique)) {
   R.ecartes.push({ route: m.route, raison: 'segment dynamique : demande un identifiant réel' });
 }
 
-/* ══ 7. DÉCISIONS ═══════════════════════════════════════════════════════════ */
+/* ══ 7. LE PARCOURS DES AGENTS ══════════════════════════════════════════════
+   La chaîne ne lance pas les agents (ça demande de comprendre), mais elle RAMASSE ce
+   qu'ils ont déposé. Avant le 12/09/2026 ce ramassage n'existait pas : six agents
+   avaient trouvé les dix défauts les plus graves d'un produit, et le bilan n'en portait
+   aucun. --verifier rejoue leurs affirmations avec le navigateur, donc seulement si
+   l'application répond. */
+
+process.stdout.write(`\n  PARCOURS DES AGENTS       `);
+const dossierParcours = F('parcours');
+if (!fs.existsSync(dossierParcours)) {
+  R.etapes.parcours = etape(null, 'aucun rapport déposé dans .backend/parcours/');
+  console.log(`✗ non fait : aucun rapport dans ${dossierParcours}`);
+  nonFait.push("le parcours des agents n'a pas eu lieu : aucun rapport dans .backend/parcours/ "
+    + '(c\'est l\'étape qui rapporte le plus : procédure dans references/parcours-reel.md)');
+} else {
+  /* 10 secondes d'attente par clic, et pas les 2,5 s par défaut du vérificateur : sur un
+     serveur de développement, la même page met de 0,07 s à 42 s à se rendre, et c'est
+     exactement comme ça qu'on fabrique 256 faux boutons morts. */
+  const rp = await lancer('parcours.mjs',
+    [RACINE, ...(vivante ? ['--verifier', '--base', BASE, '--attente', arg('--attente', '10000')] : [])],
+    30, F('parcours.json'));
+  R.etapes.parcours = etape(rp);
+  const P = rp.ok ? lireJson(F('parcours.json')) : null;
+  if (!rp.ok) { console.log(`✗ non fait : ${rp.raison}`); nonFait.push(`les rapports d'agents n'ont pas pu être consolidés : ${rp.raison}`); }
+  else {
+    const retenus = (P?.constats || []).filter((c) => c.retenu).length;
+    console.log(`✓ ${P?.groupes?.length ?? 0} groupe(s) rendu(s)`
+      + `${P?.manquants?.length ? `, ${P.manquants.length} jamais rendu(s)` : ''}`
+      + ` · ${retenus} constat(s) retenus · ${(P?.constats || []).length - retenus} écarté(s) par la vérification`
+      + `${vivante ? '' : ' (non vérifiés : application éteinte)'}`);
+    R.parcours = { groupes: P?.groupes?.length ?? 0, manquants: (P?.manquants || []).map((g) => g.groupe), totaux: P?.totaux || null };
+    for (const g of P?.manquants || []) {
+      nonFait.push(`parcours agent : le groupe « ${g.groupe} » n'a jamais rendu${g.ecrans?.length ? ` : ${g.ecrans.join(', ')}` : ''}`);
+    }
+  }
+}
+
+/* ══ 8. DÉCISIONS ═══════════════════════════════════════════════════════════ */
 
 process.stdout.write(`\n  DÉCISIONS À TRANCHER      `);
 const rd = await lancer('decisions.mjs', [RACINE], 10, F('questions.json'));
@@ -311,6 +378,13 @@ console.log(`    écartés volontairement    ${tot('ecartes')}   (écrivent ou d
 console.log(`    non cliqués               ${tot('non_cliques')}   (voulus, pas atteints : ce n'est pas un OK)`);
 if (tot('inclus')) console.log(`    inclus dans un parent     ${tot('inclus')}   (le parent a été testé)`);
 if (R.ecartes.length) console.log(`    non testables sans donnée ${R.ecartes.length}   (${R.ecartes.map((x) => x.route).join(', ')})`);
+if (R.parcours?.totaux) {
+  const p = R.parcours.totaux;
+  console.log(`\n  COUVERTURE DU PASSAGE AGENT (elle s'ajoute, elle ne remplace pas)`);
+  console.log(`    groupes qui ont rendu     ${R.parcours.groupes}${R.parcours.manquants.length ? ` / ${R.parcours.groupes + R.parcours.manquants.length}   (jamais rendu : ${R.parcours.manquants.join(', ')})` : ''}`);
+  console.log(`    boutons cliqués           ${p.cliques} / ${p.recenses}`);
+  console.log(`    écartés / non testés      ${p.ecartes} / ${p.non_testes}${p.non_concluants ? `   (${p.non_concluants} non concluants)` : ''}`);
+}
 console.log(`\n  CE QU'ON A TROUVÉ CÔTÉ ÉCRAN`);
 console.log(`    erreurs au clic           ${tot('erreurs')}`);
 console.log(`    écrans qui se cassent     ${tot('casses')}`);
@@ -371,7 +445,7 @@ const ecrire = () => {
 };
 ecrire();
 
-/* ══ 8. BILAN ═══════════════════════════════════════════════════════════════ */
+/* ══ 9. BILAN ═══════════════════════════════════════════════════════════════ */
 
 process.stdout.write(`\n  BILAN                     `);
 const rbi = await lancer('bilan.mjs', [RACINE, '--md', F('BILAN.md')], 10);

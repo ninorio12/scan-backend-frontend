@@ -30,8 +30,10 @@ node scripts/couverture.mjs <repo> --url http://localhost:3000 [--export <zip|do
 ```
 
 `--export` ne sert que si la base n'est pas Convex : il est transmis tel quel à
-`nettoyer-base`, et sans lui la base reste « non regardée » (format dans
-`references/outils.md`). Elle enchaîne toute la chaîne (reconnaissance, code, base, écrans, questions, bilan) et
+`nettoyer-base`, et sans lui la base reste « non regardée » et le bilan ne dit **rien
+d'autre** sur elle. Le format (un dossier, un `.jsonl` par table) est dans
+`references/outils.md` ; les commandes toutes faites pour SQLite et Postgres sont dans
+`references/parcours-reel.md`. Elle enchaîne toute la chaîne (reconnaissance, code, base, écrans, questions, bilan) et
 sort en code 2 tant que le travail est incomplet. Trois codes de sortie, pour tous les
 scripts : 0 rien à signaler · 1 des défauts trouvés · 2 le travail n'a pas pu être fait,
 et le script dit pourquoi. Un code 2 ne se lit jamais comme un 0. Le verdict est dans
@@ -110,10 +112,35 @@ rendu est « non testé », jamais « 0 bouton mort ».
 
 Puis les agents prennent le relais sur ce qui demande de comprendre : un bouton qui annonce
 « Enregistré » sans écrire, un compteur qui ne tombe pas juste, une valeur qui survit à la
-coupure de la source. Un agent par groupe de trois modules, périmètres disjoints, brief
-dans `references/parcours-reel.md`, et chaque agent rend son décompte : recensés, cliqués,
-écartés, non testés. Deux interdits sans exception : ne modifier aucun fichier, ne cliquer
-sur rien qui écrit ou détruit. Un rapport d'agent sans décompte n'est pas fini, on relance.
+coupure de la source. **C'est l'étape qui rapporte le plus** : le 12/09/2026, six agents
+ont trouvé les dix défauts les plus graves d'un produit, dont aucun n'était visible
+mécaniquement. La procédure complète est exécutable dans `references/parcours-reel.md` :
+découpage, brief à recopier, format de rendu, conduite à tenir.
+
+```bash
+# 1. j'écris le découpage AVANT de lancer : qui fait quoi, sur quels écrans
+#    <repo>/.backend/parcours/groupes.json
+# 2. je lance TROIS agents à la fois (six sur un serveur de dev l'ont fait redémarrer)
+# 3. chaque agent dépose <repo>/.backend/parcours/<groupe>.json
+node scripts/parcours.mjs <repo> --verifier --base http://localhost:3000 --attente 15000
+```
+
+Un agent par groupe de trois modules, périmètres disjoints, **trois agents en parallèle**
+(six au maximum absolu, et jamais six sur un serveur de développement : mesuré à 7,9 de
+charge sur 4 cœurs, 27 s par page, redémarrage du serveur sous la charge). Chaque agent
+rend son décompte dans le format imposé : recensés, cliqués, écartés, non testés, non
+concluants. Trois interdits sans exception : ne modifier aucun fichier, ne cliquer sur
+rien qui écrit ou détruit, **ne laisser aucun guetteur derrière soi**. Un rapport sans
+décompte n'est pas fini, on relance ; un groupe qui ne rend pas sort **nommément** en
+« non regardé », avec ses écrans, et le bilan reste INCONNU.
+
+Ce que les agents rapportent **passe par le vérificateur** (`verifier-affirmation.mjs`,
+sans LLM) avant d'entrer au bilan : confirmé entre, infirmé n'entre pas, invérifiable
+entre avec la mention, et un constat sans affirmation entre en « rapporté, non vérifié ».
+Dans l'autre sens, un démenti ne retire un constat mécanique que **rejoué et vérifié** :
+une mesure ne se retire pas sur parole. Rejoué sur les données de l'épreuve : 28 constats
+d'agents entrent au bilan (dont les dix plus graves du produit, qui n'y étaient pas), et
+189 faux « boutons morts » sur 256 en sortent (`banc/audit/chantier-canal.md`).
 
 ### 4 · Je consolide et je rends le bilan
 
@@ -170,7 +197,9 @@ pas, et c'est le côté écran qui rapporte le plus.
 - `references/doctrine.md` : la loi centrale, un écran naît branché, les 7 maillons,
   l'échelle de gravité, les deux modes, le mécanisme d'exception.
 - `references/lois-backend.md`, `references/contrat-cablage.md` : les 12 lois et le template des 7 maillons.
-- `references/parcours-reel.md` : le brief des agents qui entrent dans l'application.
+- `references/parcours-reel.md` : la procédure exécutable de l'étape des agents — combien
+  en parallèle, comment découper, le brief à recopier, le format de rendu qui entre dans
+  le bilan, quoi faire d'un groupe qui ne rend pas, et l'export d'une base non Convex.
 - `references/histoire-des-mesures.md` : ce qui a été chiffré, anonymisé, et ce qu'on en a tiré.
 - `references/bloc-claude-md.md`, `modeles/regles/` : ce qui se colle dans le projet audité.
 - `references/ajouter-une-stack.md`, `references/gates-qui-tiennent.md`,

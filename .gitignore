@@ -30,3 +30,6 @@ export-base*
 banc/affirmations/
 banc/stacks/
 banc/mesure/sources.json
+
+# Copie de travail de la boucle de réparation (dépôt git imbriqué)
+banc/reparation-essai/

@@ -184,14 +184,53 @@ export const FRONTIERE = {
   },
 };
 
+/* ══ LA FRONTIÈRE CÔTÉ BILAN ════════════════════════════════════════════════
+   La table ci-dessus est indexée par les règles de `audit-backend.mjs` (A1…I5).
+   La boucle, elle, part du BILAN, dont les défauts portent un code de famille
+   (`ANNONCE`, `ENDUR`, `SERVEUR-unite`…) produit par `entree.mjs`. Deux index pour
+   un même tri : la question ne change pas, seul le vocabulaire de l'entrée change.
+
+   Le constat qui ressort de ce côté-ci est net et vaut d'être dit : **le bilan ne
+   contient presque aucun défaut mécanique**. C'est logique et ce n'est pas un
+   défaut de la table : le bilan ne retient que ce qui a une conséquence lisible
+   pour l'utilisateur, et une conséquence lisible suppose presque toujours une
+   intention à comprendre. Les codemods servent l'autre entrée (l'auditeur de
+   câblage), pas celle-ci. */
+
+export const FRONTIERE_BILAN = {
+  ANNONCE: { mode: 'agent', quoi: 'Une action annonce un succès sans écrire', pourquoi: "Il faut décider CE QUI s'enregistre et où. Rien ne se déduit du texte du défaut." },
+  ENDUR: { mode: 'agent', quoi: 'Valeur écrite en dur affichée comme une donnée', pourquoi: "Il faut savoir quelle requête porte la valeur. ⚠️ La triche est la constante : diff-garde la refuse." },
+  ENBASE: { mode: 'humain', quoi: 'Fausse donnée en base', pourquoi: "Supprimer des lignes dans la base d'un client est une décision, pas un diff." },
+  ECRANVIDE: { mode: 'agent', quoi: 'Écran entier sans aucune lecture de source', pourquoi: 'Un écran, un agent, un bail.' },
+  GARDE: { mode: 'agent', quoi: 'Porte publique sans garde', pourquoi: "⚠️ Sans fondation d'authentification, on ne pose PAS de garde : on bascule en interne. Voir contrats.mjs.", renvoiSkill: 'convex-authz' },
+  BOUTONMORT: { mode: 'agent', quoi: 'Bouton ou lien qui ne fait rien', pourquoi: "L'action est dans le libellé et l'intention de l'écran, pas dans le code." },
+  LIENMORT: { mode: 'agent', quoi: 'Lien mort ou page vide', pourquoi: 'Créer la page ou corriger le lien : seul le produit tranche.' },
+  CLICCASSE: { mode: 'agent', quoi: 'Erreur au clic, écran qui se casse', pourquoi: "La panne est réelle ; sa cause se lit dans le code, pas dans le symptôme." },
+  PLANTAGE: { mode: 'agent', quoi: 'Plantage invisible', pourquoi: "Décider ce que l'écran montre quand ça casse est une décision produit." },
+  APPARENCE: { mode: 'agent', quoi: "Défaut d'apparence", pourquoi: 'Le remède dépend de la maquette, que le scanner ne connaît pas.' },
+  SOURCES: { mode: 'humain', quoi: 'Un concept lu depuis plusieurs sources', pourquoi: "Choisir LA source de vérité est une décision d'architecture, pas une correction." },
+  AUTEURS: { mode: 'humain', quoi: 'Une table écrite par plusieurs modules', pourquoi: 'Nommer un propriétaire est une décision de découpage.' },
+  'CHIFFRE-population': { mode: 'agent', quoi: "Chiffre et liste sur deux populations", pourquoi: 'Laquelle des deux est juste est une question métier.' },
+  'CHIFFRE-formule': { mode: 'agent', quoi: 'Chiffre faux : formule ou repli inventé', pourquoi: "Ce qu'il faut afficher quand il n'y a pas de donnée est une décision produit." },
+  'CHIFFRE-unite': { mode: 'agent', quoi: 'Chiffre faux : unités mélangées', pourquoi: 'Le taux et sa source sont une décision.' },
+  'SERVEUR-unite': { mode: 'agent', quoi: 'Agrégation sans regarder la graduation', pourquoi: 'Convertir, refuser ou détailler : trois corrections valables, seul le produit tranche.' },
+  'SERVEUR-population': { mode: 'agent', quoi: 'Deux côtés du calcul sur deux ensembles', pourquoi: 'Laquelle des deux populations est la bonne ne se lit pas dans le code.' },
+  'SERVEUR-existence': { mode: 'agent', quoi: 'Écrit jamais lu, ou travail abandonné', pourquoi: "Brancher la lecture ou supprimer l'écriture : un codemod choisirait au hasard." },
+  'SERVEUR-formule': { mode: 'agent', quoi: 'Calcul fragile côté serveur', pourquoi: 'La borne, le repli, le cas dégénéré sont des décisions.' },
+  'SERVEUR-vocabulaire': { mode: 'agent', quoi: 'État écrasé sans regarder le vocabulaire du champ', pourquoi: "Il faut connaître l'ordre des états, qui est métier." },
+  'SERVEUR-source': { mode: 'agent', quoi: 'Désaccord de source côté serveur', pourquoi: 'Idem : seul le produit dit quelle source fait foi.' },
+};
+
 /* ── Répartition ───────────────────────────────────────────────────────────── */
+
+export function modeDe(regle) {
+  return (FRONTIERE[regle] || FRONTIERE_BILAN[regle]
+    || FRONTIERE_BILAN[String(regle).replace(/-.*/, '')])?.mode || null;
+}
 
 export function repartir(empreintes) {
   const par = { mecanique: [], agent: [], humain: [], inconnu: [] };
-  for (const e of empreintes) {
-    const f = FRONTIERE[e.regle];
-    (par[f?.mode] || par.inconnu).push(e);
-  }
+  for (const e of empreintes) (par[modeDe(e.regle)] || par.inconnu).push(e);
   return par;
 }
 

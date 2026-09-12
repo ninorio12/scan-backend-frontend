@@ -13,6 +13,12 @@ et rend pour chacune une de ces quatre dispositions : **confirmée**, **infirmé
 Sous 70 % de confirmation sur ce qui a été tranché, ton lot est **REJETÉ** et tu refais.
 Sous 50 % de lot jugeable aussi : vingt affirmations invérifiables ne sont pas un rapport.
 
+> ⚠️ **Où mettre ce lot quand tu es un agent de parcours.** Ne rends pas un lot séparé :
+> personne ne le lira. Ton rapport va dans `<repo>/.backend/parcours/<ton-groupe>.json`, et
+> chaque anomalie y porte **une** affirmation dans son champ `affirmation`, avec exactement
+> les champs décrits ici. C'est ce dossier que `parcours.mjs` rejoue et que `bilan.mjs`
+> lit. Le format complet de l'enveloppe : `references/parcours-reel.md`.
+
 ## Le format exact
 
 Un fichier JSON. Rien d'autre.

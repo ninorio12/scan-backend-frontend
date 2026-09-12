@@ -593,7 +593,7 @@ async function verifierBoutonSansEffet(a, ctx) {
       return { disposition: 'infirmée', raison: `« ${b.libelle} » est inclus dans « ${b.parent} » : c'est le parent qui reçoit le clic, le client n'est pas bloqué`, mesure: { parent: b.parent } };
     }
 
-    const bouge = await clicEtMesure(e, b.element);
+    const bouge = await clicEtMesure(e, b.element, ctx.attente);
     if (bouge.change) {
       return { disposition: 'infirmée', raison: `le clic a bien un effet : ${bouge.quoi}`, mesure: bouge };
     }
@@ -653,7 +653,7 @@ async function verifierBoutonSansEffet(a, ctx) {
     await dormir(400);
     const b2 = await trouverBouton(e.page, libelle);
     if (!b2) return { disposition: 'invérifiable', raison: `« ${libelle} » a disparu pendant la contre-épreuve : on ne conclut pas à la mort sans l'avoir re-cliqué` };
-    const bouge2 = await clicEtMesure(e, b2.element);
+    const bouge2 = await clicEtMesure(e, b2.element, ctx.attente);
     if (bouge2.change) {
       return { disposition: 'infirmée', raison: `paraissait inerte, mais réagit une fois l'écran dans un autre état : ${bouge2.quoi}`, mesure: bouge2 };
     }
@@ -666,12 +666,19 @@ async function verifierBoutonSansEffet(a, ctx) {
 
 /* Un clic, et la comparaison avant/après : URL, taille du texte, panneaux ouverts,
    requêtes en échec, erreurs JavaScript. */
-async function clicEtMesure(e, element) {
+/* `attente` n'est pas un détail : c'est la fenêtre pendant laquelle on accepte de voir
+   l'effet du clic. Elle valait 1000 ms en dur, et un serveur de développement met de
+   0,07 s à 42 s à rendre une page (mesuré le 12/09/2026, médiane 4,3 s). Avec 1 s, un
+   lien parfaitement vivant ne montre rien, part en contre-épreuve, et revient
+   « invérifiable » : c'est la mécanique exacte qui a produit 256 faux boutons morts,
+   reproduite à l'intérieur du vérificateur censé les démentir. Elle suit désormais
+   --attente, et attend au moins une seconde. */
+async function clicEtMesure(e, element, attente = 1000) {
   const avant = await e.page.evaluate(() => window.__etat());
   const nR = e.reseau.length, nC = e.consoleJS.length;
   try { await element.click({ timeout: 2500 }); }
   catch (err) { return { change: false, quoi: null, echecClic: String(err.message || err).split('\n')[0] }; }
-  await dormir(1000);
+  await dormir(Math.max(1000, Number(attente) || 0));
   const apres = await e.page.evaluate(() => window.__etat()).catch(() => avant);
 
   if (apres.url !== avant.url) return { change: true, quoi: `l'écran a navigué vers ${apres.url}` };

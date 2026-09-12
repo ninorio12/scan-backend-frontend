@@ -14,13 +14,40 @@ verdict sur un invariant que personne ne peut faire taire.**
 
 | Fichier | Ce qu'il fait |
 |---|---|
+| `entree.mjs` | L'ENTRÉE : lit `.backend/BILAN.md` et les JSON, rejoue le baromètre du bilan, et se contrôle contre le tableau de BILAN.md. Rien ne part d'une liste écrite à la main. |
 | `empreintes.mjs` | Donne à chaque défaut une identité stable, insensible aux décalages de lignes. Tout le reste en dépend. |
+| `contrats.mjs` | Dérive du TEXTE du défaut le contrat et son invariant, et refuse tout invariant déjà vert avant correction. |
 | `frontiere.mjs` | Tranche règle par règle : codemod déterministe, agent, ou décision humaine. |
 | `codemods/*.mjs` | Les corrections mécaniques. Trois secondes, zéro jeton, résultat identique à chaque passage. |
 | `invariants.mjs` | La preuve qu'une correction a eu lieu, sans demander au scanner. |
 | `diff-garde.mjs` | Refuse un diff qui éteint un détecteur au lieu de corriger. Impose le bail. |
-| `boucle.mjs` | Découpe en lots disjoints, ouvre un worktree par lot, rend le verdict. |
+| `boucle.mjs` | Découpe en lots disjoints, ouvre un worktree par lot, LANCE l'ouvrier, fait juger, fusionne ou révoque. |
 | `eprouver-garde.mjs` | Rejoue les triches réelles contre le garde. Un garde non éprouvé ne vaut rien. |
+
+### La boucle en une commande
+
+```bash
+node scripts/reparer.mjs <copie> --tourner
+```
+
+Elle part du bilan, découpe en lots disjoints, lance un sous-agent correcteur par lot
+dans son worktree, fait juger par un autre agent en contexte frais, fusionne ou révoque,
+et remet en file avec le motif du rejet. Le journal complet sort dans
+`<copie>/.backend/boucle-bilan.json`, un patch par lot accepté dans
+`<copie>/.backend/reparation-<lot>.patch`.
+
+**Deux lois que le code applique, et qu'il ne faut pas relâcher :**
+
+1. **Un invariant déjà vert avant correction ne prouve rien.** `contrats.mjs` rejoue
+   chaque invariant dérivé sur le code NON corrigé ; s'il passe déjà, le contrat sort
+   `INJUGEABLE`. Mesuré sur le banc figé : 4 des 18 invariants dérivés étaient verts
+   d'avance, dont celui du repli à 100 — la boucle aurait annoncé quatre corrections
+   qui n'avaient pas eu lieu.
+2. **Un vérificateur qui ne tourne pas et rend zéro est pire qu'absent.** `npx tsc`
+   lancé dans un worktree temporaire ne trouve pas `typescript` en remontant, échoue
+   en silence, et le typage différentiel annonçait « 0 erreur ». Le compilateur est
+   donc appelé par son chemin, et « aucune erreur » se distingue de « n'a pas pu
+   tourner ».
 
 ---
 
@@ -37,6 +64,19 @@ On livre un diff, pas un dépôt modifié. Sur un projet client, c'est le client
 décide d'appliquer.
 
 ### 1 · Identifier (avant toute boucle)
+
+```bash
+node reparation/entree.mjs <repo>       # la file, dans l'ordre du baromètre
+node reparation/contrats.mjs <repo>     # un contrat et son invariant par défaut
+```
+
+`entree.mjs` lit `.backend/BILAN.md` et les JSON qui le nourrissent, rejoue la
+classification du bilan (trompe / cassé / dette) et **se contrôle contre le tableau de
+BILAN.md** : si les comptes divergent, la boucle travaille sur une autre réalité que
+celle qu'a lue l'humain, et elle le dit. L'ordre de traitement est celui du baromètre,
+jamais le nombre de défauts par fichier.
+
+L'identifiant lui-même vient de `empreintes.mjs`, utilisable seul :
 
 ```bash
 node reparation/empreintes.mjs <repo>
@@ -100,10 +140,26 @@ qu'il classait `scripts/ingest_icloud_agenda.mjs` du côté serveur : la conditi
 maintenant l'inverse d'une liste noire, est serveur ce qui vit dans `convex/`, tout le
 reste est un consommateur public.
 
-**Lot agent** — le brief que reçoit l'ouvrier contient, et seulement :
-le contrat du défaut (empreinte, constat, correction attendue, invariants), le bail,
-et l'interdiction explicite des six triches. Pas le rapport complet du scanner : il y
-lirait les 618 autres défauts et sortirait de son bail.
+**Lot agent** — `boucle.mjs` lance l'ouvrier lui-même :
+
+```bash
+node reparation/boucle.mjs <repo> corriger <nom-du-lot>
+```
+
+Le brief qu'il reçoit contient, et seulement : le contrat de SES défauts (empreinte,
+constat, correction attendue, invariants qui seront rejoués), le bail, et l'interdiction
+explicite des onze triches. Pas le rapport complet du scanner : il y lirait les 618
+autres défauts et sortirait de son bail. L'ouvrier n'a ni Bash ni réseau : Read, Edit,
+Write, Grep, Glob, et `--restricted` confine ses outils de fichier au chantier — une
+deuxième barrière au cas où le bail serait mal écrit.
+
+Il lui est dit, en toutes lettres, qu'il ne rend **aucun** verdict. Un défaut qui lui
+paraît être un faux signalement se déclare dans `.backend/boucle/blocage.md` ; il ne se
+maquille pas.
+
+⚠️ Le chantier ne vit jamais sous `~/.claude/` : un worktree posé là hérite du statut
+« fichier sensible » et l'ouvrier se voit refuser toute écriture. Il rend alors un
+rapport poli disant qu'il n'a rien pu faire, indiscernable d'un lot vide.
 
 ### 5 · Juger
 
@@ -118,14 +174,44 @@ hériterait la conviction), ni le recompte du scanner (l'ouvrier peut le faire t
 Trois verdicts : `ACCEPTÉ`, `REFUSÉ`, `INJUGEABLE`. Un contrat sans invariant est
 `INJUGEABLE` : rien ne peut être prouvé, donc rien n'est accepté.
 
-Dans l'ordre :
+Dans l'ordre, et **l'ordre est la doctrine** — chaque étape peut refuser seule, aucune
+ne peut accepter seule :
 
 1. **Le bail.** Un seul fichier touché hors bail révoque le lot ENTIER. Pas de
    rattrapage partiel : un lot qui a débordé a pu écrire n'importe quoi, on ne sait
    plus ce qui est sûr dedans.
 2. **Les six triches** (`diff-garde.mjs`), plus les cinq mouvements du floor-guard
    d'Addy Osmani dont on reprend la plomberie de diff et les codes de sortie.
-3. **Les invariants** (`invariants.mjs`), qui ne demandent rien au scanner.
+3. **Le lot vide.** Un diff qui ne touche aucun fichier du bail n'est pas une
+   correction silencieuse, c'est un abandon, et il se lit comme tel.
+4. **La surface publique du bail.** Ce que les fichiers du bail exportaient et
+   rendaient avant doit exister encore, ou bien tous ceux qui s'en servent doivent
+   être dans le bail. Mesuré : un lot accepté par les invariants ET par le juge avait
+   renommé `valeurTotale` en `valeurTotaleParDevise` ; l'écran qui le lit vivait hors
+   du bail, le juge ne le voyait pas dans le diff, et le typage est aveugle sur un
+   projet sans dépendances installées. Résultat : un écran qui affiche `undefined`,
+   c'est-à-dire exactement la panne que ce skill existe pour trouver. Le bail protège
+   des collisions ; il n'autorise pas à casser le voisin.
+5. **Le typage, en différentiel.** Sur un projet sans dépendances installées, `tsc`
+   sort des centaines d'erreurs qui n'ont rien à voir avec la correction : un
+   typecheck binaire refuserait tous les lots, honnêtes compris. On compare la
+   SIGNATURE des erreurs (fichier + code + message, sans numéro de ligne) : ce qui
+   compte est qu'aucune NOUVELLE n'apparaisse.
+6. **Les invariants** (`invariants.mjs`), qui ne demandent rien au scanner.
+7. **Le recompte par empreintes.** Il n'accepte jamais — l'ouvrier peut faire taire le
+   scanner — mais il refuse : « résolu » veut dire que l'empreinte visée a disparu ET
+   qu'aucune nouvelle n'est apparue, toutes règles confondues. Mesuré : un lot accepté
+   par les invariants ET par le juge introduisait trois lignes plus bas un nouveau
+   total de devises non converties.
+8. **Le juge, agent en contexte frais**, et seulement si tout ce qui précède est vert.
+   Il cherche la correction qui satisfait la lettre et rate l'intention : un champ
+   écrit avec la mauvaise valeur, une garde posée sur la mauvaise fonction, une donnée
+   de démonstration remplacée par une autre donnée de démonstration.
+
+Un lot refusé voit son worktree détruit et son défaut remis en file **avec le motif du
+rejet**, qui est réinjecté dans le brief de la tentative suivante. Sans ce motif, la
+seconde tentative redonne la même correction — mesuré sur le banc figé : au premier
+essai deux invariants sur cinq tombaient, au second, avec le motif, les cinq passaient.
 
 ### 6 · Remesurer, et lire le bon chiffre
 
