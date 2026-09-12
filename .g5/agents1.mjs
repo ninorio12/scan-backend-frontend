@@ -1,0 +1,33 @@
+import { chromium } from 'playwright';
+import fs from 'fs';
+const OUT='/tmp/claude-0/-root/2a498558-abf1-4136-9309-84369033f8e0/scratchpad/g5';
+const b=await chromium.launch(); const p=await b.newPage();
+await p.setViewportSize({width:1500,height:950});
+const logs=[]; p.on('console',m=>{if(m.type()==='error')logs.push(m.type()+': '+m.text().slice(0,220));});
+p.on('pageerror',e=>logs.push('pageerror: '+String(e).slice(0,250)));
+const net=[]; p.on('response',r=>{if(r.status()>=400)net.push(r.status()+' '+r.url().slice(0,160));});
+await p.goto('http://localhost:3000/modules/agents-ia',{waitUntil:'networkidle',timeout:200000});
+await p.waitForTimeout(15000);
+const t=await p.evaluate(()=>document.body.innerText);
+fs.writeFileSync(OUT+'/agents-txt.txt',t);
+console.log('LEN',t.length);
+console.log('HEAD',JSON.stringify(t.slice(0,1800)));
+const fam=await p.evaluate(()=>[...document.querySelectorAll('div.mt-2\\.5.flex.flex-wrap button')].map(b=>b.innerText.replace(/\n/g,' ').trim()));
+console.log('FAMILLES',JSON.stringify(fam));
+const notes=await p.evaluate(()=>{
+  const l=[...document.querySelectorAll('div[hidden=""],div')].length;
+  const btns=[...document.querySelectorAll('button.tap.flex.items-center.gap-2\\.5')];
+  return {n:btns.length, ex:btns.slice(0,4).map(x=>x.innerText.replace(/\n/g,' | ').slice(0,140))};
+});
+console.log('NOTES',JSON.stringify(notes,null,1));
+const parFam=await p.evaluate(()=>{
+  const btns=[...document.querySelectorAll('button.tap.flex.items-center.gap-2\\.5')];
+  const m={}; btns.forEach(x=>{const parts=x.innerText.split('\n'); const f=parts[parts.length-2]; m[f]=(m[f]||0)+1;});
+  return m;
+});
+console.log('PAR_FAMILLE_LISTE',JSON.stringify(parFam));
+const clic=await p.evaluate(()=>document.querySelectorAll('button, a[href], input').length);
+console.log('CLIQUABLES',clic);
+await p.screenshot({path:OUT+'/agents-haut.png'});
+console.log('LOGS',JSON.stringify(logs.slice(0,10)));console.log('NET',JSON.stringify(net.slice(0,10)));
+await b.close();
