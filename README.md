@@ -140,10 +140,18 @@ Ce que le skill **ne voit pas** :
 
 - **Les bases qui ne sont pas Convex, sans export fourni.** Convex a un export
   automatique ; ailleurs, `nettoyer-base.mjs` s'arrête sur « base non inspectée »
-  (jamais « rien à signaler ») et attend `--export <zip|dossier>` au format d'export
-  Convex : un sous-dossier par table, contenant un `documents.jsonl` d'un document JSON
-  par ligne. Tant que cet export n'est pas fourni, la ligne « base non inspectée » reste
-  dans « non regardé », donc le bilan reste au niveau INCONNU.
+  (jamais « rien à signaler ») et attend un export au format Convex, qui n'a rien de
+  propriétaire : un sous-dossier par table, contenant un `documents.jsonl` d'un document
+  JSON par ligne. Il se fabrique en une boucle en lecture seule, un `SELECT *` par table
+  (recette complète dans `references/outils.md`), et se passe à la commande principale :
+
+  ```bash
+  node scripts/couverture.mjs <repo> --url http://localhost:3000 --export <dossier>
+  ```
+
+  Sans lui, la ligne « base non inspectée » reste dans « non regardé » et le bilan reste
+  au niveau INCONNU. C'est voulu : le skill ne dit pas « rien à signaler » sur une base
+  qu'il n'a pas ouverte.
 - **Les défauts qui demandent de comprendre une intention.** Un écran qui dessine cent
   nœuds d'un savoir vide, un « MTD $0 » affiché alors qu'aucune source n'est joignable,
   un total qui diffère d'un écran à l'autre pour la même notion : aucune règle mécanique

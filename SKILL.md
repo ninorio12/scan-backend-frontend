@@ -26,10 +26,12 @@ s'installe où on veut : aucune commande ne suppose un emplacement d'installatio
 script Playwright posé ailleurs ne trouverait pas le navigateur.
 
 ```bash
-node scripts/couverture.mjs <repo> --url http://localhost:3000
+node scripts/couverture.mjs <repo> --url http://localhost:3000 [--export <zip|dossier>]
 ```
 
-Elle enchaîne toute la chaîne (reconnaissance, code, base, écrans, questions, bilan) et
+`--export` ne sert que si la base n'est pas Convex : il est transmis tel quel à
+`nettoyer-base`, et sans lui la base reste « non regardée » (format dans
+`references/outils.md`). Elle enchaîne toute la chaîne (reconnaissance, code, base, écrans, questions, bilan) et
 sort en code 2 tant que le travail est incomplet. Trois codes de sortie, pour tous les
 scripts : 0 rien à signaler · 1 des défauts trouvés · 2 le travail n'a pas pu être fait,
 et le script dit pourquoi. Un code 2 ne se lit jamais comme un 0. Le verdict est dans
@@ -62,6 +64,12 @@ pourquoi. Le silence n'est jamais un résultat.
 
 On me donne un chemin de dépôt. Je déroule ces étapes sans rien demander, et je ne pose
 une question que si une décision est irréversible.
+
+`couverture.mjs` **enchaîne lui-même les étapes 1, 2, 3 mécanique et 4** : on ne lance pas
+les deux. Les commandes détaillées ci-dessous servent à rejouer une étape seule (elle a
+échoué, on veut le détail, on a fourni un export de base entre-temps). Les étapes 3 agents
+et 5, elles, ne sont dans aucun script : elles sont à ma charge. Toutes les commandes se
+lancent depuis la racine du skill.
 
 ### 1 · Je regarde
 

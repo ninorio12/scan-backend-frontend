@@ -43,7 +43,10 @@ lit que ces fichiers et ne se connecte jamais à la base lui-même. Puis :
 
 ```bash
 node scripts/nettoyer-base.mjs <repo> --export /chemin/vers/export-ma-base
+node scripts/couverture.mjs   <repo> --url http://localhost:3000 --export /chemin/vers/export-ma-base
 ```
+
+La commande principale le transmet tel quel : pas besoin de rejouer l'étape à la main.
 
 Tant que l'export n'est pas fourni, la ligne « base non inspectée » reste dans « non
 regardé » du bilan, et le niveau reste INCONNU : c'est voulu, pas une panne.
