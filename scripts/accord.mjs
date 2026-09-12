@@ -192,7 +192,22 @@ const conceptsDe = (e) => cleNorm(e.nom || '').split('|')
    paires fausses, et une paire fausse est pire qu'un silence : elle coûte au lecteur
    le temps d'aller vérifier, et elle lui apprend à ne plus nous lire.
    `--lectures` la rallume pour qui veut travailler dessus. Le jour où l'attribution
-   sera fiable, on l'enlèvera de derrière ce drapeau, pas avant. */
+   sera fiable, on l'enlèvera de derrière ce drapeau, pas avant.
+
+   ⚠️ ET LA RÉPARATION DE L'ATTRIBUTION NE SUFFIT PAS : ESSAYÉE, MESURÉE, ANNULÉE.
+   Le 12/09/2026, `extraire.mjs` a reçu un champ `entiteSure` qui ne vaut que ce que la
+   source dit en toutes lettres (variable déclarée par un `query("t")`, un cast `Id<"t">`
+   ou un argument `v.id("t")`) et qui est nul partout ailleurs, et cette règle a été
+   rebranchée dessus. Ça marche : les trois faux cités plus haut disparaissent, et
+   `convex/closing.ts` passe de cinq signalements à zéro. Ça ne rend rien pour autant :
+   avec `--lectures`, le bruit monte de 22 à 43 (au-dessus du plafond de 40) et le corpus
+   reste à zéro. La raison n'est plus l'attribution, elle est le CONCEPT : `conceptsDe`
+   découpe les noms en mots, si bien que « membre » apparie `socialConnections` et
+   `collaborators`, et « video » apparie `brandOsVideos` et `youtubeChannelLinks`. Les
+   deux côtés sont désormais vrais et la paire reste absurde. Tant que deux tables se
+   rencontrent sur un mot commun au lieu de se rencontrer sur une même donnée, cette
+   règle ne peut pas sortir de derrière son drapeau. C'est là qu'il faut frapper, pas sur
+   l'extracteur. */
 const LECTURES_ACTIVES = a('--lectures');
 const LECTURES = ['champ.projection', 'champ.affiche', 'fonction.serveur'];
 const lecturesParConcept = new Map();   // concept → Map(table → [{fichier, ligne, interne}])
@@ -321,7 +336,123 @@ if (chezLeVoisin.length > 2) {
   desaccords.push(...chezLeVoisin);
 }
 
-/* ── 5. LE RAPPORT, CINQ LIGNES AU PLUS ────────────────────────────────────────
+/* ── 5. TROISIÈME DÉSACCORD : CETTE CRÉATION OUBLIE UN REPÈRE QUE LE PROPRIÉTAIRE POSE ──
+   La comparaison descend de la TABLE au CHAMP. Pour une table donnée, ses créations
+   forment une famille : si l'une d'elles oublie un champ que le module propriétaire pose
+   à chaque fois, la ligne créée ici sera invisible à qui la cherche par ce champ.
+
+   LE CRITÈRE, ET POURQUOI CELUI-LÀ. Mesuré le 12/09/2026, corpus des 140 défauts d'un
+   côté, bruit sur trois dépôts sains de l'autre (plafond 40, départ 19) :
+
+     · « tous sauf un » (n−1 poseurs sur n, n ≥ 3) ......... bruit 27, corpus 0
+     · « le propriétaire le pose, les autres l'oublient » .. bruit 45, REFUSÉ au plafond
+     · « le champ est lu quelque part » ................... bruit 58, REFUSÉ au plafond
+     · « le champ sert de repère à un index » ............. bruit 37, corpus 1  (essayé,
+       gardé une heure, puis annulé : il tirait 19 fois sur des cas du corpus avec la
+       mauvaise phrase, et coûtait 18 signalements pour un cas)
+     · LES DEUX À LA FOIS, ci-dessous .................... bruit 22, corpus 1
+
+   « Tous sauf un » ne pouvait pas marcher et la mesure le dit : dans da-lab, cinq
+   endroits créent une tâche, et c'est le PROPRIÉTAIRE (convex/taches.ts) qui pose seul
+   `ordre`, `assigneType` et `source`. L'exception, c'est la norme, à un contre quatre.
+   La majorité n'a donc pas raison ici : c'est le propriétaire qui a raison, parce que
+   c'est lui qui écrit les requêtes qui relisent sa table.
+
+   Et le propriétaire seul ne suffit pas : il pose quantité de champs de confort que les
+   autres n'ont aucune raison de poser (45 signalements). Ce qui fait la différence entre
+   un oubli et un choix, c'est qu'un INDEX prenne le champ pour repère : une ligne créée
+   sans lui sort du résultat d'une requête que quelqu'un a écrite exprès.
+
+   TROIS GARDE-FOUS, tous payés par la mesure :
+     · une création qui n'est pas COMPLÈTE ne compte ni comme membre ni comme exception.
+       Complète = elle pose tous les champs REQUIS du schéma et ne verse aucun objet
+       étalé. Un `insert("taches", { ...args })` ne dit pas ce qu'il pose : sans ce
+       filtre, da-lab sortait sept champs requis « manquants » qui étaient tous dans un
+       étalement ;
+     · le champ doit être OPTIONNEL au schéma. Un champ requis ne peut pas manquer sans
+       que la base refuse l'écriture : s'il a l'air de manquer, c'est nous qui lisons mal.
+       Un champ absent du schéma ne se juge pas non plus : on ne sait pas ;
+     · on se tait si le propriétaire n'a aucune création complète, ou si c'est LUI qui
+       omet le champ : il n'existe alors aucune norme à lui opposer. */
+
+const sites = [];
+for (const e of elements) {
+  if (e.classe !== 'operation.ecriture' || !/^insert:/.test(e.nom || '')) continue;
+  if (ECRIT_PARTOUT.test(e.fichier || '')) continue;
+  sites.push({ table: e.nom.slice(7), fichier: e.fichier, ligne: e.ligne, fin: e.ligne, champs: new Set(), etale: false });
+}
+const sitesParFichier = new Map();
+for (const s of sites) {
+  if (!sitesParFichier.has(s.fichier)) sitesParFichier.set(s.fichier, []);
+  sitesParFichier.get(s.fichier).push(s);
+}
+/* Un champ appartient à la création ouverte le plus près AU-DESSUS de lui, dans le même
+   fichier et sur la même table : l'objet littéral suit l'appel. */
+const siteDe = (e) => {
+  let best = null;
+  for (const s of sitesParFichier.get(e.fichier) || [])
+    if (s.table === e.entite && s.ligne <= e.ligne + 1 && (!best || s.ligne > best.ligne)) best = s;
+  return best;
+};
+for (const e of elements) {
+  if (e.classe !== 'champ.ecrit' || e.operation !== 'insert' || !e.entite) continue;
+  const s = siteDe(e); if (s) { s.champs.add(e.nom); s.fin = Math.max(s.fin, e.ligne); }
+}
+for (const e of elements) {
+  if (e.classe !== 'ecriture.opaque' || !e.entite) continue;
+  const s = siteDe(e); if (s && e.ligne <= s.fin + 1) s.etale = true;   // un étalement, dans CETTE création
+}
+
+const schemaDe = new Map();      // table → Map(champ → optionnel)
+for (const e of elements) {
+  if (e.classe !== 'champ.schema' || !e.entite) continue;
+  if (!schemaDe.has(e.entite)) schemaDe.set(e.entite, new Map());
+  schemaDe.get(e.entite).set(e.nom, !!e.optionnel);
+}
+const reperesDe = new Map();     // table → Set(champ nommé par un index)
+for (const e of elements) {
+  if (e.classe !== 'index' || !e.entite) continue;
+  if (!reperesDe.has(e.entite)) reperesDe.set(e.entite, new Set());
+  for (const c of e.champs || []) reperesDe.get(e.entite).add(c);
+}
+
+const famille = new Map();       // table → créations complètes
+for (const s of sites) {
+  const sch = schemaDe.get(s.table);
+  if (!sch || s.etale) continue;
+  let complete = true;
+  for (const [c, opt] of sch) if (!opt && !s.champs.has(c)) { complete = false; break; }
+  if (!complete) continue;
+  if (!famille.has(s.table)) famille.set(s.table, []);
+  famille.get(s.table).push(s);
+}
+
+for (const [table, membres] of famille) {
+  if (membres.length < 2) continue;                       // pas de famille : rien à comparer
+  const sch = schemaDe.get(table);
+  const reperes = reperesDe.get(table) || new Set();
+  const proprios = membres.filter((m) => memeNom(nomModule(m.fichier), table));
+  if (!proprios.length) continue;                         // table sans propriétaire : aucune norme
+  for (const ici of membres) {
+    if (!estDuModule(ici)) continue;                      // on ne rapporte que le module en cours
+    if (memeNom(nomModule(ici.fichier), table)) continue; // c'est lui le propriétaire : il fait la norme
+    for (const champ of reperes) {
+      if (ici.champs.has(champ)) continue;
+      if (!sch.get(champ)) continue;                      // requis, ou hors schéma : pas notre affaire
+      if (!proprios.every((p) => p.champs.has(champ))) continue;   // le propriétaire hésite : on se tait
+      const poseurs = membres.filter((m) => m.champs.has(champ));
+      desaccords.push({
+        gravite: 2,
+        concept: `${table}.${champ}`,
+        phrase: `« ${table}.${champ} » : cette création oublie un champ que le propriétaire de la table pose toujours, et qu'un index prend pour repère.`,
+        ici: { ou: `${ici.fichier}:${ici.ligne}`, quoi: `crée ${table} sans ${champ}` },
+        ailleurs: { ou: `${proprios[0].fichier}:${proprios[0].ligne}`, quoi: `${nomModule(proprios[0].fichier)} y pose ${champ}`, combien: poseurs.length },
+      });
+    }
+  }
+}
+
+/* ── 6. LE RAPPORT, CINQ LIGNES AU PLUS ────────────────────────────────────────
    Les plus graves d'abord : écrire chez quelqu'un d'autre casse une garantie, lire
    ailleurs affiche un chiffre faux. Les deux comptent, l'écriture d'abord. */
 

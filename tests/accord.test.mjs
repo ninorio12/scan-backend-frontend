@@ -87,6 +87,22 @@ describe('accord.mjs', () => {
       'la boucle des lectures doit être vide sans le drapeau, sinon la règle tourne quand même');
   });
 
+  test('le champ oublié se juge sur DEUX conditions, jamais sur une seule', () => {
+    const src = fs.readFileSync(new URL('../scripts/accord.mjs', import.meta.url), 'utf8');
+    /* Mesuré le 12/09/2026, bruit sur trois dépôts sains, plafond 40, départ 19 :
+       le propriétaire seul donne 45 (refusé), l'index seul donne 37 pour un seul cas du
+       corpus gagné, les deux ensemble donnent 22 pour le même cas. Retirer l'une des
+       deux conditions, c'est refaire un essai déjà perdu. */
+    assert.match(src, /proprios\.every\(\(p\) => p\.champs\.has\(champ\)\)/,
+      'la condition « le propriétaire le pose toujours » a disparu');
+    assert.match(src, /reperesDe|const reperes =/,
+      'la condition « un index prend le champ pour repère » a disparu');
+    assert.match(src, /if \(!sch\.get\(champ\)\) continue;/,
+      'un champ requis, ou hors schéma, ne peut pas se juger : la garde a disparu');
+    assert.match(src, /s\.etale = true/,
+      'une création qui verse un objet étalé ne dit pas ce qu\'elle pose : la garde a disparu');
+  });
+
   test('chaque signalement nomme ses DEUX côtés', () => {
     const src = fs.readFileSync(new URL('../scripts/accord.mjs', import.meta.url), 'utf8');
     /* Un signalement qui ne nomme qu'un côté ne disparaît pas quand on répare :
