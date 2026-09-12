@@ -15,12 +15,38 @@ comme un 0.
 | `scan.mjs <repo> [--full]` | le code : le scanner désigne, l'apparieur juge sur sept attributs, le rapport classe | `dialogue.json` |
 | `lexical.mjs <repo>` | un concept métier, une source, un propriétaire ; lit `.backend/lexique.json` | `lexical.json` |
 | `fausses-donnees.mjs <repo>` | ce que les fichiers d'injection ont semé, et ce qui est affiché en dur | `fausses.json` |
-| `nettoyer-base.mjs <repo> [--liste] [--export zip]` | les mêmes valeurs cherchées DANS la base (export Convex vers le dossier temporaire, jamais dans le dépôt) ; ne supprime jamais | `fausses-en-base.json` |
+| `nettoyer-base.mjs <repo> [--liste] [--export <zip\|dossier>]` | les mêmes valeurs cherchées DANS la base (export Convex vers le dossier temporaire, jamais dans le dépôt) ; ne supprime jamais | `fausses-en-base.json` |
 | `liens.mjs <url>` | suit tous les liens internes, nomme les morts et les pages vides | `liens.json` |
 | `clics.mjs <url>` | appuie sur tous les boutons d'un écran (sauf ce qui écrit, compté nommément) : ERREUR / CASSÉ / MORT | `clics_<page>.json` |
 | `apparence.mjs <url>` | invariants de mise en page en 1440 et 390 px, sans image de référence | `apparence_<page>.json` |
 | `decisions.mjs <repo> [--verifier]` | prépare les questions de source de vérité pour l'humain ; `--verifier` contrôle le code contre les réponses | `questions.json`, `decisions.json` |
 | `bilan.mjs <repo>` | le verdict, sur l'échelle unique : trompe / cassé / dette / non regardé | `BILAN.md` |
+
+### Le format de `--export`, pour une base qui n'est pas Convex
+
+Convex sait s'exporter tout seul. Ailleurs, `nettoyer-base.mjs` s'arrête sur « base non
+inspectée » (jamais « rien à signaler ») et attend un export au **format d'export Convex**,
+qui n'a rien de propriétaire : un dossier, **un sous-dossier par table**, chacun contenant
+un `documents.jsonl` d'un document JSON par ligne.
+
+```
+export-ma-base/
+  contacts/documents.jsonl      {"_id":"1","nom":"Sophie Martin","email":"..."}
+  factures/documents.jsonl      {"_id":"1","montant":4200,"statut":"payée"}
+```
+
+Un fichier plat `<table>.jsonl` par table est accepté aussi, comme un `.zip` qui contient
+la même arborescence. Les tables dont le nom commence par `_` sont ignorées (tables
+système). Le fabriquer depuis n'importe quelle base tient en une boucle en lecture seule : une
+requête `SELECT *` par table, une ligne `JSON.stringify` par enregistrement. Le skill ne
+lit que ces fichiers et ne se connecte jamais à la base lui-même. Puis :
+
+```bash
+node scripts/nettoyer-base.mjs <repo> --export /chemin/vers/export-ma-base
+```
+
+Tant que l'export n'est pas fourni, la ligne « base non inspectée » reste dans « non
+regardé » du bilan, et le niveau reste INCONNU : c'est voulu, pas une panne.
 
 ## Le moteur, sous la chaîne
 

@@ -10,7 +10,6 @@ refuse de conclure sur ce qu'il n'a pas vu : le travail incomplet sort en code 2
 ## Prérequis
 
 - Node 20 ou plus, `npm`, `curl`.
-- Chromium pour Playwright : `npx playwright install chromium` (une fois).
 - `unzip` ou `python3` (pour lire un export de base).
 - Le CLI Convex (`npx convex`, fourni par le projet audité) si la base est Convex ;
   pour une autre base, fournir un export à `nettoyer-base.mjs --export`.
@@ -19,27 +18,103 @@ refuse de conclure sur ce qu'il n'a pas vu : le travail incomplet sort en code 2
 
 ## Installation
 
+Le skill s'installe **où on veut**. Rien dans le code ne dépend de l'emplacement.
+
 ```bash
-git clone <url-du-dépôt> ~/.claude/skills/scan-backend-frontend
-cd ~/.claude/skills/scan-backend-frontend && npm install
+git clone https://github.com/ninorio12/scan-backend-frontend.git scan-backend-frontend
+cd scan-backend-frontend
+npm install
 npx playwright install chromium
 ```
 
-## La première commande
+> **Toutes les commandes de ce README et de `SKILL.md` se lancent depuis la racine du
+> skill** (le dossier créé par le `git clone`, celui qui contient `package.json`) ; seul
+> `<repo>`, le chemin du projet audité, est absolu. Si Claude Code doit voir le skill,
+> le dossier va dans `~/.claude/skills/` : c'est une convention de Claude Code, pas une
+> exigence du skill, et les commandes ci-dessous ne changent pas pour autant.
+
+## Vérifier que l'installation est bonne
+
+Trois commandes, depuis la racine du skill. Les trois doivent répondre avant d'auditer
+quoi que ce soit : `npx playwright install chromium` rend souvent une sortie vide en une
+seconde (le binaire était déjà en cache), ce qui ne prouve rien.
 
 ```bash
-node ~/.claude/skills/scan-backend-frontend/scripts/reconnaitre.mjs <repo>
-node ~/.claude/skills/scan-backend-frontend/scripts/couverture.mjs <repo> --url http://localhost:3000
+# 1 · Node : au moins la version 20
+node -v
+#    attendu :  v20.20.2      (ou plus haut ; v18 ou moins ne marchera pas)
+
+# 2 · Le navigateur : on le lance vraiment, il dit sa version ou il échoue
+node --input-type=module -e "import { chargerNavigateur } from './scripts/navigateur.mjs'; const n = await chargerNavigateur(process.cwd()).launch(); console.log('navigateur OK :', n.version()); await n.close();"
+#    attendu :  navigateur OK : 153.0.8010.12      (le numéro varie, « OK » non)
+
+# 3 · TypeScript : le skill lit le code avec, à défaut de celui du projet
+node -e "console.log('typescript OK :', require('typescript').version)"
+#    attendu :  typescript OK : 5.9.3
+```
+
+Et le contrôle complet, qui doit être **entièrement vert** :
+
+```bash
+npm test
+#    attendu :  # pass 68   # fail 0
+```
+
+Si la commande 2 échoue :
+
+| Le message | Ce qu'il faut faire |
+|---|---|
+| `Playwright introuvable` | `npm install` n'a pas tourné, ou pas dans ce dossier. Le relancer à la racine du skill. |
+| `Executable doesn't exist at …` | Le paquet est là, pas le navigateur : `npx playwright install chromium`. |
+| `Host system is missing dependencies` | Les bibliothèques système manquent : `npx playwright install --with-deps chromium` (demande les droits root), ou sur Debian/Ubuntu `sudo npx playwright install-deps chromium`. |
+| ça pend sans rien dire | Machine sans affichage : c'est normal, le skill lance toujours le navigateur en mode invisible. Si ça persiste, `DEBUG=pw:browser` devant la commande dit où ça bloque. |
+
+## La première commande
+
+Le projet audité doit **tourner**, lancé par sa propre commande de développement (souvent
+`npm run dev`), sur un port libre. Ensuite, depuis la racine du skill :
+
+```bash
+node scripts/reconnaitre.mjs <repo>
+node scripts/couverture.mjs <repo> --url http://localhost:3000
 ```
 
 La première dit ce que le skill a compris du projet, et surtout ce qu'il n'a pas compris
-(application éteinte, application qui n'est pas ce projet, écran de connexion). La seconde
-enchaîne toute la chaîne et écrit le verdict dans `<repo>/.backend/BILAN.md`. Tout ce que
-le skill écrit va dans `<repo>/.backend/`, qui contient son propre `.gitignore` ; un export
-de base va dans le dossier temporaire du système et est supprimé après lecture.
+(application éteinte, application qui n'est pas ce projet, écran de connexion). Elle
+cherche l'application toute seule sur les ports courants et la rattache au projet par son
+titre : `--url` sert à lever l'ambiguïté, ou à désigner un port inhabituel.
+
+La seconde enchaîne toute la chaîne et écrit le verdict dans `<repo>/.backend/BILAN.md`.
+Compter de dix minutes à une heure selon la taille du produit : elle affiche son
+avancement écran par écran et ne pose aucune question.
 
 Codes de sortie, pour tous les scripts : 0 rien à signaler · 1 des défauts · 2 le travail
-n'a pas pu être fait, et le script dit pourquoi.
+n'a pas pu être fait, et le script dit pourquoi. Un code 2 ne se lit jamais comme un 0.
+
+## Ce que le skill fait de vos données
+
+1. Il **écrit uniquement dans `<repo>/.backend/`**, un dossier qui porte son propre
+   `.gitignore` contenant `*` : aucun fichier de votre projet n'est touché. Un export de
+   base va dans le dossier temporaire du système et est supprimé après lecture.
+2. Il **ne clique jamais sur ce qui écrit ou détruit** : `type=submit`, tout bouton dans
+   un `<form>`, les verbes d'écriture, écartés nommément et comptés comme tels.
+3. Il **n'envoie rien nulle part** : aucun appel réseau sortant, aucune télémétrie, aucun
+   service tiers. Tout reste sur la machine.
+
+Ce n'est pas une promesse, c'est mesuré. Sur l'épreuve d'installation (un Next.js + trois
+bases SQLite), après **1 328 clics** du passage mécanique et des agents, les trois bases
+avaient la **même empreinte MD5** qu'avant et la même date de modification, antérieure au
+premier clic ; `git status --porcelain` du projet était vide. Le contrôle est reproductible
+en trois lignes :
+
+```bash
+md5sum <repo>/data/*.db > /tmp/avant.md5      # adapter au chemin de vos bases
+node scripts/couverture.mjs <repo> --url http://localhost:3000
+md5sum -c /tmp/avant.md5 && git -C <repo> status --porcelain
+```
+
+Une seule réserve connue, et elle est dite : donné un chemin de dépôt qui **n'existe pas**,
+`reconnaitre.mjs` fabrique l'arborescence au lieu de refuser. Vérifiez le chemin.
 
 ## Le lexique métier
 
@@ -55,24 +130,44 @@ cassé », ou tout symptôme de câblage. La procédure que suit l'agent est `SK
 raisonnement est dans `references/doctrine.md` ; chaque outil est décrit dans
 `references/outils.md`.
 
-## Mesurer le skill lui-même
+## Les limites, honnêtement
+
+Ce que le skill **ne voit pas** :
+
+- **Les bases qui ne sont pas Convex, sans export fourni.** Convex a un export
+  automatique ; ailleurs, `nettoyer-base.mjs` s'arrête sur « base non inspectée »
+  (jamais « rien à signaler ») et attend `--export <zip|dossier>` au format d'export
+  Convex : un sous-dossier par table, contenant un `documents.jsonl` d'un document JSON
+  par ligne. Tant que cet export n'est pas fourni, la ligne « base non inspectée » reste
+  dans « non regardé », donc le bilan reste au niveau INCONNU.
+- **Les défauts qui demandent de comprendre une intention.** Un écran qui dessine cent
+  nœuds d'un savoir vide, un « MTD $0 » affiché alors qu'aucune source n'est joignable,
+  un total qui diffère d'un écran à l'autre pour la même notion : aucune règle mécanique
+  ne les attrape. C'est le travail des agents de l'étape 3 (`references/parcours-reel.md`),
+  et sur l'épreuve d'installation ce sont eux qui ont trouvé les dix défauts les plus
+  graves du produit.
+- **La justesse d'une donnée.** Le skill prouve que la chaîne est reliée, pas que le
+  chiffre est bon.
+- Il ne fait **ni audit de sécurité complet ni de scalabilité**.
+
+Et son **rappel** : la part des défauts connus que l'analyse statique seule signale. Il ne
+se cite pas de mémoire, il se remesure, parce qu'il bouge à chaque règle ajoutée :
 
 ```bash
-npm run mesure            # rappel et justesse sur le projet figé banc/fige, avec intervalle
-npm test                  # les tests (node --test tests/)
+npm run mesure        # = node banc/mesure/mesurer.mjs --fige
 ```
 
-Le banc génératif prend ses mutations dans un dépôt à toi, déclaré dans
-`banc/mesure/sources.json` (modèle : `sources.exemple.json`). Aucun dépôt client n'est
-livré avec le skill.
+La commande sort trois niveaux de rappel (bon fichier / bon symbole / **bonne famille**,
+le seul qui compte), la justesse, l'intervalle de confiance de chacun, et la liste des
+familles de défauts où elle ne voit rien. Le banc figé est livré avec le skill et tourne
+en quelques secondes, sans rien configurer. Le banc génératif, lui, mute des dépôts à
+vous, déclarés dans `banc/mesure/sources.json` (modèle : `sources.exemple.json`) ; sans ce
+fichier il rend « aucune source » et le banc figé tourne quand même. Aucun dépôt client
+n'est livré avec le skill.
 
-## Ce que le skill ne fait pas
-
-Il ne prouve pas qu'une donnée est juste, seulement que la chaîne est reliée. Il ne
-supprime rien en base, ne modifie aucun fichier du projet audité, ne clique sur rien qui
-écrit ou détruit. Il ne fait ni audit de sécurité complet ni de scalabilité, et son
-analyse statique seule a un rappel qu'il faut mesurer, pas supposer : c'est le passage
-dans l'application qui rapporte le plus.
+Le passage mécanique n'est pas non plus infaillible dans l'autre sens : sur un serveur de
+développement lent, un lien qui met plus longtemps à répondre que la fenêtre d'attente est
+déclaré mort à tort. Un verdict « bouton mort » se recontrôle avant d'être relayé.
 
 ## Licence
 

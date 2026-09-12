@@ -1,0 +1,8 @@
+{
+ "nom": "projet-test",
+ "cadre": "Next.js",
+ "base": "Convex",
+ "auth": null,
+ "modules": ["biens", "visites"],
+ "tables": ["biens", "visites"]
+}

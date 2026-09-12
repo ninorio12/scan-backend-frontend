@@ -20,8 +20,13 @@ unité, population, garde). Le raisonnement complet : `references/doctrine.md`.
 
 ## La commande
 
+Toutes les commandes de ce fichier se lancent **depuis la racine du skill** (le dossier
+qui contient `package.json` et `scripts/`) ; seul `<repo>` est un chemin absolu. Le skill
+s'installe où on veut : aucune commande ne suppose un emplacement d'installation, et un
+script Playwright posé ailleurs ne trouverait pas le navigateur.
+
 ```bash
-node ~/.claude/skills/scan-backend-frontend/scripts/couverture.mjs <repo> --url http://localhost:3000
+node scripts/couverture.mjs <repo> --url http://localhost:3000
 ```
 
 Elle enchaîne toute la chaîne (reconnaissance, code, base, écrans, questions, bilan) et

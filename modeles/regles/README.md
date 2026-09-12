@@ -17,9 +17,12 @@ Une règle placée dans `.claude/rules/` avec un frontmatter `paths:` ne se char
 ## Installation dans un projet
 
 ```bash
+# SKILL = le dossier du skill, où qu'il soit installé (celui qui contient package.json)
+SKILL=/chemin/vers/scan-backend-frontend
+
 mkdir -p .claude/rules
-cp ~/.claude/skills/scan-backend-frontend/modeles/regles/backend-convex.md .claude/rules/
-cp ~/.claude/skills/scan-backend-frontend/modeles/regles/ecrans.md .claude/rules/
+cp $SKILL/modeles/regles/backend-convex.md .claude/rules/
+cp $SKILL/modeles/regles/ecrans.md .claude/rules/
 ```
 
 Adapter les chemins du frontmatter à l'arborescence du projet (`src/app` ou `app`).

@@ -6,6 +6,14 @@ banc/fige/node_modules/
 banc/fige/.backend/
 banc/fige/package-lock.json.tmp
 
+# EXCEPTION, et elle est vitale : `.backend/` ci-dessus avalait les fixtures de
+# tests/, donc `npm test` passait chez l'auteur et échouait 9 fois sur 66 chez
+# quiconque clonait le dépôt. Un verrou qui ne tourne que sur une machine ne
+# verrouille rien. Les `.backend/` de tests/fixtures/ sont des fichiers écrits à
+# la main, sans donnée de projet réel : ils se publient.
+!tests/fixtures/**/.backend/
+!tests/fixtures/**/.backend/**
+
 # Les rapports d'audit internes : noms de clients, chemins machine, clones tiers. Jamais publiés.
 banc/audit/
 

@@ -20,7 +20,9 @@ profil d'un autre compte. Le témoin attrape les trois.
 ## Le protocole
 
 ```bash
-T=~/.claude/skills/scan-backend-frontend/scripts/temoins.mjs
+# SKILL = le dossier du skill, où qu'il soit installé (celui qui contient package.json)
+SKILL=/chemin/vers/scan-backend-frontend
+T=$SKILL/scripts/temoins.mjs
 
 # 1. Obtenir le jeu de valeurs
 node $T generer

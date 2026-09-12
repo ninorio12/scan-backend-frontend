@@ -58,15 +58,19 @@ suivie ; chaque ligne inutile ajoutée dilue les autres.
    de lecture. Authentifier n'est pas autoriser.
 5. Jamais de `catch` muet autour d'un appel réseau ou d'une écriture : tracer,
    remonter un état distinct de « vide », et l'afficher.
-6. Avant de conclure une séance : `node ~/.claude/skills/scan-backend-frontend/scripts/audit-backend.mjs .`
-   doit sortir à zéro bloquant. Charger le skill `scan-backend-frontend` pour la méthode et les outils.
+6. Avant de conclure une séance : `node <skill>/scripts/audit-backend.mjs .` doit sortir à
+   zéro bloquant (`<skill>` = le dossier où scan-backend-frontend est installé).
+   Charger le skill `scan-backend-frontend` pour la méthode et les outils.
 ```
 
 ## Installation dans un projet
 
 ```bash
+# SKILL = le dossier du skill, où qu'il soit installé (celui qui contient package.json)
+SKILL=/chemin/vers/scan-backend-frontend
+
 # 1. ajouter le bloc au fichier de contexte
-cat ~/.claude/skills/scan-backend-frontend/references/bloc-claude-md.md | sed -n '/^## Backend : règles/,/^```$/p' >> CLAUDE.md
+sed -n '/^## Backend : règles/,/^```$/p' $SKILL/references/bloc-claude-md.md >> CLAUDE.md
 
 # 2. vérifier que le skill lui-même est valide (un champ mal formé = skill invisible)
 npx agnix .

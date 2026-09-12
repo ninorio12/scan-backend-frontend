@@ -39,8 +39,17 @@ function rng(graine) {
   };
 }
 
-const SOURCES = JSON.parse(fs.readFileSync(path.join(ICI, 'sources.json'), 'utf8'))
-  .filter((s) => fs.existsSync(s.chemin));
+/* `sources.json` n'est PAS livré avec le skill (il nomme des dépôts à soi). Le lire en
+   dur ici tuait `mesurer.mjs --fige` sur tout clone frais, avec une pile d'appels Node :
+   le banc figé, qui n'a besoin d'aucune source, mourait à l'import du banc génératif.
+   Absent = zéro source : le banc génératif le dit et rend « aucune source », le banc figé
+   tourne. C'est la règle du skill appliquée à lui-même : on explique, on ne plante pas. */
+const SOURCES = (() => {
+  const p = path.join(ICI, 'sources.json');
+  if (!fs.existsSync(p)) return [];
+  try { return JSON.parse(fs.readFileSync(p, 'utf8')).filter((s) => fs.existsSync(s.chemin)); }
+  catch (e) { console.error(`banc génératif : ${p} illisible (${e.message}) : zéro source.`); return []; }
+})();
 
 const IGNORE = new Set(['node_modules', '.next', '.git', 'dist', 'build', '.vercel',
   'coverage', '.turbo', 'out', '.output', 'public', 'backups', 'demos', '_legacy', 'e2e']);
