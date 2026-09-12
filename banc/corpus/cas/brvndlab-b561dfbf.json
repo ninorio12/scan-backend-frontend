@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-b561dfbf",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "7728e5683c11ed81a077f5e36163cbe9899d8cd4",
+  "commit_repare": "b561dfbf6d5daf155df3f869e2872829085a4e03",
+  "date": "2026-07-14",
+  "message_humain": "fix(inspiration): la requete ne renvoyait pas les etiquettes posees",
+  "famille": "CONTRAT",
+  "famille_proposee": "CONTRAT",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Les étiquettes posées sur une inspiration n'apparaissaient nulle part et le filtre ne trouvait rien, alors qu'elles étaient bien enregistrées.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/inspirations.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/inspirations.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/inspirations.ts": [
+      89
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/inspirations.ts": [
+      "list",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 3,
+    "supprimees": 0,
+    "total": 3
+  },
+  "preuve": {
+    "avant": "slides: r.slides ?? null,",
+    "apres": "tagIds: r.tagIds ?? [],"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 7728e5683c11ed81a077f5e36163cbe9899d8cd4"
+}

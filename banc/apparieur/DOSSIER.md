@@ -242,7 +242,7 @@ Les 3 constats `population` d'projet client A méritent d'être cités, parce qu
 ### 4.3 Sur projet client B et banc2
 
 - **projet client B** : 17 382 éléments, **43 constats**, 6,2 s. Dont 8 « secours qui renvoie la forme du succès » sur des routes `/api/*` (panne Google Calendar indiscernable d'un agenda vide), 13 « affiché mais non produit », 13 « suppression sans cascade ».
-- **banc2** : 464 éléments, **2 constats** (`+41 22 501 40 12` en dur sous un libellé `telephone` qui a un jumeau `proprietaires.telephone` ; `visites.rappelVisitesDemain` qui calcule `debutDemain` et n'en fait rien). Pas de vérité terrain, mais §5 dit ce qu'il y rate.
+- **banc2** : 464 éléments, **2 constats** (`+41 22 000 00 00` en dur sous un libellé `telephone` qui a un jumeau `proprietaires.telephone` ; `visites.rappelVisitesDemain` qui calcule `debutDemain` et n'en fait rien). Pas de vérité terrain, mais §5 dit ce qu'il y rate.
 
 ---
 

@@ -1,0 +1,42 @@
+{
+  "id": "qos-811a135f",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "c68893f30beed964fd3de56e5a7ce2903e4d76bb",
+  "commit_repare": "811a135f839269ba85f39e70facb54a3a02c72dd",
+  "date": "2026-06-10",
+  "message_humain": "fix(integrity): ne pas signaler les endpoints /api/* comme routes mortes",
+  "famille": "ALERTE_FAUSSE",
+  "famille_proposee": "NOUVELLE:ALERTE_FAUSSE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le rapport d'intégrité listait des routes /api/ comme inexistantes alors qu'elles répondent : fausse alerte sur un écran sain.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "scripts/integrity/scan-ui.mjs"
+  ],
+  "fichier_fautif": "scripts/integrity/scan-ui.mjs",
+  "lignes_avant": {
+    "scripts/integrity/scan-ui.mjs": [
+      19
+    ]
+  },
+  "symboles": {
+    "scripts/integrity/scan-ui.mjs": [
+      "findDeadUi",
+      "file",
+      "text",
+      "knownRoutes"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 2,
+    "supprimees": 2,
+    "total": 4
+  },
+  "preuve": {
+    "avant": "if (route === '/' || route.includes('[')) continue",
+    "apres": "if (route === '/' || route.includes('[') || route.startsWith('/api/')) continue"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> c68893f30beed964fd3de56e5a7ce2903e4d76bb"
+}

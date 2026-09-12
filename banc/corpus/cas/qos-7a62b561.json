@@ -1,0 +1,41 @@
+{
+  "id": "qos-7a62b561",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "cf6d785632257a5162f384c03366f65c60a4e0d2",
+  "commit_repare": "7a62b561d5ec68f40da569480e8db32e95803d5b",
+  "date": "2026-04-15",
+  "message_humain": "fix: supprime cta_color, bouton CTA utilise brandColor",
+  "famille": "REGLAGE_INERTE",
+  "famille_proposee": "REGLAGE_INERTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Une couleur de bouton d'appel à l'action était enregistrée et affichée dans les réglages alors que rien ne la lisait à l'affichage du devis.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "src/app/api/settings/company/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/settings/company/route.ts",
+  "lignes_avant": {
+    "src/app/api/settings/company/route.ts": [
+      21
+    ]
+  },
+  "symboles": {
+    "src/app/api/settings/company/route.ts": [
+      "PATCH",
+      "req",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "'brand_color', 'cta_color', 'logo_svg', 'website_url',",
+    "apres": "'brand_color', 'logo_svg', 'website_url',"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> cf6d785632257a5162f384c03366f65c60a4e0d2"
+}

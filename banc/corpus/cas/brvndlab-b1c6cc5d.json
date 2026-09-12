@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-b1c6cc5d",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "2847a9eca85655fd1a530c03e6f7e2081743222f",
+  "commit_repare": "b1c6cc5dccd3d971deceebee47fc6a56036bde1f",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): rendu SERVEUR de la photo via cookie = zero flash (solution reconnue). Le localStorage n'existe pas au SSR -> le serveur rendait toujours l'initiale/placeholder puis le client basculait sur la photo = flash inevitable. Desormais: le client ecrit la photo dans un cookie bvh_av; le layout serveur le lit (await cookies()) et pose --bvh-av + data-has-av sur <html> DANS le HTML initial -> les avatars (sidebar + accueil) affichent ta photo des le 1er pixel rendu par le serveur. URL https validee (anti-injection CSS)",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:ETAT_TRANSITOIRE_TROMPEUR",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Au chargement d'une page, la photo de profil affichee par le serveur etait toujours le placeholder, puis basculait sur la vraie photo une fois le navigateur reveille.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/avatar.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      27,
+      40
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      "readAvatarCache",
+      "string",
+      "setAvatarCache",
+      "url",
+      "void"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 14,
+    "supprimees": 2,
+    "total": 16
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "document.cookie = `bvh_av=${encodeURIComponent(url)};path=/;max-age=31536000;samesite=lax`;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 2847a9eca85655fd1a530c03e6f7e2081743222f"
+}

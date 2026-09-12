@@ -1,0 +1,50 @@
+{
+  "id": "brvndlab-5cec4526",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "dc0c244dd12c0d279027e801a2d85c006675e09b",
+  "commit_repare": "5cec4526a5d31ad732d2a43bb4b695e4c3193538",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): progression des blocs pilotee cote SERVEUR (bloc en cours calcule d'apres les fiches ecrites) - livre a lui-meme le modele creusait le bloc 1 indefiniment et n'attaquait jamais les influences ni l'evolution",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_NON_TENUE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "L'entretien de brainstorming tournait indéfiniment sur le premier bloc de questions et n'abordait jamais les blocs suivants, qui restaient vides.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      199,
+      206,
+      209,
+      230,
+      238
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "ROUL",
+      "ENTRETIEN",
+      "structure",
+      "obligatoire",
+      "Pour"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 31,
+    "supprimees": 9,
+    "total": 40
+  },
+  "preuve": {
+    "avant": "Pour CHAQUE bloc, dans l'ordre :",
+    "apres": "const focus = blocks.find((b) => countOf(b.questionId) < SERVI) ?? null;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> dc0c244dd12c0d279027e801a2d85c006675e09b"
+}

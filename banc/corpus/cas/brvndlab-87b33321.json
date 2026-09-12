@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-87b33321",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "2c4eaeac919da8e81f41332d3edaa04297a0baa8",
+  "commit_repare": "87b3332163fda9fbd8471f5db1721273e3f814d3",
+  "date": "2026-07-16",
+  "message_humain": "fix: entrer dans un compte Brand OS (switcher/collab) montre le mini-nav Brand OS (Accueil+Brand OS+cadenasses), plus seulement Accueil",
+  "famille": "CONTRAT",
+  "famille_proposee": "CONTRAT",
+  "familles_secondaires": [
+    "PORTE_PARALLELE"
+  ],
+  "famille_connue": true,
+  "symptome": "En entrant dans le compte d'un client via le switcher, la navigation Brand OS n'apparaissait pas : seul Accueil restait visible.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/collaborators.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      354,
+      365
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "getActiveContext",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 3,
+    "total": 15
+  },
+  "preuve": {
+    "avant": "allowedModules: await computeOwnerAllowedModules(ctx),",
+    "apres": "brandOsOnly:"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 2c4eaeac919da8e81f41332d3edaa04297a0baa8"
+}

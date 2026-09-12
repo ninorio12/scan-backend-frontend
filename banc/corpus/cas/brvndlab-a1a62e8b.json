@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-a1a62e8b",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "2aa54518b4900e6e32a43f7e01c9ee825ca0a175",
+  "commit_repare": "a1a62e8be044cc9e0f67b7dbd92af39bd0d93dc8",
+  "date": "2026-06-22",
+  "message_humain": "fix(perimeter): enforcement synchrone (zero flash) + /admin reserve aux founders",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "N'importe quel compte connecté pouvait ouvrir la zone d'administration (page vide mais accessible), et un client voyait brièvement tous les modules avant que son périmètre ne s'applique.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/collaborators.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      20,
+      273
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "isBrandOsOnlyEmail",
+      "email",
+      "string",
+      "undefined",
+      "null",
+      "boolean",
+      "getActiveContext",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 0,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "allowedModules,",
+    "apres": "isFounder: isFounderEmail(identity?.email),"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 2aa54518b4900e6e32a43f7e01c9ee825ca0a175"
+}

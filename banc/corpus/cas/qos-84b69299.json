@@ -1,0 +1,56 @@
+{
+  "id": "qos-84b69299",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "c21163246e51c0091750cd8988a1aec7bfc436d3",
+  "commit_repare": "84b692991cc4d0744b8e910820ff69daaf6f5f54",
+  "date": "2026-04-02",
+  "message_humain": "fix(calendar): improve error handling, delete ordering, and webhook security",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [
+    "PERTE_IRREVERSIBLE",
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le webhook de suppression de rendez-vous acceptait n'importe quel appel sans vérifier son origine, et le lien vers le calendrier était effacé avant même de savoir si la suppression distante avait réussi.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/calendar-event/[id]/route.ts",
+    "src/app/api/webhooks/ghl/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/webhooks/ghl/route.ts",
+  "lignes_avant": {
+    "src/app/api/calendar-event/[id]/route.ts": [
+      29,
+      43,
+      62
+    ],
+    "src/app/api/webhooks/ghl/route.ts": [
+      15,
+      16,
+      42,
+      45
+    ]
+  },
+  "symboles": {
+    "src/app/api/calendar-event/[id]/route.ts": [
+      "DELETE"
+    ],
+    "src/app/api/webhooks/ghl/route.ts": [
+      "POST",
+      "req",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 23,
+    "supprimees": 11,
+    "total": 34
+  },
+  "preuve": {
+    "avant": "const appointmentId = body.appointmentId ?? body.id ?? ''",
+    "apres": "if (receivedSecret !== ghlSecret) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> c21163246e51c0091750cd8988a1aec7bfc436d3"
+}

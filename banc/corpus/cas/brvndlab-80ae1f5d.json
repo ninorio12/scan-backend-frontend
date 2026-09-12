@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-80ae1f5d",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "f8f5af91020a3f814b104d00c651e37bbfd4c9cf",
+  "commit_repare": "80ae1f5db3ce1c6107cc2918df0f7f83c3632534",
+  "date": "2026-06-22",
+  "message_humain": "fix(moteur): dashboard ne crash plus pour comptes en parcours + sidebar modules verrouilles visibles",
+  "famille": "GARDE_EXCESSIVE",
+  "famille_proposee": "NOUVELLE:GARDE_TROP_LARGE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le tableau de bord d'un compte en parcours guidé plantait avec un « accès refusé », parce qu'il agrège des données de modules pas encore débloqués.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/collaborators.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      327,
+      335,
+      339,
+      343,
+      346,
+      388
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "getActiveContext",
+      "query",
+      "computeOwnerAllowedModules",
+      "assertModuleAllowed",
+      "base",
+      "allowed"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 34,
+    "supprimees": 12,
+    "total": 46
+  },
+  "preuve": {
+    "avant": "const allowed = await computeOwnerAllowedModules(ctx);",
+    "apres": "const allowed = await computeBaseAllowedModules(ctx);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> f8f5af91020a3f814b104d00c651e37bbfd4c9cf"
+}

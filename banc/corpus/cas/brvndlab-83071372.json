@@ -1,0 +1,39 @@
+{
+  "id": "brvndlab-83071372",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "db2a38b16da6e5e2d0aa2dda49938b76cbd61074",
+  "commit_repare": "8307137265cc4be5a1098d99d394af39cc2a7c08",
+  "date": "2026-07-29",
+  "message_humain": "fix(schema): color heritee sur angleFolders + journalFolders (union string|number)",
+  "famille": "TYPE_DIVERGENT",
+  "famille_proposee": "NOUVELLE:TYPE_DIVERGENT",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Des dossiers créés par une ancienne version portaient une couleur en texte là où le code n'acceptait qu'un nombre : la validation refusait ces lignes et bloquait la mise en ligne.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/schema.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/schema.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/schema.ts": [
+      2167
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/schema.ts": [
+      "defineSchema"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 3,
+    "supprimees": 1,
+    "total": 4
+  },
+  "preuve": {
+    "avant": "color: v.optional(v.number()),       // index palette OPAQUE (0 = anthracite neutre)",
+    "apres": "color: v.optional(v.union(v.string(), v.number())),       // 0 = anthracite neutre"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> db2a38b16da6e5e2d0aa2dda49938b76cbd61074"
+}

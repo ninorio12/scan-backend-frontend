@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-24623bc0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "b9e3227100390bfbad93a64dc201175e9a2fee9b",
+  "commit_repare": "24623bc0e2783b8fb7367bbac889619e74e5aa8c",
+  "date": "2026-07-05",
+  "message_humain": "fix(metrics): standardise sur 1 compte - desactive le cron scraping profil (999 = risque IP), nettoyage des donnees du 2e compte (posts importes, token, connexion DMA)",
+  "famille": "PLANIFIE_INERTE",
+  "famille_proposee": "PLANIFIE_INERTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La tache planifiee de decouverte des nouveaux posts tournait toutes les 15 minutes sans rien decouvrir : le profil public repondait par un mur anti-robot.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/crons.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/crons.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/crons.ts": [
+      44
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/crons.ts": [
+      "crons",
+      "interval"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 6,
+    "total": 13
+  },
+  "preuve": {
+    "avant": "\"linkedin public profile discover\",",
+    "apres": "//   \"linkedin public profile discover\","
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> b9e3227100390bfbad93a64dc201175e9a2fee9b"
+}

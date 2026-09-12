@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-1c5a5876",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "35a6ec59eab625b1a989d617cf8a46832ce0ceb6",
+  "commit_repare": "1c5a5876c25beb602241ae0593c9aa9b6f64009d",
+  "date": "2026-06-29",
+  "message_humain": "fix(auth): session deja ouverte -> page paiement (plus de 'Session already exists'/faux mdp incorrect); connexion -> /choix-du-pack",
+  "famille": "ETAT_PREEXISTANT_IGNORE",
+  "famille_proposee": "NOUVELLE:ETAT_PREEXISTANT_IGNORE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Avec une session déjà ouverte, les pages de connexion et d'inscription tentaient d'en recréer une et affichaient un faux « mot de passe incorrect ».",
+  "confiance_classement": "basse",
+  "fichiers": [
+    "brvndlab-app/src/lib/clerkClient.ts",
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/useRedirectIfSignedIn.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/clerkClient.ts": [
+      13
+    ],
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts": [
+      0
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/clerkClient.ts": [
+      "ClerkSingleton"
+    ],
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts": [
+      "use",
+      "client"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 0,
+    "total": 36
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "if (c && c.user) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 35a6ec59eab625b1a989d617cf8a46832ce0ceb6"
+}

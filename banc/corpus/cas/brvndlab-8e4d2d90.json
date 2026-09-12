@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-8e4d2d90",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "dddf2f71ce725ca4d034a80ec963b08743fea8d1",
+  "commit_repare": "8e4d2d901b6526b54f9437d4bc20b3db02678250",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): supprime le flash de l'ANCIENNE photo au refresh. Cause: tant que la query Convex getMe (me) charge, le code retombait sur clerkUser.imageUrl (session Clerk en cache = ancienne photo) affichee une fraction de seconde, puis me arrivait avec la photo actuelle (me.profileImageUrl, upload Convex) -> swap visible. Fix: helper resolveAvatarUrl qui, tant que me n'a pas charge, renvoie '' (initiales) au lieu de la vieille photo Clerk. Applique a sidebar, home, reglages, linkedin",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:ETAT_TRANSITOIRE_TROMPEUR",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Tant que le compte chargeait, l'application affichait l'ANCIENNE photo de profil mise en cache par la session, puis la remplacait par la vraie.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/avatar.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      0
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      "sout",
+      "URL",
+      "avatar",
+      "utilisateur",
+      "courant",
+      "SANS",
+      "flash",
+      "vieille"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 15,
+    "supprimees": 0,
+    "total": 15
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "if (me === undefined) return \"\"; // pas encore chargé -> initiales, pas la vieille photo"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> dddf2f71ce725ca4d034a80ec963b08743fea8d1"
+}

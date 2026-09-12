@@ -104,7 +104,7 @@ MODE CONSTRUIRE (on démarre un SaaS, ou on ajoute un module)
 
 0. Le squelette qui marche, avant tout le reste : une seule tranche verticale complète, du
    clic jusqu'à la table et retour, si maigre soit-elle. Tant qu'elle ne fonctionne pas en
-   vrai, on ne construit rien d'autre (`ce-que-le-vrai-dev-en-dit.md`).
+   vrai, on ne construit rien d'autre (`recherche-terrain.md`, partie 2).
 1. Écrire le contrat de câblage : les 7 maillons, dix lignes.
 2. Construire dans l'ordre imposé : la lecture de la source d'abord, l'écran ensuite.
 3. Avant de conclure chaque séance : `node scripts/audit-backend.mjs . --only=A,B,D` à

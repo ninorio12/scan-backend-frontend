@@ -1,0 +1,308 @@
+[
+  {
+    "id": "qos-60fc4f71",
+    "depot": "qos",
+    "motif": "fonctionnalite",
+    "message": "Corrige la source de CLIENT et CLIENT : recommandation, pas inbound"
+  },
+  {
+    "id": "qos-deda19d0",
+    "depot": "qos",
+    "motif": "fonctionnalite",
+    "message": "fix(niches): les metiers mixtes ne sont plus ranges sous le premier mot — une fiduciaire qui fait de la gerance immobili"
+  },
+  {
+    "id": "qos-781cddb8",
+    "depot": "qos",
+    "motif": "style",
+    "message": "fix(cockpit): le taux mesure bien une CONVERSATION (part des DM qui obtiennent une reponse), en toutes lettres et sans a"
+  },
+  {
+    "id": "qos-75bd8a3b",
+    "depot": "qos",
+    "motif": "style",
+    "message": "fix(cockpit): « Convo » remplace par « Conversion » dans les libelles du parcours social"
+  },
+  {
+    "id": "qos-5de25f76",
+    "depot": "qos",
+    "motif": "configuration",
+    "message": "fix(dataos): rotation re-synchronise le token COO dans ~/.hermes/.env (Cockpit)"
+  },
+  {
+    "id": "qos-1f34b85a",
+    "depot": "qos",
+    "motif": "fonctionnalite",
+    "message": "fix(google-callback): afficher l'erreur réelle de Google (access_denied, etc.) au lieu de 'No code'"
+  },
+  {
+    "id": "qos-a6b1c4b3",
+    "depot": "qos",
+    "motif": "typage",
+    "message": "fix: skip TS/ESLint errors during build, patch pre-existing type issues"
+  },
+  {
+    "id": "qos-f0daa03f",
+    "depot": "qos",
+    "motif": "configuration",
+    "message": "fix: replace puppeteer with apitemplate for PDF in devis signature (Vercel compat)"
+  },
+  {
+    "id": "qos-c2116324",
+    "depot": "qos",
+    "motif": "refactor",
+    "message": "fix(calendar): use maybeSingle in GHL webhook to handle missing links gracefully"
+  },
+  {
+    "id": "brvndlab-a769c32c",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(recap): faits en lecture seule, texte complet, separation nette"
+  },
+  {
+    "id": "brvndlab-50c70387",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm): message long scrollable sans scrollbar + recap compact"
+  },
+  {
+    "id": "brvndlab-39968655",
+    "depot": "brvndlab",
+    "motif": "refactor",
+    "message": "fix(references): cadre et grille identiques au feed (ratio inline sans exception, placeholder, maconnerie useMasonry par"
+  },
+  {
+    "id": "brvndlab-37649057",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(analytics YouTube): Short = durée <= 3 min (choix CLIENT)"
+  },
+  {
+    "id": "brvndlab-29094522",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brand-os/brainstorming): 'ton audience' autorise (vocabulaire du produit) ; l'interdit reste sur marque/equipe/boite"
+  },
+  {
+    "id": "brvndlab-1597b60d",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(brand-os/brainstorming): l'entretien suit les 3 GRANDES QUESTIONS du module (posees telles quelles), les relances se"
+  },
+  {
+    "id": "brvndlab-e2c1f8e6",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brand-os/brainstorming): questions COURTES - ouverture reduite a une question de 2 lignes, regle dure 25 mots (40 ma"
+  },
+  {
+    "id": "brvndlab-2d8787b0",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(inspiration): nom compte IG + couleurs badges + reel taille exacte"
+  },
+  {
+    "id": "brvndlab-058e372e",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(avatar): cache/cookie/SSR = UNIQUEMENT ta photo Brvndlab (profileImageUrl), jamais Clerk. Nouvelles cles (bvh.av3 / "
+  },
+  {
+    "id": "brvndlab-fba95d44",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(pull-to-refresh): pattern natif iOS voulu par CLIENT - le spinner vit dans une zone CACHEE au-dessus de la page (.bv"
+  },
+  {
+    "id": "brvndlab-560c787a",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): sélection snappée aux MOTS ENTIERS + raccord grammatical garanti"
+  },
+  {
+    "id": "brvndlab-f62651ec",
+    "depot": "brvndlab",
+    "motif": "refactor",
+    "message": "fix(#2 metriques honnetes + #3 cible/audit): analytics KPI Contenu reels/vide honnete (plus de '0' sous label 'live') + "
+  },
+  {
+    "id": "brvndlab-3123de38",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(import): message honnete quand LinkedIn prepare encore l'archive DMA (401 juste apres consentement)"
+  },
+  {
+    "id": "brvndlab-d8a97cee",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(social posts): _publishLinkedIn wrappe en try/catch -> toute exception runtime devient une ConvexError avec le messa"
+  },
+  {
+    "id": "brvndlab-89b1e98e",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(linkedin route): nettoie le message du chat ask des tirets longs (regle zero em-dash) - point revue"
+  },
+  {
+    "id": "brvndlab-ca61ccb3",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm-explore): retire tous les tirets IA DU PROMPT lui-meme"
+  },
+  {
+    "id": "brvndlab-c50ecaa0",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm-explore): zero tiret IA (et emoji) en sortie"
+  },
+  {
+    "id": "brvndlab-fea7cd58",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brand-os/personas): style aligne sur les exemples du mockup"
+  },
+  {
+    "id": "brvndlab-3be62167",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brand-os/problemes): formulations a la 3e personne (il), plus de je"
+  },
+  {
+    "id": "brvndlab-2268da29",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brand-os/problemes): garantit zero tiret IA dans la sortie"
+  },
+  {
+    "id": "brvndlab-1914095f",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(ai): retire les emojis de la sortie generee (jamais demandes)"
+  },
+  {
+    "id": "brvndlab-cb1bc5d2",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(ai): nettoie aussi le TITRE (stripDashes) en generation script/story/carousel -> la regle 'aucun tiret long' s'appli"
+  },
+  {
+    "id": "brvndlab-530f32f0",
+    "depot": "brvndlab",
+    "motif": "indecidable",
+    "message": "fix(inscription): page S'inscrire toujours accessible + deconnecte ancienne session pour creer un nouveau compte"
+  },
+  {
+    "id": "brvndlab-89117f63",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(story): resserre le brainstorm story (storyOrientation + DIRECTION_GUIDE compacts, anti front-load) pour qu il passe"
+  },
+  {
+    "id": "brvndlab-aa1a5504",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(story): registre epure/construit, criteres CLIENT, anti-tiret chat"
+  },
+  {
+    "id": "brvndlab-f7b4038b",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(story): copies matures facon reference (storytelling, ultra-court, rythme)"
+  },
+  {
+    "id": "brvndlab-6f841a93",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): bannit \"pas parce que...parce que\" + \"c est pas...c est pas\" (tics IA)"
+  },
+  {
+    "id": "brvndlab-7291bba0",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): garde-fou hook orphelin (fragment en ouverture)"
+  },
+  {
+    "id": "brvndlab-290c1115",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): verrou anti-anaphore staccato (pas/pas/pas) + anti-redite"
+  },
+  {
+    "id": "brvndlab-462e1fcc",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): strip deterministe du 'ne' de negation (faute n1 audit) en sortie"
+  },
+  {
+    "id": "brvndlab-52ff19bf",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): interdit strict 'Pas parce que...Parce que' + mots-marteau repetes (regles universelles)"
+  },
+  {
+    "id": "brvndlab-751bb027",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): nourrit le generateur avec uses (directions) + transcript du brainstorm"
+  },
+  {
+    "id": "brvndlab-01c6f095",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(script): durcit regles (tiret/serie/elision) + filet anti-tiret long deterministe"
+  },
+  {
+    "id": "brvndlab-f86225a5",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(angles backfill): force overwrite via Sonnet pour qualité garantie"
+  },
+  {
+    "id": "brvndlab-b6ffb99c",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(angles): retirer condenseTitle + relaxer prompt — substance avant brièveté"
+  },
+  {
+    "id": "brvndlab-06ff6da2",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(angles): cards scannables 3s — title court + varié, summary clampé"
+  },
+  {
+    "id": "brvndlab-93b25444",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm): retire \"sagesse sobre\" + sur-contraintes ton, retour ancien feeling"
+  },
+  {
+    "id": "brvndlab-495f01d4",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm): bouton Voir le résumé + cards naturels + sagesse sobre + plus de formats"
+  },
+  {
+    "id": "brvndlab-6a142021",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(brainstorm): restore strategist/premium tone in system prompt"
+  },
+  {
+    "id": "brvndlab-c52cb1f3",
+    "depot": "brvndlab",
+    "motif": "style",
+    "message": "fix(qa): anchor questions strictly to user topic keywords when topic given"
+  },
+  {
+    "id": "brvndlab-67f4e80a",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(qa): final flow — toast 1.1s + auto-redirect /content after save confirm"
+  },
+  {
+    "id": "brvndlab-59ea9ce1",
+    "depot": "brvndlab",
+    "motif": "fonctionnalite",
+    "message": "fix(qa): camera flow honest preview + download, plus prompt humain/douloureux"
+  }
+]

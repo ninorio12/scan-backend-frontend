@@ -1,0 +1,45 @@
+{
+  "id": "qos-f444d5c5",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "bac4a36a6fad0501c851f07f667621375e6291e8",
+  "commit_repare": "f444d5c532d8a007856fd326546b7c5918060f23",
+  "date": "2026-08-01",
+  "message_humain": "fix(cockpit): le filtre de parcours porte sur la COHORTE DE CONTACTS, pas sur les leads — la cohorte suit les contacts (ils survivent a la conversion en client), le filtre sur les leads seuls n'avait donc aucun effet ; verifie : Quiz affiche 0 tant qu'aucun lead n'est etiquete, au lieu des 146 de tout le monde",
+  "famille": "REGLAGE_INERTE",
+  "famille_proposee": "REGLAGE_INERTE",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le filtre de parcours du cockpit n'avait aucun effet : il restreignait les leads alors que l'entonnoir est calculé sur la cohorte de contacts, si bien que le parcours Quiz affichait le total de tout le monde (146) au lieu de son propre chiffre.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/performance.ts"
+  ],
+  "fichier_fautif": "convex/performance.ts",
+  "lignes_avant": {
+    "convex/performance.ts": [
+      157,
+      161,
+      164
+    ]
+  },
+  "symboles": {
+    "convex/performance.ts": [
+      "funnel",
+      "query",
+      "fc"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 5,
+    "total": 21
+  },
+  "preuve": {
+    "avant": "if (a.funnel) allLeads = allLeads.filter((l: any) => l.funnel === a.funnel)",
+    "apres": "const fc = funnelCohort(cohortContacts as any[], allLeads as any[], from, to, dayOf, salesCalls as any[])"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> bac4a36a6fad0501c851f07f667621375e6291e8"
+}

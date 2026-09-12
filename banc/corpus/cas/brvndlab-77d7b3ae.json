@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-77d7b3ae",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "cd22d2b2f2032b2a2a524373c0e5e058c11d0baf",
+  "commit_repare": "77d7b3ae9c3ebb7c47326f7e781c3190afa5b068",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): garde-fou serveur - quand la personne a repondu 2 fois et que RIEN n'est encore ecrit, le prompt recoit une alerte chiffree ('il a repondu N fois, le formulaire est vide, ce message DOIT contenir un patch'). Mission etait le dernier module a creuser 4 tours avant d'ecrire : ses consignes sont reecrites (ecrire d'abord la 1re formulation, affiner ensuite)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "La personne répondait plusieurs fois de suite à l'entretien et le formulaire restait totalement vide à l'écran.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      291,
+      504
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "devine",
+      "pas",
+      "info",
+      "demandes"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 18,
+    "supprimees": 0,
+    "total": 18
+  },
+  "preuve": {
+    "avant": "const done = blocks.filter(isServed).map((b) => b.label);",
+    "apres": "rienEcrit && toursRepondus >= 2"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> cd22d2b2f2032b2a2a524373c0e5e058c11d0baf"
+}

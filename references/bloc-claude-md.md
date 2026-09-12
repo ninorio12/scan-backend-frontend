@@ -2,33 +2,12 @@
 
 ## Pourquoi ce fichier existe
 
-Un skill ne se déclenche pas de façon fiable tout seul. Ce n'est pas une impression :
-Vercel l'a mesuré sur une suite d'évaluations en janvier 2026, et le résultat est brutal.
+Un skill ne se déclenche pas de façon fiable tout seul, et un skill présent mais non
+invoqué ne vaut pas mieux que rien. C'est mesuré, avec la hiérarchie de résistance à la
+dérive et la cause (*lost in the middle*) : `recherche-terrain.md`, partie 3, sections 1
+et 3. Les chiffres y sont, une seule fois, pour qu'ils ne se contredisent pas.
 
-| Configuration | Taux de réussite |
-|---|---|
-| Sans documentation | 53 % |
-| **Skill disponible, déclenchement laissé au modèle** | **53 %** (le skill n'était pas invoqué dans 56 % des cas) |
-| Skill + instruction explicite de l'invoquer | 79 % |
-| **Index compressé de 8 Ko directement dans le fichier de contexte** | **100 %** |
-
-Un skill présent mais non invoqué ne vaut pas mieux que rien, et il a même dégradé
-certaines métriques : un skill inutilisé fait du bruit. La conclusion de Vercel est
-sans ambiguïté : *le contexte passif bat aujourd'hui la récupération à la demande*.
-
-Ça recoupe la hiérarchie de résistance à la dérive que décrit `claude-enforcer` :
-
-| Couche | Résiste à la dérive ? |
-|---|---|
-| Fichier de contexte (CLAUDE.md) | Non, mais toujours chargé |
-| Skill | Non (chargé seulement si invoqué) |
-| **Hook** | **Oui** (blocage déterministe) |
-| **Agent en contexte isolé** | **Oui** (évaluation indépendante) |
-
-Et la cause est documentée par la recherche : *lost in the middle* (arXiv 2307.03172).
-Dans une longue conversation, les consignes du début se diluent sous tout ce qui suit.
-
-**Donc la répartition qui marche :**
+**La répartition qui en découle :**
 
 - les quelques règles **non négociables** vivent dans le CLAUDE.md du projet, en
   quelques lignes denses : elles sont là à chaque tour, sans dépendre d'une décision ;
@@ -69,8 +48,8 @@ suivie ; chaque ligne inutile ajoutée dilue les autres.
 # SKILL = le dossier du skill, où qu'il soit installé (celui qui contient package.json)
 SKILL=/chemin/vers/scan-backend-frontend
 
-# 1. ajouter le bloc au fichier de contexte
-sed -n '/^## Backend : règles/,/^```$/p' $SKILL/references/bloc-claude-md.md >> CLAUDE.md
+# 1. ajouter le bloc au fichier de contexte (le « $d » retire la clôture du bloc de code)
+sed -n '/^## Backend : règles/,/^```$/p' $SKILL/references/bloc-claude-md.md | sed '$d' >> CLAUDE.md
 
 # 2. vérifier que le skill lui-même est valide (un champ mal formé = skill invisible)
 npx agnix .
@@ -87,9 +66,6 @@ les câblages cassés était lui-même mal câblé, et personne ne l'aurait vu.
 
 ## Sources
 
-- Vercel, *AGENTS.md outperforms skills in our agent evals*, 27/01/2026 :
-  https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals
-- `agnix`, linter de configurations d'agents (455 règles) : https://github.com/agent-sh/agnix
-- `claude-enforcer`, hiérarchie d'application et résistance à la dérive :
-  https://github.com/odysseyalive/claude-enforcer
-- *Lost in the Middle*, sur la dilution des consignes : https://arxiv.org/abs/2307.03172
+- `agnix`, linter de configurations d'agents : https://github.com/agent-sh/agnix
+- Les trois autres (mesure Vercel, `claude-enforcer`, *Lost in the Middle*) sont citées une
+  seule fois, dans `recherche-terrain.md`, partie 3.

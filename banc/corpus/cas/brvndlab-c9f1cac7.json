@@ -1,0 +1,58 @@
+{
+  "id": "brvndlab-c9f1cac7",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "22a78b949830e13be36daf15aa71f03c0b99e348",
+  "commit_repare": "c9f1cac7e20dd204e6ba7da7eb2706625b0acdc6",
+  "date": "2026-07-01",
+  "message_humain": "fix(brand-os): le front envoie le Brand OS aux routes IA (personas + problemes)",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Quand la lecture serveur du Brand OS échouait, l'erreur était avalée et la génération partait avec un contexte vide : le client recevait un persona vide ou une problématique générique.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/content/personas/route.ts",
+    "brvndlab-app/src/app/api/content/problemes/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/content/personas/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      118,
+      120
+    ],
+    "brvndlab-app/src/app/api/content/problemes/route.ts": [
+      164,
+      166
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "convex",
+      "token",
+      "dna"
+    ],
+    "brvndlab-app/src/app/api/content/problemes/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "convex",
+      "token",
+      "dna"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 34,
+    "supprimees": 18,
+    "total": 52
+  },
+  "preuve": {
+    "avant": "brandDnaContext = \"\";",
+    "apres": "if (bodyDna) brandDnaContext = buildBrandDnaContext(bodyDna);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 22a78b949830e13be36daf15aa71f03c0b99e348"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "qos-70f40f54",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "025a1074e31850a743ceb602008cfa367f1b0466",
+  "commit_repare": "70f40f54b1f5211a7b8c849b677ab2176b8751c2",
+  "date": "2026-06-11",
+  "message_humain": "fix(coherence): la fiche contact synchronise TOUT automatiquement (systémique)",
+  "famille": "ECRITURE_PARTIELLE",
+  "famille_proposee": "NOUVELLE:DERIVE_NON_PROPAGEE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Éditer une fiche contact ne replaçait pas le contact dans la bonne pipeline : un contact repassé en lead restait affiché dans la pipeline clients.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/crm_contacts.ts",
+    "convex/sync.ts"
+  ],
+  "fichier_fautif": "convex/crm_contacts.ts",
+  "lignes_avant": {
+    "convex/crm_contacts.ts": [
+      3,
+      62,
+      65,
+      69,
+      101
+    ],
+    "convex/sync.ts": [
+      8,
+      18,
+      30
+    ]
+  },
+  "symboles": {
+    "convex/crm_contacts.ts": [
+      "findDuplicateContact",
+      "contactDedup",
+      "create",
+      "mutation",
+      "update"
+    ],
+    "convex/sync.ts": [
+      "mutation",
+      "_generated",
+      "server",
+      "enforce",
+      "any",
+      "contactId",
+      "opts",
+      "dealValue"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 13,
+    "supprimees": 4,
+    "total": 17
+  },
+  "preuve": {
+    "avant": "    return await ctx.db.insert(\"crm_contacts\", {",
+    "apres": "    await enforce(ctx, id)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 025a1074e31850a743ceb602008cfa367f1b0466"
+}

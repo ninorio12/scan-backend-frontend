@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-ab8e46f8",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "4b06f2e582cecd5a38d4990e154ed5e58065186b",
+  "commit_repare": "ab8e46f8a9de5088d736cc81a2e16f2fe2373dd9",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): audience-sig ne compte plus dans la progression",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le module Problématiques s'affichait rempli alors que le client n'avait rien saisi : un marqueur technique posé par la synchronisation automatique était compté comme une réponse utilisateur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      565,
+      658
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "OPTIONAL_QUESTIONS",
+      "Set",
+      "string",
+      "audience",
+      "segments",
+      "countBrandOsDone"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 0,
+    "total": 7
+  },
+  "preuve": {
+    "avant": "!r.questionId.startsWith(\"generated-\") &&",
+    "apres": "!TECHNICAL_QUESTIONS.has(r.questionId) &&"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 4b06f2e582cecd5a38d4990e154ed5e58065186b"
+}

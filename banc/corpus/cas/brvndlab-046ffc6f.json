@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-046ffc6f",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "ac05c3d3c8aad5c3d704df145310767e00f7dd33",
+  "commit_repare": "046ffc6ff349ef90c921aaa7169ba644c7c8cf65",
+  "date": "2026-07-13",
+  "message_humain": "fix(brand-os/personas): prenoms et noms COURANTS en Suisse romande (CLIENT CLIENT, CLIENT CLIENT...) au lieu de noms rares. Cause : la route imposait une lettre initiale tiree au hasard, et le modele allait chercher des prenoms rares (CLIENT) pour la satisfaire. La variete vient desormais de la graine, pas d'une lettre",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Les personas générés portaient des prénoms rares et invraisemblables parce qu'une lettre initiale tirée au hasard leur était imposée.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/content/personas/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/content/personas/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      188,
+      206,
+      213,
+      221
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      "SORTIE",
+      "seul",
+      "tableau",
+      "JSON",
+      "count",
+      "cha",
+      "nes",
+      "rien"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 7,
+    "total": 23
+  },
+  "preuve": {
+    "avant": "const firstLetter = LETTERS[Math.floor(Math.random() * LETTERS.length)];",
+    "apres": "- firstName : un prénom COURANT en ${country} (voir la liste ci-dessus), jamais rare ni exotique."
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> ac05c3d3c8aad5c3d704df145310767e00f7dd33"
+}

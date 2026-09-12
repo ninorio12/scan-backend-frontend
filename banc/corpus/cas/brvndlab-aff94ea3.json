@@ -1,0 +1,59 @@
+{
+  "id": "brvndlab-aff94ea3",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "f99d9a5fcb9066df340fbd7ab17ab34456c784f7",
+  "commit_repare": "aff94ea38be265f2b6611c955d856bec375f7cca",
+  "date": "2026-07-31",
+  "message_humain": "fix(audience linkedin): le compteur d'abonnes ne se pose et ne se lit QUE sur une connexion LinkedIn",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "NOUVELLE:FILTRE_SOURCE_MANQUANT",
+  "familles_secondaires": [
+    "LOCATAIRE",
+    "CHIFFRE_INVENTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le nombre d'abonnés LinkedIn était écrit sur la ligne de connexion YouTube puis relu de là : le compteur d'audience et la photo quotidienne affichaient un chiffre qui n'était pas celui de LinkedIn.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/contentMetrics.ts",
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentMetrics.ts": [
+      297,
+      434
+    ],
+    "brvndlab-app/convex/social.ts": [
+      1389
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentMetrics.ts": [
+      "linkedinFollowersOf",
+      "QueryCtx",
+      "owner",
+      "string",
+      "Promise",
+      "number",
+      "snapshotAllAccountsDaily",
+      "internalMutation"
+    ],
+    "brvndlab-app/convex/social.ts": [
+      "_setFollowers",
+      "internalMutation",
+      "row"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 14,
+    "supprimees": 3,
+    "total": 17
+  },
+  "preuve": {
+    "avant": "const row = rows.find((r) => r.provider === \"linkedin\") ?? rows[0];",
+    "apres": "const row = li.find((r) => r.provider === \"linkedin\") ?? li[0];"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> f99d9a5fcb9066df340fbd7ab17ab34456c784f7"
+}

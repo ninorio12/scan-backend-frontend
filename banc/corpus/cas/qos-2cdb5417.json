@@ -1,0 +1,42 @@
+{
+  "id": "qos-2cdb5417",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "f11a5144975f95db48cf74d4b8eadd1c20480276",
+  "commit_repare": "2cdb5417c3caab01bf7b80e4df2933f5aed624fe",
+  "date": "2026-07-31",
+  "message_humain": "fix(media buyer): les statiques s'ouvrent en pleine resolution — les URL portees par la creation sont des vignettes 64x64 (recadrage signe par Meta, non retirable), l'original est demande a l'edge adimages du compte par empreinte et sert de visuel en grand ; la vignette du tableau reste la petite",
+  "famille": "DONNEE_DEGRADEE",
+  "famille_proposee": "NOUVELLE:DONNEE_DEGRADEE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Ouvrir une création statique du board publicitaire en grand affichait la vignette de 64×64 fournie par la régie, floue et recadrée, au lieu du visuel d'origine.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/metaAds.ts"
+  ],
+  "fichier_fautif": "convex/metaAds.ts",
+  "lignes_avant": {
+    "convex/metaAds.ts": [
+      43,
+      77,
+      126
+    ]
+  },
+  "symboles": {
+    "convex/metaAds.ts": [
+      "creatives",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 23,
+    "supprimees": 3,
+    "total": 26
+  },
+  "preuve": {
+    "avant": "imageUrl: cr.image_url ?? cr.thumbnail_url ?? crea?.image_url ?? crea?.thumbnail_url ?? null,",
+    "apres": "imageUrl: (hashOf(cr) ? urlParHash.get(hashOf(cr)!) : null) ?? cr.image_url ?? cr.thumbnail_url"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> f11a5144975f95db48cf74d4b8eadd1c20480276"
+}

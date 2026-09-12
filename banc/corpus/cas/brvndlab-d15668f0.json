@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-d15668f0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "9e9038474cf32308039094fcabde843c36d2e963",
+  "commit_repare": "d15668f0a0148a62972feccb3212c1d56f0e85d9",
+  "date": "2026-07-05",
+  "message_humain": "fix(pipeline): un post programme (schedulePost) pose maintenant scheduledAt sur le contentItem -> il apparait bien dans la colonne 'Programme' et non 'Pret a programmer'; _setItemStatus accepte scheduledAt",
+  "famille": "CONTRAT",
+  "famille_proposee": "CONTRAT",
+  "familles_secondaires": [
+    "ACTION_MUETTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un post programme restait affiche dans la colonne « Pret a programmer » : la date de programmation, qui distingue les deux colonnes, n'etait jamais ecrite.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      420,
+      423,
+      488
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "_setItemStatus",
+      "internalMutation",
+      "schedulePost",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 3,
+    "total": 11
+  },
+  "preuve": {
+    "avant": "args: { itemId: v.id(\"contentItems\"), status: v.string() },",
+    "apres": "if (args.scheduledAt !== undefined) patch.scheduledAt = args.scheduledAt ?? undefined;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 9e9038474cf32308039094fcabde843c36d2e963"
+}

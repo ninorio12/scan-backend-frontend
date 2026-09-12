@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-00772923",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "a6d2ffd96807b6bd1c68e89ce580259f195877a9",
+  "commit_repare": "007729233fcbfab4442f7e616189b079dcc77bdd",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): un bloc servi n'est pas ferme (elle interrogeait sans jamais pouvoir ajouter) + toute question posee doit deboucher sur une ecriture + phrase de fin exacte 'Ton module est pret. Tu peux passer au suivant.'",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Une fois un bloc rempli, demander d'ajouter une fiche ne donnait rien : l'entretien discutait sans plus jamais écrire.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      232,
+      248
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "ponse",
+      "contient",
+      "mati",
+      "pour",
+      "AUTRE"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 6,
+    "total": 13
+  },
+  "preuve": {
+    "avant": "- Tu ne relances plus de toi-même sur un bloc servi tant qu'il ne le demande pas.",
+    "apres": "Un bloc servi n'est pas fermé : on peut toujours y ajouter une fiche."
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> a6d2ffd96807b6bd1c68e89ce580259f195877a9"
+}

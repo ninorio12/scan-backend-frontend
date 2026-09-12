@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-6a6e3787",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "37609f28b4cbc42a61e878bf3a0f324bbc1d83c4",
+  "commit_repare": "6a6e37872cef90a877ca269b2db68d1f44d70dd5",
+  "date": "2026-07-16",
+  "message_humain": "fix(dictée): filtre hallucinations Whisper robuste + garde les phrases légitimes",
+  "famille": "FILTRE_TEXTE_INEXACT",
+  "famille_proposee": "NOUVELLE:FILTRE_TEXTE_INEXACT",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "La dictée vocale laissait passer des bribes inventées par la transcription (des restes de « sous-titres », « .org ») et pouvait à l'inverse effacer une vraie phrase qui contenait « abonnez-vous ».",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/transcribe/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/transcribe/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/transcribe/route.ts": [
+      21,
+      24,
+      27,
+      32,
+      36,
+      39
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/transcribe/route.ts": [
+      "HALLUCINATIONS",
+      "dropHallucinations",
+      "raw",
+      "string",
+      "FILLER_ONLY"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 8,
+    "total": 20
+  },
+  "preuve": {
+    "avant": "/sous-?titr(es|age)[^.]*/i,",
+    "apres": "/sous-?titr(es|age)[^.!?\\n]*/i,"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 37609f28b4cbc42a61e878bf3a0f324bbc1d83c4"
+}

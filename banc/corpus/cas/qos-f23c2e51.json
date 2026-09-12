@@ -1,0 +1,68 @@
+{
+  "id": "qos-f23c2e51",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "a63b4d46c0375a6b3c3cb04a0a354539d2952c57",
+  "commit_repare": "f23c2e51e994e575ca38a0b168007141fce2266d",
+  "date": "2026-06-11",
+  "message_humain": "fix(google-oauth): redirect_uri robuste (origine requête) + garde si clés manquantes",
+  "famille": "ENV_MANQUANTE",
+  "famille_proposee": "ENV_MANQUANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La connexion du calendrier échouait avec « Missing required parameter: redirect_uri » parce que l'adresse publique de l'application n'était pas renseignée côté serveur, et l'absence des identifiants OAuth donnait une erreur cryptique.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "src/app/api/auth/google/callback/route.ts",
+    "src/app/api/auth/google/route.ts",
+    "src/lib/google.ts"
+  ],
+  "fichier_fautif": "src/lib/google.ts",
+  "lignes_avant": {
+    "src/app/api/auth/google/callback/route.ts": [
+      20
+    ],
+    "src/app/api/auth/google/route.ts": [
+      1,
+      4,
+      8,
+      9
+    ],
+    "src/lib/google.ts": [
+      9,
+      13
+    ]
+  },
+  "symboles": {
+    "src/app/api/auth/google/callback/route.ts": [
+      "GET",
+      "req",
+      "NextRequest",
+      "oauth2"
+    ],
+    "src/app/api/auth/google/route.ts": [
+      "NextResponse",
+      "next",
+      "server",
+      "getOAuth2Client",
+      "lib",
+      "google",
+      "GET",
+      "oauth2"
+    ],
+    "src/lib/google.ts": [
+      "appUrl",
+      "getOAuth2Client"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 35,
+    "supprimees": 8,
+    "total": 43
+  },
+  "preuve": {
+    "avant": "    `${appUrl()}/api/auth/google/callback`,",
+    "apres": "    redirectUri ?? `${appUrl()}/api/auth/google/callback`,"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> a63b4d46c0375a6b3c3cb04a0a354539d2952c57"
+}

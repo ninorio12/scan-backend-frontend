@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-e96f2df8",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "8307137265cc4be5a1098d99d394af39cc2a7c08",
+  "commit_repare": "e96f2df85324df824cc1244e03b4f30d67b7489f",
+  "date": "2026-07-29",
+  "message_humain": "fix(brainstorms): compteur 'contenus crees' aligne sur la fiche angle",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le badge « contenus créés » d'un angle comptait chaque contenu, archivés compris et sans dédup, alors que la fiche de l'angle n'en montrait qu'une partie : deux chiffres pour la même notion.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/contentItems.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentItems.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentItems.ts": [
+      172,
+      174,
+      177,
+      178
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentItems.ts": [
+      "countsByAngle",
+      "query",
+      "counts"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 3,
+    "total": 13
+  },
+  "preuve": {
+    "avant": "counts[angleId] = (counts[angleId] ?? 0) + 1;",
+    "apres": "(byAngle[angleId] ??= new Set<string>()).add(itemFormat(it));"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 8307137265cc4be5a1098d99d394af39cc2a7c08"
+}

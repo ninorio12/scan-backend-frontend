@@ -1,0 +1,63 @@
+{
+  "id": "brvndlab-c148108c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "4610eb94ea08c24457b44dbeffb6f671f71f9b22",
+  "commit_repare": "c148108ccbdfc27d827d6723541458a5738d14d4",
+  "date": "2026-07-27",
+  "message_humain": "fix(script): l'IA LIT le script fini et le classe TOFU/MOFU/BOFU (fin du tout-TOFU)",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [
+    "CONSIGNE_IA_NON_TENUE"
+  ],
+  "famille_connue": true,
+  "symptome": "Les 13 scripts d'un client ressortaient tous classés « TOFU » : la température n'était jamais calculée sur le script, elle était héritée d'un exemple écrit en dur dans la consigne.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts",
+    "brvndlab-app/src/app/api/generate-script/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brainstorm-explore/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      233,
+      236
+    ],
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      300,
+      828,
+      832
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      "Puis",
+      "JSON",
+      "valide",
+      "avec",
+      "shape",
+      "EXACT"
+    ],
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "Renvoie",
+      "UNIQUEMENT",
+      "JSON",
+      "faults",
+      "chaque"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 47,
+    "supprimees": 6,
+    "total": 53
+  },
+  "preuve": {
+    "avant": "\"funnel\": \"TOFU\"${inferredField}",
+    "apres": "\"funnel\": \"<TOFU | MOFU | BOFU selon l'angle, voir ci-dessous>\"${inferredField}"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 4610eb94ea08c24457b44dbeffb6f671f71f9b22"
+}

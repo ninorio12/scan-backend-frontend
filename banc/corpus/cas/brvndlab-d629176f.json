@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-d629176f",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "bf02372388d9b34a0909ed9432d5f1125b8f2e6f",
+  "commit_repare": "d629176fb3e5c06bb0719d8c50b24e92d43302ab",
+  "date": "2026-07-13",
+  "message_humain": "fix(instagram): on copie chez nous le visuel de TOUTES les publications, pas que des stories",
+  "famille": "LIEN_EXTERNE_PERISSABLE",
+  "famille_proposee": "NOUVELLE:LIEN_EXTERNE_PERISSABLE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Les vignettes des publications archivées disparaissaient avec le temps : seules les stories étaient copiées chez nous.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/instagramCapture.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/instagramCapture.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/instagramCapture.ts": [
+      289,
+      294,
+      297
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/instagramCapture.ts": [
+      "captureAll",
+      "internalAction"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 4,
+    "total": 12
+  },
+  "preuve": {
+    "avant": "for (const s of stories) {",
+    "apres": "const toStore = [...feed, ...stories];"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> bf02372388d9b34a0909ed9432d5f1125b8f2e6f"
+}

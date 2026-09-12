@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-6df62e7a",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "fba95d44b028a94d2ed3c65535e81b8cf5d773fc",
+  "commit_repare": "6df62e7a2fb1832fb0d856761a69628a645887dc",
+  "date": "2026-07-07",
+  "message_humain": "fix(pull-to-refresh): version deterministe du pattern natif - zone spinner au FOND du shell (z0) cachee derriere main (z1 opaque bg shell) ; le tirage fait GLISSER main (transform suit le doigt, resistance 0.5, preventDefault) et revele fond uni + logo qui tourne ; pendant le refresh main reste entrouverte a 64px puis se referme. Ne depend plus du paint d'overscroll iOS (la zone top negatif n'etait pas revelee -> 'aucun changement')",
+  "famille": "GESTE_INERTE",
+  "famille_proposee": "NOUVELLE:GESTE_INERTE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Sur mobile, tirer la page vers le bas pour rafraîchir ne montrait rien du tout : le geste était écouté en mode passif, donc l'animation de tirage n'était jamais révélée.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/hooks/usePullToRefresh.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/hooks/usePullToRefresh.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/hooks/usePullToRefresh.ts": [
+      59,
+      106
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/hooks/usePullToRefresh.ts": [
+      "usePullToRefresh",
+      "opts",
+      "p"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 4,
+    "total": 9
+  },
+  "preuve": {
+    "avant": "window.addEventListener(\"touchmove\", onMove, { passive: true });",
+    "apres": "window.addEventListener(\"touchmove\", onMove, { passive: false });"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> fba95d44b028a94d2ed3c65535e81b8cf5d773fc"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "brvndlab-28fa8a66",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "b1d102967a9b86024144eadee6fd5842074efbe0",
+  "commit_repare": "28fa8a662d6d037fbbf9f79f6a4b37d49cebc210",
+  "date": "2026-07-27",
+  "message_humain": "fix(brand-os): CLIENT efficace — un signal d'arrêt (ni tour en rond, ni bâclé)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": false,
+  "symptome": "L'assistant de marque tournait en rond : il relançait encore et encore sur un champ déjà bien répondu, parce qu'un seuil de longueur en dur contredisait la consigne « 1 à 2 phrases » du même champ.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      513,
+      807,
+      891,
+      1082,
+      1088
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "MISSION",
+      "VRAIE",
+      "elle",
+      "prime",
+      "sur"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 9,
+    "total": 25
+  },
+  "preuve": {
+    "avant": "TROIS PRINCIPES DE CONVERSATION (transversaux, valables pour CHAQUE module) :",
+    "apres": "\"probleme-principal\": 60,"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> b1d102967a9b86024144eadee6fd5842074efbe0"
+}

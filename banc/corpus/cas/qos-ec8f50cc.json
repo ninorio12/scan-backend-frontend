@@ -1,0 +1,75 @@
+{
+  "id": "qos-ec8f50cc",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "682d8b43e6bddedab1048b96ba383e22929ee1ac",
+  "commit_repare": "ec8f50ccaaba969147f62e928acb0006f27fffd7",
+  "date": "2026-06-24",
+  "message_humain": "fix(integrite+ux): mono-devise CHF, ROI 1 decimale, fetcher dashboard, confirmations",
+  "famille": "UNITE_DIVERGENTE",
+  "famille_proposee": "UNITE_DIVERGENTE",
+  "familles_secondaires": [
+    "CHIFFRE_INVENTE",
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "Des montants en euros s'affichaient avec le symbole CHF et les paiements se créaient en euros : deux devises sous un même libellé dans un produit facturé en francs.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/dashboard.ts",
+    "src/lib/lostReasons.ts",
+    "src/lib/money.ts",
+    "src/lib/stripe.ts"
+  ],
+  "fichier_fautif": "src/lib/money.ts",
+  "lignes_avant": {
+    "convex/dashboard.ts": [
+      187
+    ],
+    "src/lib/lostReasons.ts": [
+      30
+    ],
+    "src/lib/money.ts": [
+      3
+    ],
+    "src/lib/stripe.ts": [
+      2,
+      44,
+      83
+    ]
+  },
+  "symboles": {
+    "convex/dashboard.ts": [
+      "getMetrics",
+      "query"
+    ],
+    "src/lib/lostReasons.ts": [
+      "NONVENTE_OBJECTIONS",
+      "code",
+      "string",
+      "label",
+      "desc"
+    ],
+    "src/lib/money.ts": [
+      "DEFAULT_CURRENCY",
+      "CHF",
+      "SYMBOLS",
+      "currencySymbol"
+    ],
+    "src/lib/stripe.ts": [
+      "Logger",
+      "logger",
+      "PaymentService"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 11,
+    "supprimees": 6,
+    "total": 17
+  },
+  "preuve": {
+    "avant": "const SYMBOLS: Record<string, string> = { CHF: 'CHF', EUR: 'CHF', USD: '$', GBP: '£' }",
+    "apres": "const SYMBOLS: Record<string, string> = { CHF: 'CHF' }"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 682d8b43e6bddedab1048b96ba383e22929ee1ac"
+}

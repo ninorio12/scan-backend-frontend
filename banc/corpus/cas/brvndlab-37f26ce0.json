@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-37f26ce0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6c56defba8303126b538c9f25cb07309cc1c768b",
+  "commit_repare": "37f26ce04d714713f48c2c2bb77382468c39e84f",
+  "date": "2026-07-01",
+  "message_humain": "fix(dictee): mise en forme declenchee sur recognition.onend (arret auto inclus)",
+  "famille": "PORTE_PARALLELE",
+  "famille_proposee": "PORTE_PARALLELE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Quand la dictée s'arrêtait toute seule (silence ou limite du navigateur), le texte restait brut, sans ponctuation ni mise en forme, alors que l'arrêt manuel la déclenchait.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/hooks/useSpeechToText.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/hooks/useSpeechToText.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/hooks/useSpeechToText.ts": [
+      44,
+      51,
+      95,
+      107,
+      118,
+      121,
+      135
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/hooks/useSpeechToText.ts": [
+      "useSpeechToText",
+      "onTranscriptReady",
+      "rawText"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 23,
+    "supprimees": 15,
+    "total": 38
+  },
+  "preuve": {
+    "avant": "const rawText = finalTranscriptRef.current.trim();",
+    "apres": "if (rawText && !punctuatedRef.current) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6c56defba8303126b538c9f25cb07309cc1c768b"
+}

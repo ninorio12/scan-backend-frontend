@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-dbea1e72",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "f49163ff2be9acc74fbf27a2cb034a6eb286e3b7",
+  "commit_repare": "dbea1e727c601e5a4203d24da9fae09be8e5e53e",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): les champs de texte restaient vides parce que les consignes ('refuse le slogan', 'refuse les generalites') etaient comprises comme 'refuse d'ecrire'. Levee d'ambiguite : l'exigence porte sur les QUESTIONS, jamais sur le patch. + obligation d'ecrire au tour en cours (pas de patch = tour perdu) + interdiction de reposer 3 fois la meme question",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Les champs de texte des modules restaient vides : l'exigence de qualité était comprise comme un refus d'écrire tant que la réponse n'était pas parfaite.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      341,
+      365
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "done",
+      "length",
+      "Blocs",
+      "servis",
+      "les",
+      "rouvre",
+      "pas",
+      "join"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 1,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "Si sa réponse contient de la matière pour un AUTRE bloc que celui en cours, tu l'écris quand même dans le patch",
+    "apres": "Dans tous les autres cas, pas de patch = tour perdu."
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> f49163ff2be9acc74fbf27a2cb034a6eb286e3b7"
+}

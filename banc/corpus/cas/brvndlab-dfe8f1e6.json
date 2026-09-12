@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-dfe8f1e6",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "4027049d84e670be0b897b57b205583af783b425",
+  "commit_repare": "dfe8f1e63e2bf648ee6f1719720b1c7e9cc24e2d",
+  "date": "2026-07-16",
+  "message_humain": "fix(instagram): fallback connected_instagram_account + log business/connected",
+  "famille": "SOURCE_PARTIELLE",
+  "famille_proposee": "NOUVELLE:SOURCE_PARTIELLE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "La connexion Instagram échouait avec « aucun compte Instagram sur cette page » pour des comptes professionnels bien rattachés : une seule des deux liaisons possibles était lue.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/auth/instagram/callback/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts": [
+      128,
+      130,
+      134,
+      136
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts": [
+      "GET",
+      "request",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 3,
+    "total": 15
+  },
+  "preuve": {
+    "avant": "if (igData.instagram_business_account) {",
+    "apres": "const igAccount = igData.instagram_business_account ?? igData.connected_instagram_account;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 4027049d84e670be0b897b57b205583af783b425"
+}

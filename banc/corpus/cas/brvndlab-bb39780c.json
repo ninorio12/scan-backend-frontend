@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-bb39780c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "685fdcd9e3b2bd73bd6042ac8198f1d45bab377f",
+  "commit_repare": "bb39780ce34ae42d52cfec7970bc17802f416af4",
+  "date": "2026-07-06",
+  "message_humain": "fix(securite/audit): fetchTopComments exige l'auth (ctx.auth) - avant: action publique sans auth, n'importe qui pouvait fetch des commentaires YouTube et bruler le quota de YOUTUBE_API_KEY",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La recuperation des commentaires YouTube etait une porte publique sans aucune verification : n'importe qui pouvait l'appeler et bruler le quota de la cle partagee.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/youtubeComments.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/youtubeComments.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/youtubeComments.ts": [
+      34,
+      41
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/youtubeComments.ts": [
+      "fetchTopComments",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 1,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "_ctx,",
+    "apres": "const identity = await ctx.auth.getUserIdentity();"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 685fdcd9e3b2bd73bd6042ac8198f1d45bab377f"
+}

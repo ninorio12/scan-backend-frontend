@@ -1,0 +1,64 @@
+{
+  "id": "qos-01b404bc",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "1366e9d9d5647d31aa91044f06494f74fa006909",
+  "commit_repare": "01b404bc42800fd0009358c2b95a21edc1d64445",
+  "date": "2026-06-11",
+  "message_humain": "fix(coherence): la fiche contact pilote pipeline leads/clients (source unique de vérité)",
+  "famille": "ECRITURE_PARTIELLE",
+  "famille_proposee": "NOUVELLE:DERIVE_NON_PROPAGEE",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": false,
+  "symptome": "Changer l'origine d'un contact ne se propageait qu'à la création du lead : la pastille inbound/outbound de la carte pipeline restait figée sur l'ancienne valeur, en désaccord avec la fiche.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/integrityCleanup.ts",
+    "convex/sync.ts",
+    "scripts/integrity/invariant-map.mjs"
+  ],
+  "fichier_fautif": "convex/sync.ts",
+  "lignes_avant": {
+    "convex/integrityCleanup.ts": [
+      60,
+      64
+    ],
+    "convex/sync.ts": [
+      43
+    ],
+    "scripts/integrity/invariant-map.mjs": [
+      26,
+      28,
+      40
+    ]
+  },
+  "symboles": {
+    "convex/integrityCleanup.ts": [
+      "realign",
+      "mutation"
+    ],
+    "convex/sync.ts": [
+      "enforce",
+      "any",
+      "contactId",
+      "opts",
+      "dealValue",
+      "number"
+    ],
+    "scripts/integrity/invariant-map.mjs": [
+      "CONSISTENCY"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 27,
+    "supprimees": 11,
+    "total": 38
+  },
+  "preuve": {
+    "avant": "      if (existingLead.status !== targetStatus) await ctx.db.patch(existingLead._id, { status: targetStatus })",
+    "apres": "      if (contact.source && existingLead.source !== contact.source) patch.source = contact.source"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 1366e9d9d5647d31aa91044f06494f74fa006909"
+}

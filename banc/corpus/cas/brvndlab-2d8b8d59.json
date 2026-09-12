@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-2d8b8d59",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c41e01b699d1d04ce18b01cbd7ec5502cc667a20",
+  "commit_repare": "2d8b8d59dbe8f510c475dac2fa8b952c6d67c23d",
+  "date": "2026-07-16",
+  "message_humain": "fix(dictée): détecteur direct des méta-réponses (\"je suis prêt à reformater...\")",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Sur une dictée courte, le champ se remplissait d'une réponse parasite du type « je suis prêt à reformater votre texte » au lieu de la dictée : le seul garde-fou existant ne réagissait pas aux phrases courtes.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/punctuate/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/punctuate/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      65,
+      75
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "safe"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 4,
+    "total": 16
+  },
+  "preuve": {
+    "avant": "const safe = inSet.size >= 3 && overlap < 0.5 ? clean(text) : formatted;",
+    "apres": "const looksMeta = META_RE.test(head) || (inSet.size >= 3 && overlap < 0.5);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c41e01b699d1d04ce18b01cbd7ec5502cc667a20"
+}

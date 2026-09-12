@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-28b0a125",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "4ce4a488410636baa81a8828c6f67ce7663e61a0",
+  "commit_repare": "28b0a1254ac8340c576c9bac7a09b6d00b623d75",
+  "date": "2026-07-01",
+  "message_humain": "fix(brand-os/personas): photo deterministe (ne change plus) + traits/canaux = seulement les selectionnes",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:RENDU_NON_DETERMINISTE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "La photo d'un persona changeait à chaque rendu ou régénération : impossible de reconnaître le même persona d'une fois sur l'autre.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/lib/personaAvatars.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/personaAvatars.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/personaAvatars.ts": [
+      318,
+      326,
+      331
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/personaAvatars.ts": [
+      "PERSONA_AVATARS",
+      "PersonaAvatar",
+      "pickPersonaAvatar",
+      "gender",
+      "Homme",
+      "Femme",
+      "age",
+      "number"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 20,
+    "supprimees": 2,
+    "total": 22
+  },
+  "preuve": {
+    "avant": "if (list.length) return list[Math.floor(Math.random() * list.length)].src;",
+    "apres": "if (list.length) return list[h % list.length].src;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 4ce4a488410636baa81a8828c6f67ce7663e61a0"
+}

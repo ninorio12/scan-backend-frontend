@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-03a5d372",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "a28082f0e6de612f877cd29ac76d72678395a009",
+  "commit_repare": "03a5d372abd899f28ea85ff2942d0df38a719ba6",
+  "date": "2026-06-22",
+  "message_humain": "fix(brand-os): comptage strict de complétion (ignore vides + champs IA)",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": true,
+  "symptome": "Des modules jamais remplis affichaient de la progression (un « terminé », un 2/3) parce que les réponses vides et les champs générés par l'IA étaient comptés comme des saisies.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      544,
+      553,
+      574
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "MODULE_QUESTION_COUNTS",
+      "Record",
+      "string",
+      "number",
+      "getModulesWithResponses",
+      "query",
+      "nonEmpty"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 30,
+    "supprimees": 2,
+    "total": 32
+  },
+  "preuve": {
+    "avant": "const nonEmpty = responses.filter((r) => r.answer.trim().length > 0);",
+    "apres": "(r) => !r.questionId.startsWith(\"generated-\") && isAnswered(r.answer),"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> a28082f0e6de612f877cd29ac76d72678395a009"
+}

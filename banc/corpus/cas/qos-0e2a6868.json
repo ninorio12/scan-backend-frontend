@@ -1,0 +1,57 @@
+{
+  "id": "qos-0e2a6868",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "7d25c4447e31d9e30739bcb998d6216cab46c4b7",
+  "commit_repare": "0e2a68680590636c8689ce564ba723d5dbeabb0b",
+  "date": "2026-06-02",
+  "message_humain": "Fix client cards grey (_id→id), deal amount for client statut, perdus as lost leads",
+  "famille": "ACTION_MUETTE",
+  "famille_proposee": "ACTION_MUETTE",
+  "familles_secondaires": [
+    "CHIFFRE_INVENTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un contact passé en perdu renvoyait un succès de synchronisation sans rien écrire : il n'apparaissait jamais dans « Voir perdus », et le montant du deal était toujours enregistré à 0.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/sync.ts",
+    "src/app/api/crm/sync/route.ts"
+  ],
+  "fichier_fautif": "convex/sync.ts",
+  "lignes_avant": {
+    "convex/sync.ts": [
+      66,
+      119,
+      127,
+      134
+    ],
+    "src/app/api/crm/sync/route.ts": [
+      12,
+      19
+    ]
+  },
+  "symboles": {
+    "convex/sync.ts": [
+      "syncContactToPipeline",
+      "mutation"
+    ],
+    "src/app/api/crm/sync/route.ts": [
+      "POST",
+      "req",
+      "NextRequest",
+      "body",
+      "result"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 38,
+    "supprimees": 5,
+    "total": 43
+  },
+  "preuve": {
+    "avant": "return { ok: true, action: 'no-sync' }",
+    "apres": "if (contact.statut === 'perdu') {"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 7d25c4447e31d9e30739bcb998d6216cab46c4b7"
+}

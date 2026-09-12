@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-7bb39e2e",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "b36ef1f79134f6015d6c962a676c9ccb5af21464",
+  "commit_repare": "7bb39e2e3c47f9d3b25fdb8f2317f51e409633b3",
+  "date": "2026-07-02",
+  "message_humain": "fix(pipeline): clic sur une carte carrousel ouvre le NOUVEL editeur (/brainstorming/carousel), plus la page vide /new/carousel",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Cliquer une carte carrousel dans la pipeline ouvrait une page blanche : la route visée n'était plus celle de l'éditeur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/lib/contentEditFlow.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/contentEditFlow.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/contentEditFlow.ts": [
+      77
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/contentEditFlow.ts": [
+      "getEditFlowForItem",
+      "item",
+      "ContentItemForEdit",
+      "EditFlow",
+      "null"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "path: \"/brainstorming/new/carousel\",",
+    "apres": "path: \"/brainstorming/carousel\","
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> b36ef1f79134f6015d6c962a676c9ccb5af21464"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-b68338eb",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "0414d62e0a45929eb70cce3d0c1962985e3e2fe0",
+  "commit_repare": "b68338ebc3bfb5f79c3f3fbc072615373084b8a6",
+  "date": "2026-06-22",
+  "message_humain": "fix(schema): clientAccess.allowedModules en optionnel (réconciliation prod)",
+  "famille": "PERTE_IRREVERSIBLE",
+  "famille_proposee": "PERTE_IRREVERSIBLE",
+  "familles_secondaires": [
+    "CONTRAT"
+  ],
+  "famille_connue": true,
+  "symptome": "Les modules autorisés d'un client, réglés depuis la console d'administration, disparaissaient (ou bloquaient la mise en ligne) au premier déploiement : le champ existait en base mais pas dans le schéma déclaré.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/schema.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/schema.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/schema.ts": [
+      1586
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/schema.ts": [
+      "defineSchema"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 4,
+    "supprimees": 0,
+    "total": 4
+  },
+  "preuve": {
+    "avant": "accessType: v.union(v.literal(\"full\"), v.literal(\"brand_os_only\")),",
+    "apres": "allowedModules: v.optional(v.array(v.string())),"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 0414d62e0a45929eb70cce3d0c1962985e3e2fe0"
+}

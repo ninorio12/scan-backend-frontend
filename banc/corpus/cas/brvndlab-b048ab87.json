@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-b048ab87",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6da04a16cd48bf36126f4a36c1623b7c354d7797",
+  "commit_repare": "b048ab87fd0b961c068419fbf960d1b3da47c9ff",
+  "date": "2026-07-12",
+  "message_humain": "fix(kpi): n'agrege que les metriques de contenus existants + purge des orphelins",
+  "famille": "CASCADE_MANQUANTE",
+  "famille_proposee": "CASCADE_MANQUANTE",
+  "familles_secondaires": [
+    "LOCATAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le KPI « Mes vues » affichait près de 200 000 vues provenant de vidéos supprimées et appartenant à un tiers : les relevés orphelins restaient comptés dans le total.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/contentMetrics.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentMetrics.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentMetrics.ts": [
+      312,
+      346
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentMetrics.ts": [
+      "getMyAudience",
+      "query",
+      "getAggregateStats",
+      "latest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 40,
+    "supprimees": 1,
+    "total": 41
+  },
+  "preuve": {
+    "avant": "const latest = Array.from(latestByContent.values());",
+    "apres": "if (!item || item.clerkUserId !== userId) return null;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6da04a16cd48bf36126f4a36c1623b7c354d7797"
+}

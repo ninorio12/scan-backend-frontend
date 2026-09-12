@@ -1,0 +1,202 @@
+[
+  {
+    "nom": "ECRITURE_PARTIELLE",
+    "definition": "l’écriture change un champ et oublie ce qui en dépend : une branche omet ce que l’autre fait, une donnée dérivée n’est pas propagée, les dates de l’état précédent restent",
+    "n": 4,
+    "propositions": [
+      "BRANCHE_INCOMPLETE",
+      "DERIVE_NON_PROPAGEE",
+      "ETAT_RESIDUEL"
+    ],
+    "cas": [
+      "qos-1770c63e",
+      "qos-70f40f54",
+      "qos-01b404bc",
+      "brvndlab-c56c63ef"
+    ]
+  },
+  {
+    "nom": "DONNEE_DEGRADEE",
+    "definition": "la vignette du fournisseur est présentée comme l’original : l’agrandissement affiche du 64×64",
+    "n": 1,
+    "propositions": [
+      "DONNEE_DEGRADEE"
+    ],
+    "cas": [
+      "qos-2cdb5417"
+    ]
+  },
+  {
+    "nom": "ALERTE_FAUSSE",
+    "definition": "un contrôle automatique du projet signale comme cassé un élément qui fonctionne",
+    "n": 1,
+    "propositions": [
+      "ALERTE_FAUSSE"
+    ],
+    "cas": [
+      "qos-811a135f"
+    ]
+  },
+  {
+    "nom": "ETAT_PERIME",
+    "definition": "le serveur reçoit une version périmée de l’objet : ce que l’écran affiche ne lui est jamais transmis",
+    "n": 1,
+    "propositions": [
+      "ETAT_PERIME"
+    ],
+    "cas": [
+      "brvndlab-da5130ae"
+    ]
+  },
+  {
+    "nom": "TYPE_DIVERGENT",
+    "definition": "le type réellement stocké contredit le type déclaré : la valeur est rejetée à l’écriture ou lue comme vide",
+    "n": 2,
+    "propositions": [
+      "TYPE_DIVERGENT"
+    ],
+    "cas": [
+      "brvndlab-83071372",
+      "brvndlab-d43ad428"
+    ]
+  },
+  {
+    "nom": "RATTRAPAGE_INERTE",
+    "definition": "un enregistrement créé avant un changement de règle ne rattrape jamais le nouveau format, et la régénération ne le rattrape pas non plus",
+    "n": 1,
+    "propositions": [
+      "RATTRAPAGE_INERTE"
+    ],
+    "cas": [
+      "brvndlab-966a41ba"
+    ]
+  },
+  {
+    "nom": "CONSIGNE_IA_NON_TENUE",
+    "definition": "une règle du produit est confiée à la consigne d’un modèle au lieu d’être appliquée par le code : le modèle tourne en rond, s’arrête, récite, invente, ou rend toujours la même chose",
+    "n": 23,
+    "propositions": [
+      "DERIVE_MODELE_IA",
+      "ENTREE_PRISE_POUR_CONSIGNE",
+      "CONSIGNE_IA_CONTRE_PRODUCTIVE",
+      "ETAPE_VALIDEE_TROP_TOT",
+      "CONSIGNE_IA_NON_TENUE",
+      "GENERATION_REPETEE"
+    ],
+    "cas": [
+      "brvndlab-28fa8a66",
+      "brvndlab-d1d31914",
+      "brvndlab-7fc6a27c",
+      "brvndlab-594e4e0e",
+      "brvndlab-4610eb94",
+      "brvndlab-17a7f4fc",
+      "brvndlab-3c33700a",
+      "brvndlab-cf359262",
+      "brvndlab-2d8b8d59",
+      "brvndlab-5205f73f",
+      "brvndlab-683ca43f",
+      "brvndlab-046ffc6f",
+      "brvndlab-77d7b3ae",
+      "brvndlab-cd22d2b2",
+      "brvndlab-dbea1e72",
+      "brvndlab-f49163ff",
+      "brvndlab-0a529083",
+      "brvndlab-00772923",
+      "brvndlab-a6d2ffd9",
+      "brvndlab-5cec4526",
+      "brvndlab-71e261ff",
+      "brvndlab-f86639c0",
+      "brvndlab-47533440"
+    ]
+  },
+  {
+    "nom": "SOURCE_PARTIELLE",
+    "definition": "une seule des liaisons possibles est lue : des comptes bien connectés sont déclarés absents",
+    "n": 1,
+    "propositions": [
+      "SOURCE_PARTIELLE"
+    ],
+    "cas": [
+      "brvndlab-dfe8f1e6"
+    ]
+  },
+  {
+    "nom": "FILTRE_TEXTE_INEXACT",
+    "definition": "un nettoyage de texte est trop large ou trop étroit : il laisse passer des bribes inventées, ou mange du contenu réel",
+    "n": 1,
+    "propositions": [
+      "FILTRE_TEXTE_INEXACT"
+    ],
+    "cas": [
+      "brvndlab-6a6e3787"
+    ]
+  },
+  {
+    "nom": "ETAT_PREEXISTANT_IGNORE",
+    "definition": "le code refait ce qui est déjà fait : la session est déjà ouverte, il tente d’en créer une et affiche une erreur",
+    "n": 2,
+    "propositions": [
+      "AIGUILLAGE_ERRONE",
+      "ETAT_PREEXISTANT_IGNORE"
+    ],
+    "cas": [
+      "brvndlab-1a4606e6",
+      "brvndlab-1c5a5876"
+    ]
+  },
+  {
+    "nom": "LIEN_EXTERNE_PERISSABLE",
+    "definition": "on stocke un lien signé du fournisseur au lieu de copier le média : l’écran se vide avec le temps",
+    "n": 1,
+    "propositions": [
+      "LIEN_EXTERNE_PERISSABLE"
+    ],
+    "cas": [
+      "brvndlab-d629176f"
+    ]
+  },
+  {
+    "nom": "GARDE_EXCESSIVE",
+    "definition": "la garde refuse à qui a le droit : le verrou est posé plus large que le périmètre qu’il devait protéger",
+    "n": 2,
+    "propositions": [
+      "GARDE_EXCESSIVE",
+      "GARDE_TROP_LARGE"
+    ],
+    "cas": [
+      "brvndlab-37f83a1c",
+      "brvndlab-80ae1f5d"
+    ]
+  },
+  {
+    "nom": "GESTE_INERTE",
+    "definition": "le geste est écouté d’une manière qui interdit d’y répondre (écouteur passif, ressource non libérée) : le bouton ou le tirer-pour-rafraîchir semble mort",
+    "n": 2,
+    "propositions": [
+      "GESTE_INERTE",
+      "RESSOURCE_NON_LIBEREE"
+    ],
+    "cas": [
+      "brvndlab-6df62e7a",
+      "brvndlab-f1fdae7b"
+    ]
+  },
+  {
+    "nom": "ETAT_TRANSITOIRE_TROMPEUR",
+    "definition": "pendant le chargement, l’écran montre une valeur périmée, un substitut ou une valeur tirée au hasard, puis bascule visiblement sur la vraie",
+    "n": 7,
+    "propositions": [
+      "ETAT_TRANSITOIRE_TROMPEUR",
+      "RENDU_NON_DETERMINISTE"
+    ],
+    "cas": [
+      "brvndlab-b1c6cc5d",
+      "brvndlab-3ec340b0",
+      "brvndlab-40641345",
+      "brvndlab-5361acf2",
+      "brvndlab-ec81600f",
+      "brvndlab-8e4d2d90",
+      "brvndlab-28b0a125"
+    ]
+  }
+]

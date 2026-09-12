@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-7aaeb419",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "095caf5b51b53eac75ebe3ce1d0cce70cba0c467",
+  "commit_repare": "7aaeb4192d94379b691f0c7a5bbb265fc598e54a",
+  "date": "2026-07-10",
+  "message_humain": "fix(angles): la bibliotheque de brainstorms est gardee par le module content, pas par une cle 'angles' inexistante",
+  "famille": "VOCABULAIRE",
+  "famille_proposee": "VOCABULAIRE",
+  "familles_secondaires": [
+    "CIBLE_INEXISTANTE"
+  ],
+  "famille_connue": true,
+  "symptome": "La bibliothèque de brainstorms renvoyait « module non autorisé » pour tout compte à accès restreint : la garde interrogeait une clé de module qui n'existe pas.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/angles.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/angles.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/angles.ts": [
+      20
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/angles.ts": [
+      "list",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 4,
+    "supprimees": 1,
+    "total": 5
+  },
+  "preuve": {
+    "avant": "await assertModuleAllowed(ctx, \"angles\");",
+    "apres": "await assertModuleAllowed(ctx, \"content\");"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 095caf5b51b53eac75ebe3ce1d0cce70cba0c467"
+}

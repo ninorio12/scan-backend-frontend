@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-7509b559",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6c2bc59e0afe6a106176e5977dde74b225145df5",
+  "commit_repare": "7509b5596d69588615c4dfd7f304c904efeb42e2",
+  "date": "2026-07-08",
+  "message_humain": "fix(social): syncConnections garde la connexion Nango la PLUS RÉCENTE par provider",
+  "famille": "ORDRE_IMPLICITE",
+  "famille_proposee": "ORDRE_IMPLICITE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Après reconnexion avec le bon compte Google, l'application repointait sur le tout premier compte connecté (sans chaîne, refus d'accès aux statistiques) : la liste était parcourue sans tri et la plus ancienne connexion écrasait la plus récente.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      106,
+      111,
+      115
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "syncConnections",
+      "action",
+      "connected"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 13,
+    "supprimees": 3,
+    "total": 16
+  },
+  "preuve": {
+    "avant": "nangoConnectionId: String(connectionId),",
+    "apres": "if (!prev || created > prev.created) newestByProvider.set(provider, { connectionId: String(connectionId), created });"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6c2bc59e0afe6a106176e5977dde74b225145df5"
+}

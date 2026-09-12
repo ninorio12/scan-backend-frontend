@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-7f6d7b10",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "edd7448030e965800fab072c0b269cecc31334b7",
+  "commit_repare": "7f6d7b1094f60e34111a95a08c41f4e2fbad204b",
+  "date": "2026-07-04",
+  "message_humain": "fix(brainstorm-explore): conclusion de CLIENT fiabilisée (mécanique uniquement)",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [
+    "CONTRAT"
+  ],
+  "famille_connue": true,
+  "symptome": "A la conclusion d'un brainstorm, la reponse tronquee rendait le bloc structure illisible et tous les champs remontes a l'ecran etaient silencieusement perdus.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brainstorm-explore/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      11,
+      131,
+      176,
+      218
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      "runtime",
+      "nodejs",
+      "Quand",
+      "conclus",
+      "AJOUTE",
+      "JSON",
+      "final",
+      "plus"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 21,
+    "supprimees": 7,
+    "total": 28
+  },
+  "preuve": {
+    "avant": "const MAX_OUTPUT_TOKENS = 1200;",
+    "apres": "const MAX_OUTPUT_TOKENS = 2000;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> edd7448030e965800fab072c0b269cecc31334b7"
+}

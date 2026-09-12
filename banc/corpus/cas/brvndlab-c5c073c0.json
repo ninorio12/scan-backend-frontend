@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-c5c073c0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "aae2ed4881a4eb0dbaa28ac74932fe5e07350a05",
+  "commit_repare": "c5c073c07e6d46f5b8126c41c562c472457f6cef",
+  "date": "2026-07-16",
+  "message_humain": "fix(brand-os): brandOsOnly base sur les modules effectifs (=[brand-os]) -> mini-nav correct meme avec allowedModules=[brand-os]",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un compte Brand OS défini par une liste de modules et non par le préréglage n'obtenait pas la navigation réduite prévue pour lui.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/collaborators.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      304,
+      307
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "getActiveContext",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 2,
+    "total": 10
+  },
+  "preuve": {
+    "avant": "? access.accessType === \"brand_os_only\" &&",
+    "apres": "? Array.isArray(allowedModules) &&"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> aae2ed4881a4eb0dbaa28ac74932fe5e07350a05"
+}

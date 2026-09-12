@@ -1,0 +1,89 @@
+{
+  "id": "brvndlab-9fcec5ae",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "a3e3b88c24de2d769013e2a84c32cf534690f3b7",
+  "commit_repare": "9fcec5aea991f26f564f93708057a3eda87c2c40",
+  "date": "2026-07-06",
+  "message_humain": "fix(#4 securite/audit): role-gate sur la deconnexion des reseaux - requireWriteAccess sur disconnect IG/TikTok/YouTube + _requireWriteAccessCurrent pour l'action social.disconnect -> un collaborateur viewer ne peut plus deconnecter les reseaux de l'owner",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [
+    "PORTE_PARALLELE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un collaborateur en lecture seule pouvait deconnecter les reseaux sociaux du compte : la deconnexion ne verifiait que l'appartenance au compte, jamais le droit d'ecriture.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts",
+    "brvndlab-app/convex/instagramTokens.ts",
+    "brvndlab-app/convex/social.ts",
+    "brvndlab-app/convex/tiktokTokens.ts",
+    "brvndlab-app/convex/youtubeChannels.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/instagramTokens.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      627
+    ],
+    "brvndlab-app/convex/instagramTokens.ts": [
+      3,
+      58
+    ],
+    "brvndlab-app/convex/social.ts": [
+      153
+    ],
+    "brvndlab-app/convex/tiktokTokens.ts": [
+      3,
+      63
+    ],
+    "brvndlab-app/convex/youtubeChannels.ts": [
+      2,
+      111
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "_ownerOfCurrent",
+      "internalQuery"
+    ],
+    "brvndlab-app/convex/instagramTokens.ts": [
+      "convex",
+      "values",
+      "disconnect",
+      "mutation",
+      "owner"
+    ],
+    "brvndlab-app/convex/social.ts": [
+      "disconnect",
+      "action",
+      "owner"
+    ],
+    "brvndlab-app/convex/tiktokTokens.ts": [
+      "convex",
+      "values",
+      "disconnect",
+      "mutation",
+      "owner"
+    ],
+    "brvndlab-app/convex/youtubeChannels.ts": [
+      "mutation",
+      "query",
+      "internalMutation",
+      "internalQuery",
+      "_generated",
+      "disconnect",
+      "owner"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 22,
+    "supprimees": 10,
+    "total": 32
+  },
+  "preuve": {
+    "avant": "const owner = await resolveOwnerClerkUserId(ctx);",
+    "apres": "const owner = await requireWriteAccess(ctx);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> a3e3b88c24de2d769013e2a84c32cf534690f3b7"
+}

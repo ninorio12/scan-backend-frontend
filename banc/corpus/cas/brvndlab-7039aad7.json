@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-7039aad7",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "d5e48b1c0fc0741ab307955a9fd445ce3f18065d",
+  "commit_repare": "7039aad780b3c3a0fd625e7cadb067befe64700e",
+  "date": "2026-07-08",
+  "message_humain": "fix(youtube): meilleures vidéos + Vues/vidéo réparés (audit prod)",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La chaîne YouTube était bien connectée mais le bloc « Tes meilleures vidéos » restait vide avec le message « Connecte ta chaîne » : l'appel était rejeté par l'API et l'erreur ressortait en état non connecté.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1826,
+      1828,
+      1924
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "getMyYouTubeStats",
+      "action",
+      "getMyTopVideos",
+      "key",
+      "dUrl"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 6,
+    "supprimees": 3,
+    "total": 9
+  },
+  "preuve": {
+    "avant": "const dUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${ids}&key=${key}`;",
+    "apres": "const dUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${ids}`;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> d5e48b1c0fc0741ab307955a9fd445ce3f18065d"
+}

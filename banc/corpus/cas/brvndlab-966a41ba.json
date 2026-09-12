@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-966a41ba",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "589698c75fe2ce48812fb15adbbe9c84d8ebce27",
+  "commit_repare": "966a41bab7c5ebafd1e84042d0c83e293783930c",
+  "date": "2026-07-29",
+  "message_humain": "fix(scripts): upgrade auto des scripts a 3 titres vers 5",
+  "famille": "RATTRAPAGE_INERTE",
+  "famille_proposee": "NOUVELLE:RATTRAPAGE_INERTE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "L'écran promet 5 propositions de titre mais un script déjà généré en garde 3 pour toujours, et la régénération écrasait les variantes déjà validées au lieu de les compléter.",
+  "confiance_classement": "basse",
+  "fichiers": [
+    "brvndlab-app/src/app/api/generate-titles/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/generate-titles/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/generate-titles/route.ts": [
+      38,
+      46,
+      68,
+      80
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/generate-titles/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "titleVariants"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 2,
+    "total": 14
+  },
+  "preuve": {
+    "avant": "const titleVariants = Array.from(new Set([mainTitle, ...cleaned])).slice(0, 5);",
+    "apres": "const titleVariants = Array.from(new Set([mainTitle, ...existing, ...cleaned])).slice(0, 5);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 589698c75fe2ce48812fb15adbbe9c84d8ebce27"
+}

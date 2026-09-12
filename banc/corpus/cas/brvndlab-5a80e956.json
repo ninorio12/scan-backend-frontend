@@ -1,0 +1,55 @@
+{
+  "id": "brvndlab-5a80e956",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "98db9505a94d82171b58714b7f5769a6efffe934",
+  "commit_repare": "5a80e9561e0792c617fed1690746a60e37dc341c",
+  "date": "2026-07-08",
+  "message_humain": "fix(youtube): top vidéos = publiques uniquement avec vraies vues totales + états vides honnêtes",
+  "famille": "PERIODE_DIVERGENTE",
+  "famille_proposee": "PERIODE_DIVERGENTE",
+  "familles_secondaires": [
+    "UNITE_DIVERGENTE"
+  ],
+  "famille_connue": true,
+  "symptome": "« Tes meilleures vidéos » affichait les vues d'une fenêtre de 90 jours comme si c'était le total (28 vues pour une vidéo qui en a 288) et mélangeait des vidéos privées ou non répertoriées.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1896,
+      1901,
+      1911,
+      1928,
+      1931,
+      1932,
+      1951,
+      1960
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "getMySearchTerms",
+      "action",
+      "getMyTopVideos",
+      "days",
+      "end",
+      "start",
+      "aUrl",
+      "aRes"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 34,
+    "supprimees": 19,
+    "total": 53
+  },
+  "preuve": {
+    "avant": "const viewsById = new Map(rows.map((r) => [r[0], r[1]]));",
+    "apres": "const viewsById = new Map(publics.map((it) => [it.id, Number(it.statistics?.viewCount ?? 0)]));"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 98db9505a94d82171b58714b7f5769a6efffe934"
+}

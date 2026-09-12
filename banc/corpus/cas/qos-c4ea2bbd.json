@@ -1,0 +1,44 @@
+{
+  "id": "qos-c4ea2bbd",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "d21abcaa05ccd58023ec1666106c9039de2a78e8",
+  "commit_repare": "c4ea2bbd26e0a819f8ab87784a573665c22589f0",
+  "date": "2026-08-01",
+  "message_humain": "fix(prospection): un rendez-vous decroche par un humain ne declenche plus d'appel de clarte — glisser la carte en « RDV booke » et prendre le creneau dans iClosed vaut contact deja etabli ; seul un rendez-vous pris spontanement par le prospect entre dans la file de clarte",
+  "famille": "ETAT_ECRASE",
+  "famille_proposee": "ETAT_ECRASE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un rendez-vous décroché au téléphone par un humain voyait sa carte renvoyée en colonne « leads internes » avec un appel de clarté à faire, alors que le prospect venait d'être contacté et son créneau déjà pris.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/closing.ts"
+  ],
+  "fichier_fautif": "convex/closing.ts",
+  "lignes_avant": {
+    "convex/closing.ts": [
+      216,
+      223
+    ]
+  },
+  "symboles": {
+    "convex/closing.ts": [
+      "advanceForCall",
+      "any",
+      "contactId",
+      "string",
+      "undefined"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 6,
+    "supprimees": 2,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "    if (rec) {",
+    "apres": "const decrocheParUnHumain = rec?.status === \"handoff\" || rec?.boardColumn === \"rdv_booke\""
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> d21abcaa05ccd58023ec1666106c9039de2a78e8"
+}

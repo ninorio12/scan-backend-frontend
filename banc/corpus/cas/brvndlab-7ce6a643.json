@@ -1,0 +1,53 @@
+{
+  "id": "brvndlab-7ce6a643",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c5f5d80c123258a2d68145c80e2dc9bdbc4e6658",
+  "commit_repare": "7ce6a643beaaea989eb3b240edc93eac410acbc1",
+  "date": "2026-07-10",
+  "message_humain": "fix(objectifs): les objectifs de l'accueil appartiennent au COMPTE",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "LOCATAIRE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Les objectifs de l'accueil étaient rangés par personne : un membre d'équipe entrant dans l'espace d'un client voyait ses objectifs à lui, pas ceux du compte.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/homeObjectives.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/homeObjectives.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/homeObjectives.ts": [
+      2,
+      4,
+      9,
+      13,
+      17,
+      23,
+      27,
+      33,
+      39
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/homeObjectives.ts": [
+      "convex",
+      "values",
+      "getMine",
+      "query",
+      "saveMine",
+      "mutation",
+      "identity"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 14,
+    "supprimees": 12,
+    "total": 26
+  },
+  "preuve": {
+    "avant": ".withIndex(\"by_user\", (q) => q.eq(\"clerkUserId\", identity.subject))",
+    "apres": ".withIndex(\"by_user\", (q) => q.eq(\"clerkUserId\", ownerId))"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c5f5d80c123258a2d68145c80e2dc9bdbc4e6658"
+}

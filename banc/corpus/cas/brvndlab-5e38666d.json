@@ -1,0 +1,61 @@
+{
+  "id": "brvndlab-5e38666d",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "9f632e31eb1a09ea3b8ea4b47752f89bd29c1c2c",
+  "commit_repare": "5e38666dfdf187f07630b79c9f3e4daf50d52076",
+  "date": "2026-06-22",
+  "message_humain": "fix(moteur): getState DORMANT (gate sur journeyMode) + mutation d-activation",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le parcours guidé s'affichait chez tous les comptes propriétaires, y compris ceux pour lesquels un administrateur ne l'avait jamais activé.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts",
+    "brvndlab-app/convex/journey.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/journey.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      31
+    ],
+    "brvndlab-app/convex/journey.ts": [
+      1,
+      183,
+      335
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "isFounderEmail",
+      "email",
+      "string",
+      "undefined",
+      "null",
+      "boolean",
+      "getClientAccessByEmail"
+    ],
+    "brvndlab-app/convex/journey.ts": [
+      "mutation",
+      "query",
+      "QueryCtx",
+      "MutationCtx",
+      "_generated",
+      "server",
+      "getState",
+      "markUnlockSeen"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 54,
+    "supprimees": 3,
+    "total": 57
+  },
+  "preuve": {
+    "avant": "if (!context || context.role !== \"owner\") return null;",
+    "apres": "if (access?.journeyMode !== \"guided\") return null;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 9f632e31eb1a09ea3b8ea4b47752f89bd29c1c2c"
+}

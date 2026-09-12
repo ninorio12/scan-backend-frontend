@@ -10,7 +10,7 @@ comme un 0.
 
 | Script | Ce qu'il fait | Il écrit |
 |---|---|---|
-| `couverture.mjs <repo> [--url …]` | LA commande : enchaîne tout ce qui suit, un travailleur par écran, code 2 tant qu'un raccourci a été pris | `couverture.json` |
+| `couverture.mjs <repo> [--url …] [--export …] [--sans-base] [--paralleles <n>] [--json <f>]` | LA commande : enchaîne tout ce qui suit, un travailleur par écran, code 2 tant qu'un raccourci a été pris. `--paralleles` vaut 3 par défaut, la même borne que les agents. `--sans-base` assume de ne pas regarder la base, et ça se lit dans le bilan. `--rapide` existe et **la loi l'interdit** : il tombe à 40 boutons par écran au lieu de 400 | `couverture.json` |
 | `reconnaitre.mjs <repo> [--url …]` | comprend le projet : stack, pages, modules, schéma, dev/prod, et si l'application qui répond est bien CE projet (ou un écran de connexion, ou autre chose) | `reconnaissance.json` |
 | `scan.mjs <repo> [--full]` | le code : le scanner désigne, l'apparieur juge sur sept attributs, le rapport classe | `dialogue.json` |
 | `lexical.mjs <repo>` | un concept métier, une source, un propriétaire ; lit `.backend/lexique.json` | `lexical.json` |
@@ -21,6 +21,21 @@ comme un 0.
 | `apparence.mjs <url>` | invariants de mise en page en 1440 et 390 px, sans image de référence | `apparence_<page>.json` |
 | `decisions.mjs <repo> [--verifier]` | prépare les questions de source de vérité pour l'humain ; `--verifier` contrôle le code contre les réponses | `questions.json`, `decisions.json` |
 | `bilan.mjs <repo>` | le verdict, sur l'échelle unique : trompe / cassé / dette / non regardé | `BILAN.md` |
+
+### Les trois cas où `reconnaitre` arrête le côté écran
+
+Il les nomme lui-même. Aucun ne se contourne en cliquant quand même : le côté écran
+deviendrait faux, et le rapport dirait « rien à signaler ».
+
+| Ce qu'il dit | La parade |
+|---|---|
+| l'application ne répond pas | la lancer avec la commande de dev du projet, sur un port libre, puis `--url` |
+| une application répond mais rien ne prouve que c'est ce projet | **ne jamais cliquer dedans** : lancer le bon projet, puis `--url` sur son port |
+| écran de connexion ou redirection d'authentification | renseigner les clés dans `.env.local`, ou enregistrer une session Playwright et la passer aux scripts d'écran |
+
+Une application n'est confirmée que si ce qu'elle sert porte la marque du projet (titre,
+chaîne déclarée dans le dépôt). Et si le déploiement est de production, on ne clique rien
+et on le dit : l'incident qui a produit cette règle est dans `histoire-des-mesures.md`.
 
 ### Le format de `--export`, pour une base qui n'est pas Convex
 

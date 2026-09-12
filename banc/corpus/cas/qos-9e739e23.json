@@ -1,0 +1,44 @@
+{
+  "id": "qos-9e739e23",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "c5aeb9c34ab8722727fd63738712da2b59ecf50c",
+  "commit_repare": "9e739e23aae21ad855b22c766388e5d2e5c05c9e",
+  "date": "2026-04-15",
+  "message_humain": "fix: contact GHL dupliqué → réutilise l'ID existant depuis meta.contactId",
+  "famille": "IDEMPOTENCE",
+  "famille_proposee": "IDEMPOTENCE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "Quand le contact existait déjà dans le CRM, la capture du lead partait en erreur au lieu de réutiliser l'identifiant renvoyé : le formulaire échouait pour tout contact connu.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/lib/ghl.ts"
+  ],
+  "fichier_fautif": "src/lib/ghl.ts",
+  "lignes_avant": {
+    "src/lib/ghl.ts": [
+      352
+    ]
+  },
+  "symboles": {
+    "src/lib/ghl.ts": [
+      "createGHLContact",
+      "data",
+      "res",
+      "id"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 38,
+    "supprimees": 10,
+    "total": 48
+  },
+  "preuve": {
+    "avant": "const id = res.contact?.id",
+    "apres": "if (!res.ok && json.meta?.contactId) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> c5aeb9c34ab8722727fd63738712da2b59ecf50c"
+}

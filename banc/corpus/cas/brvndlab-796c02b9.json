@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-796c02b9",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "76eb583c4646c2659bac08b96640973ca36f4de3",
+  "commit_repare": "796c02b9ce1798886a27f0a49a055f8dfd442a1a",
+  "date": "2026-07-08",
+  "message_humain": "fix(liens): audit tribunal, corrige liens internes imprécis et redirections mortes",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La notification d'invitation d'un client renvoyait vers une page qui n'existe plus : le clic tombait sur une redirection morte.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/coach.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/coach.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/coach.ts": [
+      219
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/coach.ts": [
+      "inviteClient",
+      "mutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "link: \"/dashboard\",",
+    "apres": "link: \"/home\","
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 76eb583c4646c2659bac08b96640973ca36f4de3"
+}

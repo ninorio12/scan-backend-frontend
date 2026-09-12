@@ -1,0 +1,48 @@
+{
+  "id": "qos-df11749b",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "907ea34592f8812491d08f907dcb96053d403380",
+  "commit_repare": "df11749bbca318688953b9b3a37cc84a5deb2e0d",
+  "date": "2026-06-02",
+  "message_humain": "Fix leads not showing: use query (not mutation) for pipelines in page",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [
+    "CODE_MORT"
+  ],
+  "famille_connue": true,
+  "symptome": "Une URL de débogage ouverte sans aucune authentification renvoyait la liste des leads et leurs pipelines à qui la connaissait.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "src/app/api/debug-pipeline/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/debug-pipeline/route.ts",
+  "lignes_avant": {
+    "src/app/api/debug-pipeline/route.ts": [
+      1
+    ]
+  },
+  "symboles": {
+    "src/app/api/debug-pipeline/route.ts": [
+      "NextResponse",
+      "next",
+      "server",
+      "dynamic",
+      "GET",
+      "url",
+      "c",
+      "pipelines"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 0,
+    "supprimees": 20,
+    "total": 20
+  },
+  "preuve": {
+    "avant": "const leads = await c.query(api.crm_leads.list)",
+    "apres": "(fichier supprimé, aucune ligne ajoutée)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 907ea34592f8812491d08f907dcb96053d403380"
+}

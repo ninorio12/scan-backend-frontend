@@ -1,0 +1,45 @@
+{
+  "id": "qos-ed27e4f7",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "f0daa03fe84d81e54c8cb35f5bd2c55b3ca907ec",
+  "commit_repare": "ed27e4f76b6461a4b4e147762b2c8098e8327053",
+  "date": "2026-04-27",
+  "message_humain": "fix: correct HERMES_SHARED_SECRET fallback for Vercel",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [
+    "SECRET_EXPOSE"
+  ],
+  "famille_connue": true,
+  "symptome": "Quand la variable de secret manquait au déploiement, la porte d'envoi des devis retombait sur un mot de passe écrit en clair dans le dépôt : les envois légitimes étaient refusés et la porte était devinable.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "src/app/api/devis/[id]/send/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/devis/[id]/send/route.ts",
+  "lignes_avant": {
+    "src/app/api/devis/[id]/send/route.ts": [
+      9
+    ]
+  },
+  "symboles": {
+    "src/app/api/devis/[id]/send/route.ts": [
+      "CompanyForTemplate",
+      "components",
+      "devis",
+      "DevisTemplateStatic",
+      "AGENT_SECRET"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "const AGENT_SECRET = process.env.HERMES_SHARED_SECRET ?? 'hermes-qos-2026'",
+    "apres": "const AGENT_SECRET = process.env.HERMES_SHARED_SECRET ?? 'hermes-qos-ec4888da90d34e9b'"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> f0daa03fe84d81e54c8cb35f5bd2c55b3ca907ec"
+}

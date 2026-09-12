@@ -1,0 +1,40 @@
+{
+  "id": "qos-900181f1",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "2f8ab14ff003b41550246f250432924108995980",
+  "commit_repare": "900181f120b9dc0d3b18efd712e9d491a9eb5462",
+  "date": "2026-06-11",
+  "message_humain": "fix(cascade): supprimer un contact nettoie aussi prospection_records + events",
+  "famille": "CASCADE_MANQUANTE",
+  "famille_proposee": "CASCADE_MANQUANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Supprimer un contact laissait derrière lui ses enregistrements de prospection et leurs événements, orphelins et toujours comptés dans le board.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/crm_contacts.ts"
+  ],
+  "fichier_fautif": "convex/crm_contacts.ts",
+  "lignes_avant": {
+    "convex/crm_contacts.ts": [
+      124
+    ]
+  },
+  "symboles": {
+    "convex/crm_contacts.ts": [
+      "remove",
+      "mutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 0,
+    "total": 7
+  },
+  "preuve": {
+    "avant": "    await ctx.db.delete(args.id)",
+    "apres": "      for (const e of evs) await ctx.db.delete(e._id)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 2f8ab14ff003b41550246f250432924108995980"
+}

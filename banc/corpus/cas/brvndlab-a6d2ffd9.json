@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-a6d2ffd9",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c0a4a4ccbf18d85b2e8689922961c0ff1ac55daa",
+  "commit_repare": "a6d2ffd96807b6bd1c68e89ce580259f195877a9",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): zero presuppose dans les questions - l'IA ne prete a la personne que ce qu'elle a dit (pas de 'ta marque', 'ton equipe', 'ton audience' non donnes) ; formulations neutres",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "L'entretien posait des questions qui prêtaient au client une marque, une équipe ou des clients dont il n'avait jamais parlé.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      298
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "GLES",
+      "CONVERSATION"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 2,
+    "supprimees": 0,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "3. Rebondis sur ce qu'il vient de dire. Ne pose jamais une question déconnectée de sa réponse.",
+    "apres": "3bis. ZÉRO PRÉSUPPOSÉ. Tu ne prêtes à la personne QUE ce qu'elle t'a dit"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c0a4a4ccbf18d85b2e8689922961c0ff1ac55daa"
+}

@@ -1,0 +1,106 @@
+{
+  "id": "brvndlab-ee5630c8",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "90f9e34c7484c28dd91c751b88e9d1bd6000d152",
+  "commit_repare": "ee5630c8d61ff0197596b054b149e6dfe461df99",
+  "date": "2026-07-26",
+  "message_humain": "fix(memory): couvre tous les chemins d'écriture + durcissements (tribunal)",
+  "famille": "RECHERCHE_MUETTE",
+  "famille_proposee": "RECHERCHE_MUETTE",
+  "familles_secondaires": [
+    "PORTE_PARALLELE",
+    "AGREGAT_PARTIEL"
+  ],
+  "famille_connue": true,
+  "symptome": "La recherche dans la mémoire des contenus ne retrouvait jamais les scripts générés, les vidéos publiées ni les posts importés : cinq chemins d'écriture créaient ces contenus sans alimenter le texte de recherche.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brainstormRadar.ts",
+    "brvndlab-app/convex/contentItems.ts",
+    "brvndlab-app/convex/radarPicks.ts",
+    "brvndlab-app/convex/social.ts",
+    "brvndlab-app/convex/youtubeChannels.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentItems.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brainstormRadar.ts": [
+      4,
+      299
+    ],
+    "brvndlab-app/convex/contentItems.ts": [
+      19,
+      26,
+      28,
+      31,
+      478,
+      479,
+      487,
+      495
+    ],
+    "brvndlab-app/convex/radarPicks.ts": [
+      2,
+      388
+    ],
+    "brvndlab-app/convex/social.ts": [
+      6,
+      716,
+      1024
+    ],
+    "brvndlab-app/convex/youtubeChannels.ts": [
+      2,
+      292,
+      305
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brainstormRadar.ts": [
+      "resolveOwnerClerkUserId",
+      "requireWriteAccess",
+      "collaborators",
+      "signBriefAndCreateScript",
+      "mutation"
+    ],
+    "brvndlab-app/convex/contentItems.ts": [
+      "statusType",
+      "union",
+      "buildSearchText",
+      "title",
+      "string",
+      "description",
+      "searchMemory",
+      "query"
+    ],
+    "brvndlab-app/convex/radarPicks.ts": [
+      "mutation",
+      "query",
+      "_generated",
+      "server",
+      "createDraftFromSubject"
+    ],
+    "brvndlab-app/convex/social.ts": [
+      "resolveOwnerClerkUserId",
+      "collaborators",
+      "_importShares",
+      "internalMutation",
+      "_registerNativePost"
+    ],
+    "brvndlab-app/convex/youtubeChannels.ts": [
+      "resolveOwnerClerkUserId",
+      "requireWriteAccess",
+      "collaborators",
+      "_upsertVideoAsContentItem",
+      "internalMutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 26,
+    "supprimees": 7,
+    "total": 33
+  },
+  "preuve": {
+    "avant": "function buildSearchText(title?: string, description?: string): string {",
+    "apres": "export function buildSearchText(title?: string, description?: string): string {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 90f9e34c7484c28dd91c751b88e9d1bd6000d152"
+}

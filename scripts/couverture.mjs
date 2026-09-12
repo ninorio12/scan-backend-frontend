@@ -66,11 +66,37 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
 import { dossierBackend, ecrireJson } from './dossier-backend.mjs';
+import { porteIdentite } from './identite.mjs';
 
 const ICI = path.dirname(new URL(import.meta.url).pathname);
-const RACINE = path.resolve(process.argv[2] || '.');
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : d; };
 const a = (n) => process.argv.includes(n);
+
+/* LE DÉPÔT SE NOMME. Sans argument, l'ancienne version prenait le dossier courant :
+   lancée depuis la racine du skill, elle s'auditait elle-même et y écrivait .backend/.
+   Un rapport sur le mauvais projet coûte plus cher qu'un refus. Et « --help » n'est
+   pas un chemin : il était résolu en dossier inexistant, avec un message obscur. */
+const MODE_AIDE = a('--help') || a('-h') || a('--aide');
+const PREMIER = process.argv[2];
+if (MODE_AIDE || !PREMIER || PREMIER.startsWith('-')) {
+  console.log(`
+  couverture.mjs : la chaîne complète, de la reconnaissance au bilan.
+
+      node scripts/couverture.mjs <chemin du dépôt> [options]
+
+  Options
+      --url <adresse>     l'application à cliquer, assumée par vous (sans elle, le côté
+                          écran ne se fait QUE si l'application est reconnue comme ce projet)
+      --paralleles <n>    travailleurs d'écran en parallèle (3 par défaut)
+      --sans-base         ne pas exporter ni inspecter la base
+      --export <zip|dir>  export de base déjà fait, à réutiliser
+      --json <fichier>    où écrire le rapport (défaut : <dépôt>/.backend/couverture.json)
+
+  Codes de sortie : 0 rien à signaler · 1 des défauts · 2 travail incomplet.
+`);
+  process.exit(MODE_AIDE ? 0 : 2);
+}
+const RACINE = path.resolve(PREMIER);
 const PARALLELES = Math.max(1, Number(arg('--paralleles', 3)) || 3);
 /* Le seul endroit où l'on écrit : <repo>/.backend/, via dossier-backend.mjs, qui y pose
    le .gitignore. Tout JSON passe par ecrireJson : jamais un writeFileSync direct. */
@@ -175,8 +201,19 @@ R.etapes.reconnaitre = etape(rr);
 if (!rr.ok) { console.log(`✗ non fait : ${rr.raison}`); nonFait.push(`la reconnaissance du projet n'a pas abouti : ${rr.raison}`); }
 else console.log(`✓ ${carte?.cadre || '?'} · ${carte?.pages?.length ?? '?'} pages · ${carte?.tables?.length ?? '?'} tables`);
 
-const BASE = (arg('--url', null) || `http://localhost:${carte?.port || 3000}`).replace(/\/$/, '');
-R.url = BASE;
+/* ── LA PORTE D'IDENTITÉ ───────────────────────────────────────────────────────
+   Le 12/09/2026, ce script a cliqué 15 éléments dans l'application d'un client qui
+   tournait sur :3000, alors que `reconnaitre.mjs` avait écrit noir sur blanc « non
+   confirmée ». Il ne lisait pas ce verdict : il fabriquait une URL par défaut et se
+   contentait de vérifier que quelque chose répondait. Une application VIVANTE MAIS
+   NON CONFIRMÉE passait la porte, ce que notre propre doctrine interdit.
+   Désormais : sans --url explicite, seule une application CONFIRMÉE ouvre le côté
+   écran. `reconnaitre.mjs` ne renseigne `urlVivante` que dans ce cas. Aucune URL
+   n'est plus inventée. --url reste la porte de l'humain qui assume. */
+const identite = porteIdentite(carte, arg('--url', null));
+const BASE = identite.url;
+R.url = BASE || null;
+R.identite = identite;
 
 /* ══ 2-5. CÔTÉ CODE ════════════════════════════════════════════════════════ */
 
@@ -216,7 +253,9 @@ if (a('--sans-base')) {
     if (!exp && /n'est pas Convex/i.test(rb.raison || '')) {
       console.log(`       Cette base n'est pas Convex : l'export se fabrique à la main, puis`);
       console.log(`       --export <dossier> : un fichier .jsonl par table, une ligne = un document.`);
-      console.log(`       SQLite   : sqlite3 base.db ".mode json" ".once t.jsonl" "SELECT * FROM t;"`);
+      /* `.mode json` de sqlite3 écrit UN TABLEAU JSON, pas un document par ligne :
+         sans le passage par jq, le fichier produit n'est pas lisible par le skill. */
+      console.log(`       SQLite   : sqlite3 base.db ".mode json" "SELECT * FROM t;" | jq -c '.[]' > t.jsonl`);
       console.log(`       Postgres : psql -c "COPY (SELECT row_to_json(t) FROM t) TO STDOUT" > t.jsonl`);
       console.log(`       La recette complète : references/parcours-reel.md`);
     }
@@ -233,20 +272,30 @@ console.log(`\n  CÔTÉ ÉCRAN : ${mods.length} pages trouvées, ${testables.len
 for (const f of fs.readdirSync(SORTIE)) if (/^(clics_|apparence_).*\.json$|^liens\.json$/.test(f)) fs.unlinkSync(F(f));
 fs.mkdirSync(F('ecrans'), { recursive: true });
 
-// L'application répond-elle ? Sans ça, tout le reste est un faux « tout va bien ».
+/* L'identité d'abord : cliquer dans l'application de quelqu'un d'autre est pire que
+   ne pas cliquer du tout. Puis seulement : est-ce que ça répond ? */
 let vivante = false;
-try {
-  const code = execFileSync('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', BASE], { encoding: 'utf8', timeout: 20000 }).trim();
-  vivante = code !== '000';
-} catch { /* non */ }
+if (identite.ok) {
+  try {
+    const code = execFileSync('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', BASE], { encoding: 'utf8', timeout: 20000 }).trim();
+    vivante = code !== '000';
+  } catch { /* non */ }
+}
 
-if (!vivante) {
-  console.log(`\n  ⛔ ${BASE} ne répond pas. Lance l'application, sinon la moitié du travail`);
-  console.log(`     est impossible et le rapport dirait « rien à signaler » à tort.`);
-  nonFait.push(`l'application ne répondait pas sur ${BASE} : AUCUN écran n'a été testé`);
-  R.etapes.liens = etape(null, `application éteinte sur ${BASE}`);
-  R.etapes.ecrans = etape(null, `application éteinte sur ${BASE}`);
-  for (const m of testables) R.ecrans.push({ route: m.route, statut: 'non fait : application éteinte', apparence_statut: 'non fait : application éteinte' });
+if (!identite.ok || !vivante) {
+  const raison = !identite.ok ? identite.raison : `${BASE} ne répond pas`;
+  if (!identite.ok) {
+    console.log(`\n  ⛔ Côté écran non fait : ${identite.raison}`);
+    console.log(`     Rien n'est cliqué tant que l'application n'est pas reconnue comme étant CE projet.`);
+    console.log(`     Lancer ce projet sur un port libre, puis relancer avec --url http://localhost:<port>.`);
+  } else {
+    console.log(`\n  ⛔ ${BASE} ne répond pas. Lance l'application, sinon la moitié du travail`);
+    console.log(`     est impossible et le rapport dirait « rien à signaler » à tort.`);
+  }
+  nonFait.push(`AUCUN écran n'a été testé : ${raison}`);
+  R.etapes.liens = etape(null, raison);
+  R.etapes.ecrans = etape(null, raison);
+  for (const m of testables) R.ecrans.push({ route: m.route, statut: `non fait : ${raison}`, apparence_statut: `non fait : ${raison}` });
 } else {
   const ligne = (m, texte) => console.log(`    ${m.route.padEnd(30)}${texte}`);
 

@@ -1,0 +1,62 @@
+{
+  "id": "brvndlab-1de85fb1",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "5d843dd53e0f8e68f2983a07b7e54e979afc3ae6",
+  "commit_repare": "1de85fb17cecaaff8ad96cdd4d75376ba6d7b10c",
+  "date": "2026-07-07",
+  "message_humain": "fix(brainstorming chat): le chat n'affiche PLUS jamais le JSON brut. Cause: sur script/story, maxTokens (4000/3000) trop bas pour un script long -> reponse tronquee -> JSON.parse echoue -> le catch renvoyait res.text (le JSON brut/tronque) dans le chat. Fix: maxTokens monte a 8000 (evite la troncature) + fallback robuste qui extrait au moins le champ 'message' d'un JSON coupe, sinon message d'erreur propre; jamais de JSON brut affiche",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Sur un script ou une story un peu longs, la reponse tronquee ne se parsait plus et le chat recrachait le JSON brut au lieu d'un message lisible.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/generate-script/route.ts",
+    "brvndlab-app/src/app/api/generate-story/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/generate-script/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      224,
+      229
+    ],
+    "brvndlab-app/src/app/api/generate-story/route.ts": [
+      137,
+      142
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      "Garde",
+      "les",
+      "mes",
+      "labels",
+      "ordre",
+      "sauf",
+      "demande",
+      "restructurer"
+    ],
+    "brvndlab-app/src/app/api/generate-story/route.ts": [
+      "Garde",
+      "nombre",
+      "ordre",
+      "slides",
+      "sauf",
+      "demande",
+      "restruct",
+      "res"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 19,
+    "supprimees": 5,
+    "total": 24
+  },
+  "preuve": {
+    "avant": "return NextResponse.json({ message: res.text.trim() || \"(pas de réponse)\", scriptData: null });",
+    "apres": "const m = /\"message\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"/.exec(res.text);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 5d843dd53e0f8e68f2983a07b7e54e979afc3ae6"
+}

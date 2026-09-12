@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-0e374041",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "575c830fb4b33c3423f1e250a89c922485127d64",
+  "commit_repare": "0e37404158708ae08cec42c23a9125a493437a2c",
+  "date": "2026-07-08",
+  "message_humain": "fix(messaging): fidelite pixel-perfect au mockup - tribunal 5 juges (avatars, responsive, couleurs)",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "CONTRAT"
+  ],
+  "famille_connue": true,
+  "symptome": "Dans la messagerie, la photo de profil affichée n'était pas celle chargée dans les réglages : cet écran prenait la photo du compte d'authentification, contrairement au reste de l'application.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/messageGroups.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/messageGroups.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/messageGroups.ts": [
+      119,
+      124,
+      197,
+      201
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/messageGroups.ts": [
+      "listMyGroups",
+      "query",
+      "getGroup"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 2,
+    "total": 12
+  },
+  "preuve": {
+    "avant": "imageUrl: u?.imageUrl ?? null,",
+    "apres": "let imageUrl = u?.profileImageId ? await ctx.storage.getUrl(u.profileImageId) : null;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 575c830fb4b33c3423f1e250a89c922485127d64"
+}

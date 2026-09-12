@@ -1,0 +1,48 @@
+{
+  "id": "qos-4dad019b",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "9e739e23aae21ad855b22c766388e5d2e5c05c9e",
+  "commit_repare": "4dad019bc80ad2791dfa5002190611589f94486c",
+  "date": "2026-04-15",
+  "message_humain": "fix: messages erreur friendly + upsert contact Supabase sur ghl_contact_id",
+  "famille": "IDEMPOTENCE",
+  "famille_proposee": "IDEMPOTENCE",
+  "familles_secondaires": [
+    "VOCABULAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "Chaque soumission du formulaire créait un contact en double, et le lead était enregistré avec la source « autre » au lieu de « formulaire » dans les statistiques d'acquisition.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/leads/capture/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/leads/capture/route.ts",
+  "lignes_avant": {
+    "src/app/api/leads/capture/route.ts": [
+      39,
+      42,
+      45,
+      49,
+      52,
+      59
+    ]
+  },
+  "symboles": {
+    "src/app/api/leads/capture/route.ts": [
+      "POST",
+      "req",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 18,
+    "supprimees": 5,
+    "total": 23
+  },
+  "preuve": {
+    "avant": ".insert({ user_id: userId, first_name: firstName, last_name: lastName, phone,",
+    "apres": "{ onConflict: 'ghl_contact_id', ignoreDuplicates: false }"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 9e739e23aae21ad855b22c766388e5d2e5c05c9e"
+}

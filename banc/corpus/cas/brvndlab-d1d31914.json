@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-d1d31914",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "73d813b62677bf8beaaada95307451bc4beb22c9",
+  "commit_repare": "d1d3191465c7e235b166339fa3878308f9bbe240",
+  "date": "2026-07-27",
+  "message_humain": "fix(brand-os): valeur ajoutée = minimum 3 bénéfices (plancher dur), cible 4-5",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le champ « valeur ajoutée » se validait avec un seul bénéfice alors que le seuil serveur en exigeait trois : l'assistant quittait le champ sans jamais relancer, et la fiche restait à moitié vide.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      927
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "FORME",
+      "EXACTE",
+      "CHAQUE",
+      "CHAMP",
+      "imite",
+      "STRUCTURE",
+      "LONGUEUR",
+      "des"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "- Valeur ajoutée (liste) : 4 à 7 puces, UNE LIGNE chacune (6 à 14 mots), NOM en tête",
+    "apres": "- Valeur ajoutée (liste) : AU MOINS 3 bénéfices (plancher dur, ne quitte pas le champ"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 73d813b62677bf8beaaada95307451bc4beb22c9"
+}

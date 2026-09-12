@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-3c33700a",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "819ccf473c424233262b6e17f0db8e3fb164704d",
+  "commit_repare": "3c33700adb578fd52dfc101bea3d5ef7990f0e21",
+  "date": "2026-07-26",
+  "message_humain": "fix(refonte): cohérence action/parole — CLIENT sait ce qu'elle vient de réécrire",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Après avoir réécrit un bloc, l'assistant proposait au tour suivant de le refaire (« on pourrait… ») alors que le changement était déjà appliqué à l'écran : rien ne lui disait ce qu'il venait de modifier.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/refonte-content/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/refonte-content/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/refonte-content/route.ts": [
+      154,
+      178,
+      181
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/refonte-content/route.ts": [
+      "POST",
+      "req",
+      "NextRequest",
+      "accompagnes",
+      "ateur",
+      "dans",
+      "une",
+      "REFONTE"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 18,
+    "supprimees": 1,
+    "total": 19
+  },
+  "preuve": {
+    "avant": "${brandBlock}${brainstormBlock}${referenceBlock}TA POSTURE :",
+    "apres": "${brandBlock}${brainstormBlock}${referenceBlock}${justRewroteBlock}TA POSTURE :"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 819ccf473c424233262b6e17f0db8e3fb164704d"
+}

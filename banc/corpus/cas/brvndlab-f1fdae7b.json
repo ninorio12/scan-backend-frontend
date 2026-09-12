@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-f1fdae7b",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c117c478df2f74c709d5eb0330e37f92e18b80f0",
+  "commit_repare": "f1fdae7b9b5543e027eff0a8918575c36f322666",
+  "date": "2026-06-30",
+  "message_humain": "fix(speech): startListening robuste (abort instance precedente + try/catch) -> micro qui semblait mort",
+  "famille": "GESTE_INERTE",
+  "famille_proposee": "NOUVELLE:RESSOURCE_NON_LIBEREE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": false,
+  "symptome": "Au deuxième appui sur le micro, la dictée ne repartait plus : le bouton semblait mort car l'instance de reconnaissance précédente était toujours active.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/hooks/useSpeechToText.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/hooks/useSpeechToText.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/hooks/useSpeechToText.ts": [
+      101,
+      103
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/hooks/useSpeechToText.ts": [
+      "useSpeechToText"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 2,
+    "total": 14
+  },
+  "preuve": {
+    "avant": "recognition.start();",
+    "apres": "try { recognitionRef.current.abort(); } catch { /* noop */ }"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c117c478df2f74c709d5eb0330e37f92e18b80f0"
+}

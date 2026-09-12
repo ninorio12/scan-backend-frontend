@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-1a4606e6",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "aa72c47d2d27f8096971abb1718a4e76a2e7ce99",
+  "commit_repare": "1a4606e62a5afb42f412e88b97dc6359dc41e3d5",
+  "date": "2026-07-14",
+  "message_humain": "fix(auth): une session ouverte ne renvoie plus sur la grille tarifaire",
+  "famille": "ETAT_PREEXISTANT_IGNORE",
+  "famille_proposee": "NOUVELLE:AIGUILLAGE_ERRONE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Un client déjà connecté était renvoyé sur la grille tarifaire et devait recliquer sur se connecter pour entrer dans son espace.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/useRedirectIfSignedIn.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts": [
+      9,
+      12
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/useRedirectIfSignedIn.ts": [
+      "getClerk",
+      "lib",
+      "clerkClient",
+      "useRedirectIfSignedIn"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 3,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "export function useRedirectIfSignedIn(to: string = \"/choix-du-pack\") {",
+    "apres": "export function useRedirectIfSignedIn(to: string = \"/post-auth\") {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> aa72c47d2d27f8096971abb1718a4e76a2e7ce99"
+}

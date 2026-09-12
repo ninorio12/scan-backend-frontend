@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-f86639c0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "9ca28c31fb1ea5ce3b709220ed3fd093caca769f",
+  "commit_repare": "f86639c0cc3cd917aa5c164a6d2927d6b4a7fc91",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): l'IA ecrit TOUS les elements servis d'un coup (puis retouche), au lieu d'en garder pour plus tard",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_NON_TENUE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Quand le client donnait plusieurs éléments d'un coup, une partie n'était jamais écrite en fiche : sa réponse se perdait.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      213
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "Chaque",
+      "fiche",
+      "titre",
+      "court",
+      "qui",
+      "distingue",
+      "des",
+      "autres"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 0,
+    "total": 1
+  },
+  "preuve": {
+    "avant": "(ajout pur : rien n'obligeait à écrire tous les éléments servis d'un coup)",
+    "apres": "tu écris dans le même patch TOUS ceux qui tiennent déjà debout (même sommairement)"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 9ca28c31fb1ea5ce3b709220ed3fd093caca769f"
+}

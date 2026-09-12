@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-80a2a1dd",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "3d9a732456825587da137083b0e671d3638edf3d",
+  "commit_repare": "80a2a1dda17d6d0dadf80376fc9d72633b1d87a8",
+  "date": "2026-07-29",
+  "message_humain": "fix(brainstorms): badge = nombre de lignes de 'Contenus crees' = TOUS les contenus lies, quel que soit le statut (brouillon inclus), sans exclusion ni dedup",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le badge d'un angle n'affiche pas le même nombre que la liste « Contenus créés » juste en dessous : le compteur écarte les brouillons que la liste, elle, affiche.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/contentItems.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentItems.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentItems.ts": [
+      172,
+      179
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentItems.ts": [
+      "countsByAngle",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 4,
+    "supprimees": 6,
+    "total": 10
+  },
+  "preuve": {
+    "avant": "if (it.status === \"brouillon\") continue;",
+    "apres": "// Règle (CLIENT) : le badge = le NOMBRE DE LIGNES de « Contenus créés avec cet"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 3d9a732456825587da137083b0e671d3638edf3d"
+}

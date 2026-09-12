@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-68ee909f",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6cb929871dd98f04413eb3bf37ac16092517d4d6",
+  "commit_repare": "68ee909f051657654d175a31db8b285b23054434",
+  "date": "2026-08-02",
+  "message_humain": "fix(pipeline): les scripts Short n'affichent plus le logo LinkedIn",
+  "famille": "VOCABULAIRE",
+  "famille_proposee": "VOCABULAIRE",
+  "familles_secondaires": [
+    "CONTRAT"
+  ],
+  "famille_connue": true,
+  "symptome": "Un script de vidéo courte remontait dans le pipeline avec le badge POST et le logo LinkedIn : le champ de format exigé n'est jamais écrit par le générateur, et le repli ignorait le vocabulaire des formats courts.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/lib/contentType.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/contentType.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/contentType.ts": [
+      13,
+      31
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/contentType.ts": [
+      "fallbackTag",
+      "platform",
+      "string",
+      "ContentTypeTag",
+      "getContentTypeTag",
+      "description",
+      "Cont"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 2,
+    "total": 9
+  },
+  "preuve": {
+    "avant": "if (p.sections && Array.isArray(p.sections) && p.format) {",
+    "apres": "if (p.sections && Array.isArray(p.sections)) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6cb929871dd98f04413eb3bf37ac16092517d4d6"
+}

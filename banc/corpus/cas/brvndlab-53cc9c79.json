@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-53cc9c79",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "1c6b228c04bb778c0242790cb25b455ae8eda0c0",
+  "commit_repare": "53cc9c79cb87ef4ee77030f86bd443d7157502b1",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): seconde ligne audience — sous-titre retiré, optionnel propre",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un module d'audience s'affichait terminé alors qu'une réponse obligatoire manquait : un champ facultatif rempli comptait dans la progression et masquait le trou.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      560,
+      563,
+      645,
+      649
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "getCompletionScore",
+      "query",
+      "MODULE_QUESTION_COUNTS",
+      "Record",
+      "string",
+      "number",
+      "countBrandOsDone"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 14,
+    "supprimees": 4,
+    "total": 18
+  },
+  "preuve": {
+    "avant": "!r.questionId.startsWith(\"generated-\") && isAnswered(r.answer),",
+    "apres": "!OPTIONAL_QUESTIONS.has(r.questionId) &&"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 1c6b228c04bb778c0242790cb25b455ae8eda0c0"
+}

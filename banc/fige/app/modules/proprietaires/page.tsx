@@ -130,7 +130,7 @@ export default function CarnetProprietaires() {
             <span className="font-medium text-slate-600">Téléphone</span>
             <input
               name="telephone"
-              defaultValue="+41 22 501 40 12"
+              defaultValue="+41 22 000 00 00"
               className="rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-slate-400"
             />
           </label>

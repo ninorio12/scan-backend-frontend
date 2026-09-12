@@ -1,0 +1,55 @@
+{
+  "id": "brvndlab-d43ad428",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "53cc9c79cb87ef4ee77030f86bd443d7157502b1",
+  "commit_repare": "d43ad428a02e2289b1dd87e0613ec05a73aee59f",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): audit tribunal — 4 correctifs seconde ligne audience",
+  "famille": "TYPE_DIVERGENT",
+  "famille_proposee": "NOUVELLE:TYPE_DIVERGENT",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Les segments d'audience déjà captés étaient vus comme « champ vide » par l'assistant, qui reposait la question : le code ne lisait la valeur que si elle était une chaîne, or elle arrivait en liste.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandDna.ts",
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandDna.ts": [
+      199,
+      201
+    ],
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      635
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandDna.ts": [
+      "getBrandDna",
+      "query"
+    ],
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "REPRISE",
+      "apr",
+      "refresh",
+      "une",
+      "pause",
+      "dit",
+      "continue",
+      "fait"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 2,
+    "total": 12
+  },
+  "preuve": {
+    "avant": "const txt = typeof v === \"string\" ? v.trim() : \"\";",
+    "apres": "? (v as unknown[]).filter((x) => typeof x === \"string\").join(\", \").trim()"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 53cc9c79cb87ef4ee77030f86bd443d7157502b1"
+}

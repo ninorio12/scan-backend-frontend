@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-7ecc8d15",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "f419965e363be8734da2e1ab3d292a644e9cb7b6",
+  "commit_repare": "7ecc8d15cf5f773809025448b73e0eacc5ad5302",
+  "date": "2026-07-06",
+  "message_humain": "fix(youtube): connexion client = OAuth Nango (1 clic Google) au lieu du @handle public. Corrige le decalage : avant, 'Connecter YouTube' ecrivait youtubeChannelLinks (public, sans token) et le module Analytics restait vide car il lit une connexion OAuth Nango. Maintenant connectYoutubeOAuth (createConnectSession youtube + nango.auth) donne le token yt-analytics.readonly qui alimente l'Analytics, PUIS syncMyYouTubeChannelFromOAuth remplit youtubeChannelLinks pour garder le KPI 'Mon audience' de la home. Disconnect nettoie aussi la connexion Nango. Le modal @handle reste en fallback (non declenche)",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "ACTION_MUETTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Deux definitions de « YouTube connecte » : le bouton de connexion remplissait la table des chaines publiques alors que le module Analytics lit la connexion OAuth, donc l'ecran restait vide.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1508
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "getMyYouTubeBenchmark",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 48,
+    "supprimees": 0,
+    "total": 48
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "export const syncMyYouTubeChannelFromOAuth = action({"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> f419965e363be8734da2e1ab3d292a644e9cb7b6"
+}

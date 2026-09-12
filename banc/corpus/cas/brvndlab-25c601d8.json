@@ -1,0 +1,55 @@
+{
+  "id": "brvndlab-25c601d8",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "63163802b384deaa1b2613a5997919bcb73cb217",
+  "commit_repare": "25c601d8632108eb3d76562541b60ad796c8b85e",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): tribunal + boucle correctionnelle sur CLIENT (5 correctifs)",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "GARDE_EFFACEE",
+    "CONSIGNE_IA_NON_TENUE"
+  ],
+  "famille_connue": true,
+  "symptome": "Une réponse déjà rédigée pouvait être rabotée de moitié sans protection : la garde anti-écrasement partait de 120 caractères alors que le seuil « servi » était descendu à 90, laissant une zone morte entre les deux.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      465,
+      472,
+      705,
+      1047,
+      1076,
+      1199,
+      1250
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "focus",
+      "kind",
+      "group",
+      "TAT",
+      "SOUS"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 22,
+    "supprimees": 14,
+    "total": 36
+  },
+  "preuve": {
+    "avant": "if (before.length >= 120 && after.length < before.length * 0.5) delete patch[f.questionId];",
+    "apres": "if (before.length >= SERVI_TEXT && after.length < before.length * 0.5) delete patch[f.questionId];"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 63163802b384deaa1b2613a5997919bcb73cb217"
+}

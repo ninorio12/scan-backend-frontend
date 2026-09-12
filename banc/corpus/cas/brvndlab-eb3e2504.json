@@ -1,0 +1,56 @@
+{
+  "id": "brvndlab-eb3e2504",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "1ac49dc51460f5b266ab0ac3187b167917c0618a",
+  "commit_repare": "eb3e250418bec3ed8e22ee8f721d8c1892e294aa",
+  "date": "2026-07-07",
+  "message_humain": "fix(objectifs): scope PAR UTILISATEUR (identity.subject) et non par owner. 'Mes objectifs' est personnel: chaque profil a sa propre to-do, jamais partagee entre membres d'une equipe",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "LOCATAIRE",
+  "familles_secondaires": [
+    "ACCES_NON_AUTORISE"
+  ],
+  "famille_connue": true,
+  "symptome": "La to-do personnelle « Mes objectifs » etait scopee au compte proprietaire : tous les membres d'une meme equipe voyaient et ecrasaient la meme liste.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/homeObjectives.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/homeObjectives.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/homeObjectives.ts": [
+      3,
+      5,
+      9,
+      13,
+      17,
+      23,
+      27,
+      33,
+      39
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/homeObjectives.ts": [
+      "convex",
+      "values",
+      "resolveOwnerClerkUserId",
+      "collaborators",
+      "getMine",
+      "query",
+      "saveMine",
+      "mutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 12,
+    "total": 24
+  },
+  "preuve": {
+    "avant": ".withIndex(\"by_user\", (q) => q.eq(\"clerkUserId\", owner))",
+    "apres": ".withIndex(\"by_user\", (q) => q.eq(\"clerkUserId\", identity.subject))"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 1ac49dc51460f5b266ab0ac3187b167917c0618a"
+}

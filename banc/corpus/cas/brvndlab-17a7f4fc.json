@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-17a7f4fc",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c7497b9b92bf24cbe57b1e6269d6b74066a478f5",
+  "commit_repare": "17a7f4fc7acac5cef393bf09736ec1f748b93301",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): modifier une fiche = visuel, pas un pavé dans le chat",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Demander de condenser trois sections renvoyait les trois versions entières recopiées dans une bulle de conversation : un pavé illisible au lieu d'un changement appliqué dans les fiches.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      823,
+      1111,
+      1115
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "DISTINCTION",
+      "elle",
+      "concilie",
+      "cette",
+      "gle",
+      "avec",
+      "sexies",
+      "revanche"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 3,
+    "supprimees": 2,
+    "total": 5
+  },
+  "preuve": {
+    "avant": "12ter. S'il te demande de RACCOURCIR ou de RÉSUMER un champ, tu renvoies une version",
+    "apres": "12octies. ... et tu l'appliques DIRECTEMENT dans la fiche (cf. distinction créer/modifier"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c7497b9b92bf24cbe57b1e6269d6b74066a478f5"
+}

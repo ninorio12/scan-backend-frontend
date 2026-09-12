@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-65cc0873",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "45285d6c1588a7d9a52a52f666954a4fc05b8a28",
+  "commit_repare": "65cc0873d921b66bb75eae7ee79b2f9ee39ab321",
+  "date": "2026-05-27",
+  "message_humain": "Fix: Use relative URL in brainstorm API for production",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "En production, le brainstorm ne répondait jamais : le serveur appelait une adresse locale de développement qui n'existe pas une fois en ligne.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brainstorm/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brainstorm/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brainstorm/route.ts": [
+      5
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brainstorm/route.ts": [
+      "callHermesProxy",
+      "messages",
+      "any",
+      "maxTokens",
+      "brains",
+      "response"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "const response = await fetch(`http://localhost:3000/api/hermes-proxy`, {",
+    "apres": "const response = await fetch(`/api/hermes-proxy`, {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 45285d6c1588a7d9a52a52f666954a4fc05b8a28"
+}

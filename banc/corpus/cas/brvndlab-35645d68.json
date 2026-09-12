@@ -1,0 +1,65 @@
+{
+  "id": "brvndlab-35645d68",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "07a113ef00af1addcadd1bf65f4ba711edfa1908",
+  "commit_repare": "35645d685bc8f6d29ed2995fb18f149679839685",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): cache/cookie/SSR = la photo REELLEMENT affichee (Brvndlab OU Clerk), sticky. Data confirmee: le compte de CLIENT n'a PAS de photo Brvndlab -> sa photo vient de Clerk. On remet donc en cache la photo affichee (Clerk incluse) pour que le serveur la pose avant le paint. + retire la requete de debug _debug.ts",
+  "famille": "GARDE_EFFACEE",
+  "famille_proposee": "GARDE_EFFACEE",
+  "familles_secondaires": [
+    "ACCES_NON_AUTORISE"
+  ],
+  "famille_connue": true,
+  "symptome": "Une requête de débogage restée en production permettait de lire, sans aucune vérification, le nom et la photo de n'importe quel utilisateur à partir de son adresse e-mail.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/_debug.ts",
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/_debug.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/_debug.ts": [
+      1
+    ],
+    "brvndlab-app/src/lib/avatar.ts": [
+      31,
+      33,
+      35,
+      45,
+      64,
+      67
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/_debug.ts": [
+      "query",
+      "_generated",
+      "server",
+      "userPhotoByEmail",
+      "u",
+      "profileImageUrl"
+    ],
+    "brvndlab-app/src/lib/avatar.ts": [
+      "readAvatarCache",
+      "string",
+      "setAvatarCache",
+      "url",
+      "void",
+      "resolveAvatarUrl",
+      "cur",
+      "own"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 13,
+    "supprimees": 46,
+    "total": 59
+  },
+  "preuve": {
+    "avant": "export const userPhotoByEmail = query({",
+    "apres": "(fichier convex/_debug.ts supprimé, deleted file mode)"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 07a113ef00af1addcadd1bf65f4ba711edfa1908"
+}

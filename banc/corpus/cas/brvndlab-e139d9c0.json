@@ -1,0 +1,54 @@
+{
+  "id": "brvndlab-e139d9c0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "ffc8c32a36cb4aa4d2257ccb04fbe13c00dd5bf3",
+  "commit_repare": "e139d9c0bfff710a82352575f0986009f22bd39f",
+  "date": "2026-07-09",
+  "message_humain": "fix(instagram): stocke le token de Page + élargit le scope (débloque /stories)",
+  "famille": "ACTION_MUETTE",
+  "famille_proposee": "ACTION_MUETTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La connexion Instagram se déclarait réussie mais le jeton de Page, seul capable d'ouvrir les stories et une partie des statistiques, n'était jamais enregistré : la capture de stories ne pouvait pas fonctionner.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/instagramTokens.ts",
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/auth/instagram/callback/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/instagramTokens.ts": [
+      17,
+      36,
+      49
+    ],
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts": [
+      100,
+      114,
+      167,
+      170
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/instagramTokens.ts": [
+      "saveFromServer",
+      "mutation"
+    ],
+    "brvndlab-app/src/app/api/auth/instagram/callback/route.ts": [
+      "GET",
+      "request",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 1,
+    "total": 17
+  },
+  "preuve": {
+    "avant": "scope: \"instagram_basic,instagram_manage_insights,pages_show_list\",",
+    "apres": "pageAccessToken: args.pageAccessToken ?? existing.pageAccessToken,"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> ffc8c32a36cb4aa4d2257ccb04fbe13c00dd5bf3"
+}

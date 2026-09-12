@@ -1,0 +1,55 @@
+{
+  "id": "brvndlab-11fa09f6",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "dcd44981fec95ab259ecb36490bde0f356760f5e",
+  "commit_repare": "11fa09f657a84d8ff0d957551a56df8f7f8133e4",
+  "date": "2026-06-19",
+  "message_humain": "fix(script): duree calculee sur mots reels + anti-duplication phrases + cible long 12-18min",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La durée annoncée d'un script était celle que le modèle déclarait, ou une valeur en dur (« 60 s », « 10 min ») quand il ne disait rien : un script de trois minutes s'affichait à dix minutes.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/generate-script/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/generate-script/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      124,
+      126,
+      193,
+      224,
+      232,
+      233,
+      234,
+      303,
+      324,
+      329
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/generate-script/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "SORTIE",
+      "SEUL",
+      "JSON",
+      "valide",
+      "rien"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 9,
+    "total": 45
+  },
+  "preuve": {
+    "avant": "(typeof parsed.estimatedDuration === \"string\" && parsed.estimatedDuration.trim()) || (isShort ? \"60 s\" : \"10 min\")",
+    "apres": ": `${Math.max(1, Math.round(wordCount / 140))} min`;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> dcd44981fec95ab259ecb36490bde0f356760f5e"
+}

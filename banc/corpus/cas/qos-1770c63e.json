@@ -1,0 +1,41 @@
+{
+  "id": "qos-1770c63e",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "c4ea2bbd26e0a819f8ab87784a573665c22589f0",
+  "commit_repare": "1770c63ec08dacfd6f4abed067de0a7d14c69e0a",
+  "date": "2026-08-01",
+  "message_humain": "fix(leads): un contact DEJA CONNU qui revient par un formulaire recoit lui aussi son etiquette de parcours — sans elle, la vente disparaissait de l'entonnoir puisque le lead est supprime a la conversion en client et que seul le tag du contact subsiste",
+  "famille": "ECRITURE_PARTIELLE",
+  "famille_proposee": "NOUVELLE:BRANCHE_INCOMPLETE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Quand un contact déjà connu revenait par un formulaire, il ne recevait pas son étiquette de parcours : après sa conversion en client, sa vente disparaissait de l'entonnoir du parcours d'origine.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/leadIngest.ts"
+  ],
+  "fichier_fautif": "convex/leadIngest.ts",
+  "lignes_avant": {
+    "convex/leadIngest.ts": [
+      95,
+      96
+    ]
+  },
+  "symboles": {
+    "convex/leadIngest.ts": [
+      "fromLeadForm",
+      "internalMutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 0,
+    "total": 5
+  },
+  "preuve": {
+    "avant": "      await ctx.db.patch(dup._id, {",
+    "apres": "const tags = [...new Set([...(dup.tags ?? []), `origine:${origin}`, `funnel:${funnel}`])]"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> c4ea2bbd26e0a819f8ab87784a573665c22589f0"
+}

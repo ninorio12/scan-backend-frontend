@@ -1,0 +1,52 @@
+{
+  "id": "brvndlab-594e4e0e",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "85c1a969c3d1e42aa5ae1f7067a21eaef98db3c1",
+  "commit_repare": "594e4e0eb9310fb286dd6ec016371d21390882ac",
+  "date": "2026-07-27",
+  "message_humain": "fix(brand-os): zéro stop, CLIENT reste dans le flow (validé une fois = écrit + enchaîne)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Après chaque champ rempli, l'entretien s'arrêtait sur un « ça te va ? » : l'utilisateur devait écrire « continue » à chaque fois pour que la conversation reparte.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      819,
+      822,
+      1106,
+      1108,
+      1111,
+      1116,
+      1142
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "Brand",
+      "est",
+      "source",
+      "rit",
+      "marque",
+      "tout",
+      "qui",
+      "crit"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 10,
+    "total": 20
+  },
+  "preuve": {
+    "avant": "NIVEAU 2 — APRÈS SON ACCORD, TU ÉCRIS PUIS TU RE-VÉRIFIES",
+    "apres": "NIVEAU 2 — APRÈS SON ACCORD, TU ÉCRIS ET TU ENCHAÎNES DIRECT (jamais de stop)"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 85c1a969c3d1e42aa5ae1f7067a21eaef98db3c1"
+}

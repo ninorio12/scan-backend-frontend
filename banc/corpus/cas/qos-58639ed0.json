@@ -1,0 +1,51 @@
+{
+  "id": "qos-58639ed0",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "952e29c00a0e1e9a9d2504bb95bc21c943d82499",
+  "commit_repare": "58639ed099c9fe5b09c46114b3ccf9697e451b35",
+  "date": "2026-07-30",
+  "message_humain": "fix(zernio ads): periode last_Nd generique, ad account epingle par env (le premier de la liste etait desactive), null->undefined pour le validateur d'upsert",
+  "famille": "ORDRE_IMPLICITE",
+  "famille_proposee": "ORDRE_IMPLICITE",
+  "familles_secondaires": [
+    "VOCABULAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le board publicitaire se branchait sur le premier compte publicitaire renvoyé par la liste, un compte désactivé : l'écran restait vide alors que les données existaient sur un autre compte.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/zernioAds.ts"
+  ],
+  "fichier_fautif": "convex/zernioAds.ts",
+  "lignes_avant": {
+    "convex/zernioAds.ts": [
+      49,
+      52,
+      60,
+      130
+    ]
+  },
+  "symboles": {
+    "convex/zernioAds.ts": [
+      "resolveMetaAds",
+      "Promise",
+      "fbAccountId",
+      "string",
+      "adAccountId",
+      "str",
+      "presetToRange",
+      "preset"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 19,
+    "supprimees": 8,
+    "total": 27
+  },
+  "preuve": {
+    "avant": "  const list: any[] = ad?.adAccounts ?? ad?.accounts ?? (Array.isArray(ad) ? ad : [])",
+    "apres": "  const list: any[] = (ad?.accounts ?? []).filter((x: any) => x.selectable !== false && x.accountStatus === 1)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 952e29c00a0e1e9a9d2504bb95bc21c943d82499"
+}

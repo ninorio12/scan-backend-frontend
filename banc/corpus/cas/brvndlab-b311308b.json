@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-b311308b",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "09720bbe4996a88f753dfc6b52a191ec18e03b8a",
+  "commit_repare": "b311308b3c1dab777eac32cd1e12a68ba30d0ebd",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): tes corrections manuelles ne sont plus ecrasees - l'etat actuel des fiches fait autorite (prompt) et toute retouche IA pensee avant une edition manuelle est refusee (horodatage cote page)",
+  "famille": "ETAT_ECRASE",
+  "famille_proposee": "ETAT_ECRASE",
+  "familles_secondaires": [
+    "PERTE_IRREVERSIBLE"
+  ],
+  "famille_connue": true,
+  "symptome": "Les corrections faites à la main dans le formulaire étaient réécrites par l'assistant, qui repartait de sa propre version antérieure.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      224,
+      269
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "pas",
+      "chatbot",
+      "qui",
+      "commente",
+      "faudrait"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 6,
+    "supprimees": 1,
+    "total": 7
+  },
+  "preuve": {
+    "avant": "Déjà écrit (ne le redemande pas ; tu peux le RETOUCHER en reprenant son id) :",
+    "apres": "L'ÉTAT DES FICHES CI-DESSOUS FAIT AUTORITÉ, PAS TA MÉMOIRE (règle critique) :"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 09720bbe4996a88f753dfc6b52a191ec18e03b8a"
+}

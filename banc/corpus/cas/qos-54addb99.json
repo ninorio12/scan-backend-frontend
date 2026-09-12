@@ -1,0 +1,44 @@
+{
+  "id": "qos-54addb99",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "de47b2bffb5105e3a9bb99da0affc447b5be2990",
+  "commit_repare": "54addb992363c5849a9f67c924e1967181d132a5",
+  "date": "2026-08-01",
+  "message_humain": "fix(cockpit): le bouton Appliquer des objectifs echouait en silence — l'interface renvoyait l'objet complet dont un champ que le serveur refusait ; elle n'envoie plus que les objectifs affiches et le serveur tolere un lien vide. Cartes KPI : icone descendue en bas a droite et agrandie, titre plus grand",
+  "famille": "VOCABULAIRE",
+  "famille_proposee": "VOCABULAIRE",
+  "familles_secondaires": [
+    "ACTION_MUETTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le bouton Appliquer des objectifs ne gardait rien : l'interface renvoyait un champ à null que le validateur du serveur refusait, l'enregistrement entier échouait sans message.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/prospectionObjectives.ts"
+  ],
+  "fichier_fautif": "convex/prospectionObjectives.ts",
+  "lignes_avant": {
+    "convex/prospectionObjectives.ts": [
+      45,
+      68
+    ]
+  },
+  "symboles": {
+    "convex/prospectionObjectives.ts": [
+      "set",
+      "mutation",
+      "patch"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 2,
+    "total": 7
+  },
+  "preuve": {
+    "avant": "    link:          v.optional(v.string()),",
+    "apres": "    link:          v.optional(v.union(v.string(), v.null())),"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> de47b2bffb5105e3a9bb99da0affc447b5be2990"
+}

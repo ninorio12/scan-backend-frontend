@@ -85,9 +85,10 @@ Le vérificateur a cliqué, n'a rien vu bouger — puis il a fait la contre-épr
 reculé d'un mois, re-cliqué, et l'écran est revenu à septembre. Le bouton marche.
 L'agent avait raison sur ce qu'il a **vu**, et tort sur ce qu'il en a **conclu**.
 
-## Les quatorze types, en une ligne chacun
+## Les types, en une ligne chacun
 
-Le détail, les champs et la façon dont chacun est tranché : `node scripts/affirmations.mjs`.
+Le catalogue qui fait foi est celui du code, jamais cette page : `node scripts/affirmations.mjs`
+les liste avec leurs champs, les seuils et la façon dont chacun est tranché.
 
 **Écran** (il faut l'application allumée)
 

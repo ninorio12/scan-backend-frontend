@@ -104,9 +104,13 @@ for (const [re, type] of SONDES) {
   }
 }
 
+/* Le code de sortie ne dépend PAS du format d'affichage : en mode texte, l'ancienne
+   version listait les valeurs hors source et sortait quand même en 0, donc un
+   pre-commit ou une CI qui l'appelait sans --json ne voyait jamais rien. */
+process.exitCode = horsSource.length ? 1 : 0;
+
 if (JSON_OUT) {
   console.log(JSON.stringify({ marqueur: MARQUEUR, conformes: conformes.length, horsSource }, null, 2));
-  process.exitCode = horsSource.length ? 1 : 0;
 } else {
   console.log(`\n╔══ PREUVE PAR TÉMOIN ─ ${cible}`);
   console.log(`║  marqueur « ${MARQUEUR} »`);

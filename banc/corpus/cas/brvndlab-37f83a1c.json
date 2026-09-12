@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-37f83a1c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "3f5bdc94ea1fe13170e3a1935c9bd79cc7e75963",
+  "commit_repare": "37f83a1c9c599534749f112166762ae57283e90a",
+  "date": "2026-07-12",
+  "message_humain": "fix(access): Intégrations n'est plus un module allouable",
+  "famille": "GARDE_EXCESSIVE",
+  "famille_proposee": "NOUVELLE:GARDE_EXCESSIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Réglages puis Intégrations renvoyait sur l'accueil pour tout compte client restreint, alors que cette page doit être accessible à tous.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/modules.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/modules.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/modules.ts": [
+      28,
+      30
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/modules.ts": [
+      "ALLOCATABLE_MODULES",
+      "ModuleDef"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 1,
+    "total": 6
+  },
+  "preuve": {
+    "avant": "{ key: \"integrations\",label: \"Intégrations\",  route: \"/integrations\" },",
+    "apres": "// Intégrations (/integrations) N'EST PAS un module allouable : c'est une"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 3f5bdc94ea1fe13170e3a1935c9bd79cc7e75963"
+}

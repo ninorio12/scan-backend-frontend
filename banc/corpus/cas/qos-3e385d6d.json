@@ -1,0 +1,41 @@
+{
+  "id": "qos-3e385d6d",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "35fbe1919dd371fc30f7aadb1443ee52dcea0f36",
+  "commit_repare": "3e385d6d87929d15e56329632834b8da3638b0cf",
+  "date": "2026-06-11",
+  "message_humain": "fix(vague2-p2.2): badge source pipeline dérivé de Convex (fin du localStorage figé)",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": true,
+  "symptome": "Toutes les cartes du pipeline affichaient l'origine « inbound » par défaut, lue depuis le stockage du navigateur et jamais rafraîchie, alors que la plupart des contacts étaient outbound.",
+  "confiance_classement": "basse",
+  "fichiers": [
+    "scripts/integrity/invariant-map.mjs"
+  ],
+  "fichier_fautif": "scripts/integrity/invariant-map.mjs",
+  "lignes_avant": {
+    "scripts/integrity/invariant-map.mjs": [
+      26
+    ]
+  },
+  "symboles": {
+    "scripts/integrity/invariant-map.mjs": [
+      "CONSISTENCY"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 0,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "ok: (lead, contact) => !lead.source || !contact.source || lead.source === contact.source,"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 35fbe1919dd371fc30f7aadb1443ee52dcea0f36"
+}

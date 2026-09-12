@@ -1,0 +1,48 @@
+{
+  "id": "qos-bceef514",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "3497d172c7bdcb3b0c9477524b8019e23a304330",
+  "commit_repare": "bceef51457da726f75b6bf50bd8fa31b020bd98a",
+  "date": "2026-04-20",
+  "message_humain": "fix: tools.ts — error handling, agentId attribution, remove dead code",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [
+    "CHIFFRE_INVENTE",
+    "CODE_MORT"
+  ],
+  "famille_connue": true,
+  "symptome": "Une erreur de lecture des tâches ou des journaux ressortait en liste vide : l'agent répondait « aucune tâche » au lieu de signaler la panne, et chaque interaction était attribuée en dur au même agent.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/lib/agents/tools.ts"
+  ],
+  "fichier_fautif": "src/lib/agents/tools.ts",
+  "lignes_avant": {
+    "src/lib/agents/tools.ts": [
+      260,
+      313,
+      325,
+      491,
+      525,
+      546
+    ]
+  },
+  "symboles": {
+    "src/lib/agents/tools.ts": [
+      "executeTool",
+      "supabase"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 6,
+    "total": 13
+  },
+  "preuve": {
+    "avant": "const { data } = await query",
+    "apres": "const { data, error } = await query"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 3497d172c7bdcb3b0c9477524b8019e23a304330"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "brvndlab-a6bee763",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "2cb50202fb6a1b86a156fe3fc25c15eb0629962e",
+  "commit_repare": "a6bee7635bd4835eccf5fda2d68e8703be21b69b",
+  "date": "2026-07-01",
+  "message_humain": "fix(brand-os): le module Personas passe 'termine' quand des personas existent",
+  "famille": "CONTRAT",
+  "famille_proposee": "CONTRAT",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le module Personas restait affiché « À faire » alors que des personas étaient bien enregistrés : son statut n'était pas dans la réponse envoyée à l'écran.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      622
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "countBrandOsDone"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 17,
+    "supprimees": 0,
+    "total": 17
+  },
+  "preuve": {
+    "avant": "modules.push({ slug, responseCount: nonEmpty.length, expectedCount });",
+    "apres": "modules.push({ slug: \"personas\", responseCount: personasNonEmpty.length,"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 2cb50202fb6a1b86a156fe3fc25c15eb0629962e"
+}

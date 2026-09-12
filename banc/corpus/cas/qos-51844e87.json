@@ -1,0 +1,59 @@
+{
+  "id": "qos-51844e87",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "f23a895960e597855c0296f0301d6df78c2bb589",
+  "commit_repare": "51844e87dd460c1f3d82d33b76c25b45a1a1cc79",
+  "date": "2026-04-02",
+  "message_humain": "fix(contacts): optional GHLContact fields, id validation, attribution bounds",
+  "famille": "ENTREE_NON_VALIDEE",
+  "famille_proposee": "ENTREE_NON_VALIDEE",
+  "familles_secondaires": [
+    "SATURATION_VOLUME"
+  ],
+  "famille_connue": true,
+  "symptome": "Les routes de fiche contact et d'attribution acceptaient n'importe quel corps : identifiant vide relayé tel quel au CRM, liste d'identifiants sans plafond, champ texte sans longueur maximale.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/contact/[id]/route.ts",
+    "src/app/api/contact/attribution/route.ts",
+    "src/lib/ghl.ts"
+  ],
+  "fichier_fautif": "src/app/api/contact/[id]/route.ts",
+  "lignes_avant": {
+    "src/app/api/contact/[id]/route.ts": [
+      10
+    ],
+    "src/app/api/contact/attribution/route.ts": [
+      8,
+      30
+    ],
+    "src/lib/ghl.ts": [
+      66
+    ]
+  },
+  "symboles": {
+    "src/app/api/contact/[id]/route.ts": [
+      "GET"
+    ],
+    "src/app/api/contact/attribution/route.ts": [
+      "GET",
+      "req",
+      "NextRequest",
+      "POST"
+    ],
+    "src/lib/ghl.ts": [
+      "GHLContact"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 17,
+    "supprimees": 11,
+    "total": 28
+  },
+  "preuve": {
+    "avant": "const { id }  = params",
+    "apres": "if (!id || typeof id !== 'string') {"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> f23a895960e597855c0296f0301d6df78c2bb589"
+}

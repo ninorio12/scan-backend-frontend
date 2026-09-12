@@ -1,0 +1,54 @@
+{
+  "id": "brvndlab-15610a41",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "37f83a1c9c599534749f112166762ae57283e90a",
+  "commit_repare": "15610a41c7185c5c9ffc0c8f3c12d44aa6b6a9ae",
+  "date": "2026-07-12",
+  "message_humain": "fix(integrations): retire le data-gate module qui crashait la page",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "La page Intégrations plantait sur un message d'erreur pour tout compte restreint : la garde interrogeait une clé de module qui n'existait plus.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/integrations.ts",
+    "brvndlab-app/convex/stripeIntegration.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/integrations.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/integrations.ts": [
+      5,
+      315
+    ],
+    "brvndlab-app/convex/stripeIntegration.ts": [
+      222,
+      223,
+      225
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/integrations.ts": [
+      "listMine",
+      "query"
+    ],
+    "brvndlab-app/convex/stripeIntegration.ts": [
+      "getStats",
+      "query",
+      "STARTER_MODULES"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 4,
+    "total": 12
+  },
+  "preuve": {
+    "avant": "await assertModuleAllowed(ctx, \"integrations\");",
+    "apres": "// Pas de data-gate module : Intégrations est une sous-page de Réglages"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 37f83a1c9c599534749f112166762ae57283e90a"
+}

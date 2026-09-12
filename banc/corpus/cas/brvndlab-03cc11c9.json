@@ -1,0 +1,50 @@
+{
+  "id": "brvndlab-03cc11c9",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "4255b062b0cadba0141b2f70789b4b2803be8334",
+  "commit_repare": "03cc11c95ebec4f1f44435b2dbf8a0a8d091a5d4",
+  "date": "2026-07-04",
+  "message_humain": "fix(social posts): publishLinkedIn appele DIRECTEMENT dans publishNow (plus une sous-action) + try/catch top-level -> la vraie erreur LinkedIn remonte enfin au client (fini le Server Error opaque)",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Quand une publication echouait, l'utilisateur ne voyait qu'une erreur serveur opaque : la vraie cause etait perdue en traversant la sous-action.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1,
+      287,
+      392,
+      413,
+      429
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "action",
+      "query",
+      "internalMutation",
+      "internalQuery",
+      "internalAction",
+      "escapeLiText",
+      "string",
+      "_publishLinkedIn"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 22,
+    "supprimees": 24,
+    "total": 46
+  },
+  "preuve": {
+    "avant": "const r = await ctx.runAction(internal.social._publishLinkedIn, {",
+    "apres": "const r = await publishLinkedInImpl(ctx, {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 4255b062b0cadba0141b2f70789b4b2803be8334"
+}

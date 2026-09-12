@@ -13,10 +13,12 @@ latérale qui laisse 176 px de vide une fois repliée. **C'est l'étape qui rapp
 de loin** — et ce jour-là, aucun de ces dix défauts n'est entré dans le bilan, parce que
 rien ne lisait les rapports des agents. C'est réglé : voir « Le rendu » plus bas.
 
-Le même jour, cinq agents ont démenti **256 « boutons morts »** du passage mécanique
+Le même jour, cinq agents ont démenti les **256 « boutons morts »** du passage mécanique
 (fenêtre d'attente trop courte sur un serveur de dev qui met de 0,07 s à 42 s à rendre une
-page). Donc ça marche dans les deux sens, et dans les deux sens la parole ne suffit pas :
-**tout ce qui entre au bilan passe par `verifier-affirmation.mjs`**.
+page) : 228 de ces constats portaient sur 21 libellés que ces agents ont rejoués et vus
+fonctionner. Après contre-épreuve, **189 sont sortis du bilan, 67 y sont restés, et 6
+démentis n'ont pas tenu**. Donc ça marche dans les deux sens, et dans les deux sens la
+parole ne suffit pas : **tout ce qui entre au bilan passe par `verifier-affirmation.mjs`**.
 
 ---
 
@@ -126,6 +128,15 @@ ne sait ce qui manque.
 >    de `watch`, pas de `tail -f`, pas de serveur lancé par toi. Avant de rendre la main :
 >    tue ce que tu as lancé et dis-le. Le 12/09, un agent a laissé des boucles d'attente
 >    qui ont renvoyé **une douzaine de notifications de fin identiques**.
+>    ⚠️ Et le piège qui fabrique ces guetteurs : `pgrep -f "<motif>"` **te trouve toi**,
+>    parce que ta propre ligne de commande (et celle du shell qui t'a lancé) contient le
+>    motif que tu cherches. Tu attends alors une chose qui ne finira jamais. Deux agents
+>    sont tombés dedans la même nuit. Attends un **fichier** :
+>    `until [ -f resultat.json ]; do sleep 2; done`. Ou, si tu tiens à attendre un
+>    processus, attends **un PID que tu as noté**, jamais un motif :
+>    `P=$!` puis `while kill -0 $P 2>/dev/null; do sleep 2; done`. Vérifié le 12/09 :
+>    ni `[m]otif` entre crochets ni `grep -v $$` ne sauvent, puisque ce n'est pas le
+>    `grep` qui matche, c'est la ligne de commande de ton propre lanceur.
 >
 > LE VOILE, s'il y en a un : `<la parade, trouvée une fois pour toutes>`. Ferme-le AVANT
 > de recenser, sinon tu compteras des boutons « recouverts » qui ne le sont pas.

@@ -1,0 +1,369 @@
+{
+  "moisson": [
+    {
+      "depot": "qos",
+      "commits": 746,
+      "annoncentCorrection": 49,
+      "tropGros": 9,
+      "retenus": 40
+    },
+    {
+      "depot": "brvndlab",
+      "commits": 3958,
+      "annoncentCorrection": 184,
+      "tropGros": 33,
+      "retenus": 151
+    },
+    {
+      "depot": "agci",
+      "commits": 14,
+      "annoncentCorrection": 0,
+      "tropGros": 0,
+      "retenus": 0
+    }
+  ],
+  "candidats": 191,
+  "retenus": 140,
+  "ecartes": 51,
+  "parMotif": {
+    "fonctionnalite": 12,
+    "style": 32,
+    "configuration": 2,
+    "typage": 1,
+    "refactor": 3,
+    "indecidable": 1
+  },
+  "parFamille": {
+    "CONSIGNE_IA_NON_TENUE": 23,
+    "DEFINITION_DOUBLE": 13,
+    "CHIFFRE_INVENTE": 9,
+    "PANNE_DEGUISEE": 9,
+    "CIBLE_INEXISTANTE": 8,
+    "GARDE_EFFACEE": 8,
+    "ETAT_TRANSITOIRE_TROMPEUR": 7,
+    "LOCATAIRE": 6,
+    "ACTION_MUETTE": 4,
+    "CONTRAT": 4,
+    "ECRITURE_PARTIELLE": 4,
+    "VOCABULAIRE": 3,
+    "CASCADE_MANQUANTE": 3,
+    "IDEMPOTENCE": 3,
+    "ACCES_NON_AUTORISE": 2,
+    "ETAT_PREEXISTANT_IGNORE": 2,
+    "PERTE_IRREVERSIBLE": 2,
+    "GARDE_EXCESSIVE": 2,
+    "UNITE_DIVERGENTE": 2,
+    "GESTE_INERTE": 2,
+    "ORDRE_IMPLICITE": 2,
+    "TYPE_DIVERGENT": 2,
+    "ENTREE_NON_VALIDEE": 2,
+    "ETAT_ECRASE": 2,
+    "REGLAGE_INERTE": 2,
+    "PLANIFIE_INERTE": 1,
+    "PORTE_PARALLELE": 1,
+    "PERIODE_DIVERGENTE": 1,
+    "FILTRE_TEXTE_INEXACT": 1,
+    "CODE_MORT": 1,
+    "RATTRAPAGE_INERTE": 1,
+    "LIEN_EXTERNE_PERISSABLE": 1,
+    "ETAT_PERIME": 1,
+    "SOURCE_PARTIELLE": 1,
+    "RECHERCHE_MUETTE": 1,
+    "DONNEE_DEGRADEE": 1,
+    "ALERTE_FAUSSE": 1,
+    "SATURATION_VOLUME": 1,
+    "ENV_MANQUANTE": 1
+  },
+  "exemplesParFamille": {
+    "CONSIGNE_IA_NON_TENUE": [
+      "brvndlab-00772923",
+      "brvndlab-046ffc6f",
+      "brvndlab-0a529083",
+      "brvndlab-17a7f4fc",
+      "brvndlab-28fa8a66",
+      "brvndlab-2d8b8d59",
+      "brvndlab-3c33700a",
+      "brvndlab-4610eb94",
+      "brvndlab-47533440",
+      "brvndlab-5205f73f",
+      "brvndlab-594e4e0e",
+      "brvndlab-5cec4526",
+      "brvndlab-683ca43f",
+      "brvndlab-71e261ff",
+      "brvndlab-77d7b3ae",
+      "brvndlab-7fc6a27c",
+      "brvndlab-a6d2ffd9",
+      "brvndlab-cd22d2b2",
+      "brvndlab-cf359262",
+      "brvndlab-d1d31914",
+      "brvndlab-dbea1e72",
+      "brvndlab-f49163ff",
+      "brvndlab-f86639c0"
+    ],
+    "DEFINITION_DOUBLE": [
+      "brvndlab-0e374041",
+      "brvndlab-25c601d8",
+      "brvndlab-64ee457d",
+      "brvndlab-6af25a33",
+      "brvndlab-76eb583c",
+      "brvndlab-7c71327e",
+      "brvndlab-7ecc8d15",
+      "brvndlab-80a2a1dd",
+      "brvndlab-aee1f827",
+      "brvndlab-b0f57e70",
+      "brvndlab-c5c073c0",
+      "brvndlab-de87477a",
+      "brvndlab-e96f2df8"
+    ],
+    "CHIFFRE_INVENTE": [
+      "brvndlab-03a5d372",
+      "brvndlab-0e708582",
+      "brvndlab-11fa09f6",
+      "brvndlab-53cc9c79",
+      "brvndlab-a37a433a",
+      "brvndlab-ab8e46f8",
+      "brvndlab-c148108c",
+      "brvndlab-e6ea24a3",
+      "qos-3e385d6d"
+    ],
+    "PANNE_DEGUISEE": [
+      "brvndlab-03cc11c9",
+      "brvndlab-1de85fb1",
+      "brvndlab-7039aad7",
+      "brvndlab-7f6d7b10",
+      "brvndlab-b47c87b3",
+      "brvndlab-c9f1cac7",
+      "brvndlab-d5e48b1c",
+      "qos-57a4c4dc",
+      "qos-bceef514"
+    ],
+    "CIBLE_INEXISTANTE": [
+      "brvndlab-15610a41",
+      "brvndlab-45285d6c",
+      "brvndlab-56c95c4d",
+      "brvndlab-65cc0873",
+      "brvndlab-796c02b9",
+      "brvndlab-7bb39e2e",
+      "brvndlab-e43cf8aa",
+      "qos-df45574a"
+    ],
+    "GARDE_EFFACEE": [
+      "brvndlab-35645d68",
+      "brvndlab-5e38666d",
+      "brvndlab-9fcec5ae",
+      "brvndlab-a1a62e8b",
+      "brvndlab-bb39780c",
+      "qos-84b69299",
+      "qos-df11749b",
+      "qos-ed27e4f7"
+    ],
+    "ETAT_TRANSITOIRE_TROMPEUR": [
+      "brvndlab-28b0a125",
+      "brvndlab-3ec340b0",
+      "brvndlab-40641345",
+      "brvndlab-5361acf2",
+      "brvndlab-8e4d2d90",
+      "brvndlab-b1c6cc5d",
+      "brvndlab-ec81600f"
+    ],
+    "LOCATAIRE": [
+      "brvndlab-31c68305",
+      "brvndlab-7ce6a643",
+      "brvndlab-aff94ea3",
+      "brvndlab-eb3e2504",
+      "qos-025a1074",
+      "qos-361f3208"
+    ],
+    "ACTION_MUETTE": [
+      "brvndlab-59e7191a",
+      "brvndlab-e139d9c0",
+      "qos-0e2a6868",
+      "qos-a63b4d46"
+    ],
+    "CONTRAT": [
+      "brvndlab-87b33321",
+      "brvndlab-a6bee763",
+      "brvndlab-b561dfbf",
+      "brvndlab-d15668f0"
+    ],
+    "ECRITURE_PARTIELLE": [
+      "brvndlab-c56c63ef",
+      "qos-01b404bc",
+      "qos-1770c63e",
+      "qos-70f40f54"
+    ],
+    "VOCABULAIRE": [
+      "brvndlab-68ee909f",
+      "brvndlab-7aaeb419",
+      "qos-54addb99"
+    ],
+    "CASCADE_MANQUANTE": [
+      "brvndlab-b048ab87",
+      "qos-6ae6d089",
+      "qos-900181f1"
+    ],
+    "IDEMPOTENCE": [
+      "qos-4dad019b",
+      "qos-78f8d8d2",
+      "qos-9e739e23"
+    ],
+    "ACCES_NON_AUTORISE": [
+      "brvndlab-01d09207",
+      "qos-09d5460c"
+    ],
+    "ETAT_PREEXISTANT_IGNORE": [
+      "brvndlab-1a4606e6",
+      "brvndlab-1c5a5876"
+    ],
+    "PERTE_IRREVERSIBLE": [
+      "brvndlab-28728e72",
+      "brvndlab-b68338eb"
+    ],
+    "GARDE_EXCESSIVE": [
+      "brvndlab-37f83a1c",
+      "brvndlab-80ae1f5d"
+    ],
+    "UNITE_DIVERGENTE": [
+      "brvndlab-4a0cff9c",
+      "qos-ec8f50cc"
+    ],
+    "GESTE_INERTE": [
+      "brvndlab-6df62e7a",
+      "brvndlab-f1fdae7b"
+    ],
+    "ORDRE_IMPLICITE": [
+      "brvndlab-7509b559",
+      "qos-58639ed0"
+    ],
+    "TYPE_DIVERGENT": [
+      "brvndlab-83071372",
+      "brvndlab-d43ad428"
+    ],
+    "ENTREE_NON_VALIDEE": [
+      "brvndlab-8e48f6d5",
+      "qos-51844e87"
+    ],
+    "ETAT_ECRASE": [
+      "brvndlab-b311308b",
+      "qos-c4ea2bbd"
+    ],
+    "REGLAGE_INERTE": [
+      "qos-7a62b561",
+      "qos-f444d5c5"
+    ],
+    "PLANIFIE_INERTE": [
+      "brvndlab-24623bc0"
+    ],
+    "PORTE_PARALLELE": [
+      "brvndlab-37f26ce0"
+    ],
+    "PERIODE_DIVERGENTE": [
+      "brvndlab-5a80e956"
+    ],
+    "FILTRE_TEXTE_INEXACT": [
+      "brvndlab-6a6e3787"
+    ],
+    "CODE_MORT": [
+      "brvndlab-89d96ac8"
+    ],
+    "RATTRAPAGE_INERTE": [
+      "brvndlab-966a41ba"
+    ],
+    "LIEN_EXTERNE_PERISSABLE": [
+      "brvndlab-d629176f"
+    ],
+    "ETAT_PERIME": [
+      "brvndlab-da5130ae"
+    ],
+    "SOURCE_PARTIELLE": [
+      "brvndlab-dfe8f1e6"
+    ],
+    "RECHERCHE_MUETTE": [
+      "brvndlab-ee5630c8"
+    ],
+    "DONNEE_DEGRADEE": [
+      "qos-2cdb5417"
+    ],
+    "ALERTE_FAUSSE": [
+      "qos-811a135f"
+    ],
+    "SATURATION_VOLUME": [
+      "qos-f11a5144"
+    ],
+    "ENV_MANQUANTE": [
+      "qos-f23c2e51"
+    ]
+  },
+  "famillesNouvelles": [
+    {
+      "nom": "ECRITURE_PARTIELLE",
+      "definition": "l’écriture change un champ et oublie ce qui en dépend : une branche omet ce que l’autre fait, une donnée dérivée n’est pas propagée, les dates de l’état précédent restent",
+      "n": 4
+    },
+    {
+      "nom": "DONNEE_DEGRADEE",
+      "definition": "la vignette du fournisseur est présentée comme l’original : l’agrandissement affiche du 64×64",
+      "n": 1
+    },
+    {
+      "nom": "ALERTE_FAUSSE",
+      "definition": "un contrôle automatique du projet signale comme cassé un élément qui fonctionne",
+      "n": 1
+    },
+    {
+      "nom": "ETAT_PERIME",
+      "definition": "le serveur reçoit une version périmée de l’objet : ce que l’écran affiche ne lui est jamais transmis",
+      "n": 1
+    },
+    {
+      "nom": "TYPE_DIVERGENT",
+      "definition": "le type réellement stocké contredit le type déclaré : la valeur est rejetée à l’écriture ou lue comme vide",
+      "n": 2
+    },
+    {
+      "nom": "RATTRAPAGE_INERTE",
+      "definition": "un enregistrement créé avant un changement de règle ne rattrape jamais le nouveau format, et la régénération ne le rattrape pas non plus",
+      "n": 1
+    },
+    {
+      "nom": "CONSIGNE_IA_NON_TENUE",
+      "definition": "une règle du produit est confiée à la consigne d’un modèle au lieu d’être appliquée par le code : le modèle tourne en rond, s’arrête, récite, invente, ou rend toujours la même chose",
+      "n": 23
+    },
+    {
+      "nom": "SOURCE_PARTIELLE",
+      "definition": "une seule des liaisons possibles est lue : des comptes bien connectés sont déclarés absents",
+      "n": 1
+    },
+    {
+      "nom": "FILTRE_TEXTE_INEXACT",
+      "definition": "un nettoyage de texte est trop large ou trop étroit : il laisse passer des bribes inventées, ou mange du contenu réel",
+      "n": 1
+    },
+    {
+      "nom": "ETAT_PREEXISTANT_IGNORE",
+      "definition": "le code refait ce qui est déjà fait : la session est déjà ouverte, il tente d’en créer une et affiche une erreur",
+      "n": 2
+    },
+    {
+      "nom": "LIEN_EXTERNE_PERISSABLE",
+      "definition": "on stocke un lien signé du fournisseur au lieu de copier le média : l’écran se vide avec le temps",
+      "n": 1
+    },
+    {
+      "nom": "GARDE_EXCESSIVE",
+      "definition": "la garde refuse à qui a le droit : le verrou est posé plus large que le périmètre qu’il devait protéger",
+      "n": 2
+    },
+    {
+      "nom": "GESTE_INERTE",
+      "definition": "le geste est écouté d’une manière qui interdit d’y répondre (écouteur passif, ressource non libérée) : le bouton ou le tirer-pour-rafraîchir semble mort",
+      "n": 2
+    },
+    {
+      "nom": "ETAT_TRANSITOIRE_TROMPEUR",
+      "definition": "pendant le chargement, l’écran montre une valeur périmée, un substitut ou une valeur tirée au hasard, puis bascule visiblement sur la vraie",
+      "n": 7
+    }
+  ]
+}

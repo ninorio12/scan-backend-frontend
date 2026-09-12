@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-01d09207",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "ff34dfb5aeaca7959dc4147d2f76ec9cbab2378d",
+  "commit_repare": "01d09207008a690ffdb1747647659052a8bef2f4",
+  "date": "2026-07-06",
+  "message_humain": "fix(bug/audit): page Utilisation ne plante plus - getDailyCountForUser self-scope via auth pour le client (plus besoin du secret AI_USAGE_SECRET, qui la faisait throw) ; gateway garde le chemin secret ; ferme aussi la fuite (client ne peut plus passer un clerkId d'autrui)",
+  "famille": "ACCES_NON_AUTORISE",
+  "famille_proposee": "ACCES_NON_AUTORISE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "La consommation quotidienne se lisait avec un identifiant de compte fourni par l'appelant : un client pouvait demander celle d'un autre, et sa propre page plantait faute du secret serveur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/aiUsage.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/aiUsage.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/aiUsage.ts": [
+      50,
+      52,
+      58,
+      72
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/aiUsage.ts": [
+      "getDailyCountForUser",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 4,
+    "total": 20
+  },
+  "preuve": {
+    "avant": "args: { ownerClerkUserId: v.string(), k: v.optional(v.string()) },",
+    "apres": "ownerClerkUserId = identity.subject;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> ff34dfb5aeaca7959dc4147d2f76ec9cbab2378d"
+}

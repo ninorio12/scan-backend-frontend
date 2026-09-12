@@ -1,0 +1,54 @@
+{
+  "id": "brvndlab-5361acf2",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "94f10d72607063eea9e312790ecfa357a320e2e7",
+  "commit_repare": "5361acf24dbaeccbcf86739fe1f873c6022d0cad",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): fiabilise le cache anti-flash (cache sticky + ecriture via useEffect). Le flash bleu persistait car le cache bvh.avatar.url pouvait etre vide/efface au moment ou le script du <head> tourne (ecriture pendant le rendu, effacee par un vide transitoire type Clerk pas encore charge). Desormais: cache STICKY (jamais efface, jamais ecrase par du vide) + ecriture fiable dans un useEffect de la sidebar des que la photo est connue -> au refresh suivant le <head> pose --bvh-av avant le paint = plus de bulle bleue",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:ETAT_TRANSITOIRE_TROMPEUR",
+  "familles_secondaires": [
+    "ETAT_ECRASE"
+  ],
+  "famille_connue": false,
+  "symptome": "Une valeur vide transitoire effacait le cache de la photo : au rafraichissement suivant, l'avatar repassait par une pastille vide avant d'afficher la photo.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/avatar.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      1,
+      4,
+      18,
+      27,
+      30,
+      44,
+      48
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      "sout",
+      "URL",
+      "avatar",
+      "utilisateur",
+      "courant",
+      "affichant",
+      "DERNI",
+      "photo"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 20,
+    "supprimees": 26,
+    "total": 46
+  },
+  "preuve": {
+    "avant": "window.localStorage.removeItem(CACHE_KEY);",
+    "apres": "if (typeof window === \"undefined\" || !url) return;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 94f10d72607063eea9e312790ecfa357a320e2e7"
+}

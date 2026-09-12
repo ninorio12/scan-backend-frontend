@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-3ec340b0",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "f0f2ed0e1c4068c7b7cb53a45043f75f515f5c8f",
+  "commit_repare": "3ec340b041913b8240d91b5e3e02624ec2c64b5d",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): applique l'anti-flash au GROS avatar de l'accueil (pas seulement la sidebar) + cache la photo REELLEMENT affichee. Le flash au hard-refresh venait de l'avatar d'accueil (.brvh .avatar / .brvhm .m-av) qui n'avait pas le traitement <head>. Desormais ces avatars affichent la photo du cache (var --bvh-av) avant le paint + masquent les initiales. Le cache stocke la photo affichee (photo Brvndlab si presente, sinon celle du compte) -> ta photo actuelle des le 1er pixel, aucun avatar transitoire",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:ETAT_TRANSITOIRE_TROMPEUR",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": false,
+  "symptome": "La photo mise en cache n'etait pas celle reellement affichee : au rechargement, le gros avatar de l'accueil montrait un avatar transitoire avant la bonne photo.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/avatar.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      52,
+      55
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      "resolveAvatarUrl",
+      "own"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 6,
+    "supprimees": 7,
+    "total": 13
+  },
+  "preuve": {
+    "avant": "const own = me?.profileImageUrl ?? \"\";",
+    "apres": "const url = me?.profileImageUrl || me?.imageUrl || clerkImageUrl || \"\";"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> f0f2ed0e1c4068c7b7cb53a45043f75f515f5c8f"
+}

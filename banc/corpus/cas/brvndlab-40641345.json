@@ -1,0 +1,53 @@
+{
+  "id": "brvndlab-40641345",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "bd39dbf6182b4db0535055d64c585f2f8545bec3",
+  "commit_repare": "4064134588caa9603f5b83ca3f7460a830ae0bb0",
+  "date": "2026-07-07",
+  "message_humain": "fix(avatar): n'afficher QUE ta photo Brvndlab, jamais l'avatar Clerk au chargement. Le cache (lu par le <head> avant paint) ne contient plus QUE profileImageUrl (photo uploadee), jamais la photo Clerk. Nouvelle cle bvh.av2 pour abandonner l'ancien cache pollue par une photo Clerk. La photo Clerk reste seulement un repli d'affichage APRES chargement, pour les comptes sans upload; jamais cachee ni montree pendant le chargement -> zero flash Clerk",
+  "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+  "famille_proposee": "NOUVELLE:ETAT_TRANSITOIRE_TROMPEUR",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le cache contenait la photo du fournisseur d'identite : au rafraichissement l'utilisateur voyait cet avatar une fraction de seconde avant sa vraie photo.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/lib/avatar.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/avatar.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      1,
+      5,
+      8,
+      19,
+      25,
+      30,
+      35,
+      37
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/avatar.ts": [
+      "Avatar",
+      "sans",
+      "flash",
+      "DERNI",
+      "photo",
+      "connue",
+      "est",
+      "mise"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 20,
+    "total": 56
+  },
+  "preuve": {
+    "avant": "const fresh = me?.profileImageUrl ?? me?.imageUrl ?? clerkImageUrl ?? \"\";",
+    "apres": "const own = me?.profileImageUrl ?? \"\";"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> bd39dbf6182b4db0535055d64c585f2f8545bec3"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "brvndlab-8e48f6d5",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6b5eff172a2ce4f94a0f3c6467f1c4b28e80ad40",
+  "commit_repare": "8e48f6d59c78eeecfe5c2057c1b224b51ecf3ea2",
+  "date": "2026-07-15",
+  "message_humain": "fix(brand-os): cap serveur du module Style (3 tons max, débit unique)",
+  "famille": "ENTREE_NON_VALIDEE",
+  "famille_proposee": "ENTREE_NON_VALIDEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Les plafonds promis par l'écran (3 tons, un seul débit) n'existaient qu'au navigateur : le serveur enregistrait n'importe quelle liste.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      512,
+      524,
+      531
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "saveResponse",
+      "mutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 22,
+    "supprimees": 2,
+    "total": 24
+  },
+  "preuve": {
+    "avant": "await ctx.db.patch(existing._id, { answer: args.answer, updatedAt: now });",
+    "apres": "if (args.moduleSlug === \"style\" && (args.questionId === \"tons\" || args.questionId === \"debit\")) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6b5eff172a2ce4f94a0f3c6467f1c4b28e80ad40"
+}

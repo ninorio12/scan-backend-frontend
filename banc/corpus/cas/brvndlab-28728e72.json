@@ -1,0 +1,50 @@
+{
+  "id": "brvndlab-28728e72",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "2cc0fb4002fb5df170677fa30cfe3275625facc3",
+  "commit_repare": "28728e7284699e0f2a7c3c596bb84827803bb29a",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): garde-fou ANTI-RABOTAGE - un champ deja nourri ne peut pas etre remplace par une version amputee de moitie (sauf demande explicite de l'utilisateur). Le Brand OS des clients est du vrai travail, l'IA l'enrichit sans jamais le detruire",
+  "famille": "PERTE_IRREVERSIBLE",
+  "famille_proposee": "PERTE_IRREVERSIBLE",
+  "familles_secondaires": [
+    "ETAT_ECRASE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un texte long écrit par le client pouvait être remplacé par une version amputée de moitié, sans qu'il ait rien demandé.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      412,
+      435,
+      439
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "remplis",
+      "que",
+      "mati",
+      "puis",
+      "CRIS",
+      "MIEUX",
+      "vers",
+      "rien"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 9,
+    "total": 45
+  },
+  "preuve": {
+    "avant": "if (b.kind !== \"options\" || !p || Array.isArray(p)) continue;",
+    "apres": "if (before.length >= 120 && after.length < before.length * 0.5) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 2cc0fb4002fb5df170677fa30cfe3275625facc3"
+}

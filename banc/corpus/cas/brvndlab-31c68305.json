@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-31c68305",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "46ac40b06115ee53abb9034c7c608609250097ef",
+  "commit_repare": "31c683058c2faaa72554b59b713e20d5895db643",
+  "date": "2026-07-12",
+  "message_humain": "fix(analytics): source unique d'audience + scope compte + vide honnete",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "LOCATAIRE",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un collaborateur ouvrait Analytics et trouvait tout vide, alors que l'accueil du même compte affichait bien les données : les requêtes filtraient sur la personne connectée au lieu du compte.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/analytics.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/analytics.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/analytics.ts": [
+      3,
+      23,
+      135,
+      197
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/analytics.ts": [
+      "convex",
+      "values",
+      "getPlatformAnalytics",
+      "query",
+      "getYouTubeVideoDetail",
+      "getDashboardAnalytics",
+      "identity",
+      "clerkUserId"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 16,
+    "supprimees": 10,
+    "total": 26
+  },
+  "preuve": {
+    "avant": "const clerkUserId = identity.subject;",
+    "apres": "const clerkUserId = await resolveOwnerClerkUserId(ctx);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 46ac40b06115ee53abb9034c7c608609250097ef"
+}

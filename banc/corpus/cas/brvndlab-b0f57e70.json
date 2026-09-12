@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-b0f57e70",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "ea8e1825bc4ce173746d6503e654c2ef57acd09e",
+  "commit_repare": "b0f57e7035491af03928d805febbf52fd7b4421f",
+  "date": "2026-07-09",
+  "message_humain": "fix(analytics/youtube): benchmark — activité 30 jours + libellés courts",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "PERIODE_DIVERGENTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Dans le benchmark, l'activité d'une chaîne était une moyenne lissée sur 90 jours : une chaîne arrêtée depuis des semaines paraissait encore active, et les lignes déjà rafraîchies gardaient l'ancienne formule à côté de la nouvelle.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1528,
+      1545,
+      1549,
+      1729
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "fetchYtChannel",
+      "query",
+      "param",
+      "string",
+      "value",
+      "key",
+      "stri",
+      "competitorVideoMetrics"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 12,
+    "supprimees": 6,
+    "total": 18
+  },
+  "preuve": {
+    "avant": "const freq = dates.length > 0 ? Math.round((recentCount / 3) * 10) / 10 : null;",
+    "apres": "const freq = dates.length > 0 ? dates.filter((d) => Date.now() - d <= 30 * 24 * 3600 * 1000).length : null;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> ea8e1825bc4ce173746d6503e654c2ef57acd09e"
+}

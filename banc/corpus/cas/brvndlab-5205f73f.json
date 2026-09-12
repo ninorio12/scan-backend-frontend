@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-5205f73f",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "683ca43f06ec4855b7efe1dac2ce06625917e92d",
+  "commit_repare": "5205f73f420c950402f41872e0465fc5dc4dbdd0",
+  "date": "2026-07-16",
+  "message_humain": "fix(dictée): pas d'intro \"Voici mes points\" avant une liste",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "La mise en forme d'une dictée ajoutait une phrase jamais prononcée avant les listes (« Voici mes points ») : du texte inventé se retrouvait dans le champ de l'utilisateur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/punctuate/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/punctuate/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      30
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      "Ton",
+      "travail",
+      "uniquement",
+      "rendre",
+      "lisible"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "mets une liste : un tiret \"- \" par ligne, un élément par ligne ;",
+    "apres": "Tu commences DIRECTEMENT par le premier tiret, SANS phrase d'introduction"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 683ca43f06ec4855b7efe1dac2ce06625917e92d"
+}

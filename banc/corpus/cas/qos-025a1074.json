@@ -1,0 +1,42 @@
+{
+  "id": "qos-025a1074",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "2426e182c21f6ec7dc9ff8197f97be29df1a79f3",
+  "commit_repare": "025a1074e31850a743ceb602008cfa367f1b0466",
+  "date": "2026-06-11",
+  "message_humain": "fix(agents): n'exposer que les comptes machine (type=agent) dans le roster, pas les os_agents legacy",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "LOCATAIRE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La liste des agents affichait aussi d'anciennes lignes historiques de la même table, faute de filtre sur le type : des comptes fantômes apparaissaient à côté des vrais.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/agents.ts"
+  ],
+  "fichier_fautif": "convex/agents.ts",
+  "lignes_avant": {
+    "convex/agents.ts": [
+      145,
+      147
+    ]
+  },
+  "symboles": {
+    "convex/agents.ts": [
+      "list",
+      "query",
+      "agents"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 3,
+    "supprimees": 2,
+    "total": 5
+  },
+  "preuve": {
+    "avant": "    const agents = await ctx.db.query(\"os_agents\")",
+    "apres": "    const agents = all.filter((a) => a.type === \"agent\")"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 2426e182c21f6ec7dc9ff8197f97be29df1a79f3"
+}

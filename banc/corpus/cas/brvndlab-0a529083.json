@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-0a529083",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "47b19e9d6956f506ccb742cd390fe8b0f66e08d3",
+  "commit_repare": "0a529083fb3fd3b31e250875b8144c833400170b",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/valeurs): plancher de 3 valeurs cochees avant que l'IA passe aux explications (un bloc de cases etait 'servi' des 1 case : elle redigeait avec 2 valeurs sur 5) + chaque explication ne parle que de SA valeur (une scene d'integrite atterrissait dans le texte de la discipline)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:ETAPE_VALIDEE_TROP_TOT",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le bloc des valeurs était considéré comme terminé dès une seule case cochée : les explications étaient rédigées avec deux valeurs sur cinq.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      36,
+      251,
+      327
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "BlockSpec",
+      "POST",
+      "request",
+      "NextRequest",
+      "prochaine",
+      "question",
+      "porte",
+      "sur"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 7,
+    "supprimees": 2,
+    "total": 9
+  },
+  "preuve": {
+    "avant": "if (b.kind === \"options\") return Array.isArray(v) ? v.length >= 1 : false;",
+    "apres": "if (b.kind === \"options\") return Array.isArray(v) ? v.length >= (b.min ?? 1) : false;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 47b19e9d6956f506ccb742cd390fe8b0f66e08d3"
+}

@@ -113,7 +113,10 @@ Trois pièces, dans cet ordre de rendement.
 
 **1. Refuser les contournements, avant exécution.** C'est la seule qui change vraiment le
 résultat : elle ferme les portes que le modèle emprunte réellement quand on lui demande
-d'aller vite. Voir `modeles/hooks/no-weakening.sh`.
+d'aller vite. Un hook `PreToolUse` sur `Bash` qui sort en **code 2** dès qu'une commande
+porte `--no-verify`, `git stash`, `--force`, `--auto-approve`, `SKIP_*=1`, ou qu'elle
+réécrit un fichier de test pendant une correction. Le skill n'en livre pas : il n'a pas
+été éprouvé ici, et une barrière jamais vue bloquer n'est pas une barrière (piège n°1).
 
 **2. Le retour immédiat après édition.** `PostToolUse` avec sortie en code 2 : le modèle
 voit l'erreur de typage sur le fichier qu'il vient d'écrire, à chaud. Ça ne bloque pas,

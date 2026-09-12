@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-d5e48b1c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "e5e09b1a8e1878fd72e280a878167a4c876cf8d8",
+  "commit_repare": "d5e48b1c0fc0741ab307955a9fd445ce3f18065d",
+  "date": "2026-07-08",
+  "message_humain": "fix(social): syncConnections remplit youtubeChannelLinks cote serveur (YouTube connecte fiable)",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Après avoir connecté YouTube, le bouton restait bloqué sur « Connecter » et le KPI d'audience restait vide : le seul enregistrement de la chaîne passait par un appel client avalé silencieusement.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      127
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "syncConnections",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 43,
+    "supprimees": 0,
+    "total": 43
+  },
+  "preuve": {
+    "avant": "(ajout pur : le remplissage de youtubeChannelLinks n'existait que côté client, en .catch muet)",
+    "apres": "await ctx.runMutation(internal.youtubeChannels._saveChannel, {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> e5e09b1a8e1878fd72e280a878167a4c876cf8d8"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "brvndlab-6af25a33",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "80ae1f5db3ce1c6107cc2918df0f7f83c3632534",
+  "commit_repare": "6af25a33ba55c5b935f41a2982eff2d797cfd038",
+  "date": "2026-06-22",
+  "message_humain": "fix(moteur): brandOsOnly coherent avec allowedModules (sinon parcours disparait)",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un compte avec accès élargi module par module voyait quand même sa barre latérale réduite au strict minimum et tout son parcours disparaître : deux critères différents décidaient du même périmètre.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/collaborators.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/collaborators.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/collaborators.ts": [
+      270,
+      273
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/collaborators.ts": [
+      "getActiveContext",
+      "query"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 1,
+    "total": 9
+  },
+  "preuve": {
+    "avant": "? access.accessType === \"brand_os_only\"",
+    "apres": "(!access.allowedModules || access.allowedModules.length === 0)"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 80ae1f5db3ce1c6107cc2918df0f7f83c3632534"
+}

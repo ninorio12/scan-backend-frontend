@@ -1,0 +1,50 @@
+{
+  "id": "brvndlab-da5130ae",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "29a3d532eb083fc1fb08c47dd6f75889171b40db",
+  "commit_repare": "da5130aece49cfd74c0542309bba5b4c87404a9b",
+  "date": "2026-07-29",
+  "message_humain": "fix(refonte): le chat voit le script ACTUEL en temps réel, pas l'original",
+  "famille": "ETAT_PERIME",
+  "famille_proposee": "NOUVELLE:ETAT_PERIME",
+  "familles_secondaires": [
+    "DEFINITION_DOUBLE"
+  ],
+  "famille_connue": false,
+  "symptome": "Dans le panneau de refonte, l'assistant niait les corrections pourtant visibles à l'écran : on lui envoyait le texte brut de génération, jamais la version corrigée à la main.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/refonte-content/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/refonte-content/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/refonte-content/route.ts": [
+      99,
+      154,
+      210
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/refonte-content/route.ts": [
+      "Block",
+      "POST",
+      "req",
+      "NextRequest",
+      "CONTENU",
+      "ACTUEL",
+      "blocks",
+      "length"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 5,
+    "supprimees": 1,
+    "total": 6
+  },
+  "preuve": {
+    "avant": ".map((b, i) => `[${i}] ${b.label}\\n${b.content}`)",
+    "apres": "edited?: boolean;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 29a3d532eb083fc1fb08c47dd6f75889171b40db"
+}

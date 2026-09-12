@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-e6ea24a3",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "ab8e46f8a9de5088d736cc81a2e16f2fe2373dd9",
+  "commit_repare": "e6ea24a36293bae1e9b61a1a88d7f92268abf324",
+  "date": "2026-07-26",
+  "message_humain": "fix(brand-os): complétion cohérente — audience-sig exclu, Personnalité comptée",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le module Personnalité s'affichait toujours « terminé », même entièrement vide : le nombre de réponses attendues était fixé à zéro, donc la condition d'achèvement était vraie d'office.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/brandOs.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/brandOs.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/brandOs.ts": [
+      586,
+      638,
+      644,
+      689
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/brandOs.ts": [
+      "MODULE_QUESTION_COUNTS",
+      "Record",
+      "string",
+      "number",
+      "countBrandOsDone",
+      "personnaliteResponses",
+      "personnaliteNonEmpty"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 17,
+    "supprimees": 30,
+    "total": 47
+  },
+  "preuve": {
+    "avant": "personnalite: 0,",
+    "apres": "personnalite: 4,"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> ab8e46f8a9de5088d736cc81a2e16f2fe2373dd9"
+}

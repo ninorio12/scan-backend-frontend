@@ -1,0 +1,40 @@
+{
+  "id": "brvndlab-45285d6c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "b760908300b500148767e834438564a4793a7fff",
+  "commit_repare": "45285d6c1588a7d9a52a52f666954a4fc05b8a28",
+  "date": "2026-05-27",
+  "message_humain": "Fix: Use relative URL for hermes-proxy API calls in production",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Toutes les fonctions passant par le client interne d'IA tombaient en erreur en production : l'appel visait une adresse locale de développement absente du serveur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/lib/hermes-client.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/lib/hermes-client.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/lib/hermes-client.ts": [
+      77
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/lib/hermes-client.ts": [
+      "callHermes",
+      "response"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "const response = await fetch('http://localhost:3000/api/hermes-proxy', {",
+    "apres": "const response = await fetch('/api/hermes-proxy', {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> b760908300b500148767e834438564a4793a7fff"
+}

@@ -60,7 +60,7 @@
     },
     {
       "regle": "D1",
-      "motif": "+41 22 501 40 12",
+      "motif": "+41 22 000 00 00",
       "verdict": "vrai",
       "preuve": "app/modules/proprietaires/page.tsx:133 defaultValue : un numéro de maquette pré-rempli en production"
     },

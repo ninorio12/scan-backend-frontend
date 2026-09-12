@@ -124,7 +124,7 @@ sans garde mécanique, une sauvegarde à l'intérieur du périmètre détruit.
 ## J · LA REDONDANCE : le pôle du câblage qu'on visait mal
 
 Sur un grand corpus de changements publics, la duplication a monté de 81 % et la
-réutilisation baissé de 35 % (`ce-que-dit-le-terrain.md`). Le défaut dominant n'est pas
+réutilisation baissé de 35 % (`recherche-terrain.md`, partie 1). Le défaut dominant n'est pas
 « rien n'appelle cette fonction », c'est « deux choses font la même chose différemment ».
 
 75. Deux implémentations de la même règle métier ⏳ (outil de facto : `jscpd`)

@@ -1,0 +1,4048 @@
+{
+  "graine": 20260912,
+  "n": 140,
+  "m": [
+    {
+      "id": "brvndlab-00772923",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 30004
+    },
+    {
+      "id": "brvndlab-01d09207",
+      "depot": "brvndlab",
+      "famille": "ACCES_NON_AUTORISE",
+      "erreur": null,
+      "nItems": 910,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "B1",
+        "C1",
+        "C4",
+        "G4",
+        "G6",
+        "H2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C4",
+        "C6",
+        "G4",
+        "G6",
+        "H2"
+      ],
+      "extraits": [
+        "B1  query          aiUsage.getDailyCountForUser  (convex/aiUsage.ts:49)",
+        "B1  query          aiUsage.getCostSummary  (convex/aiUsage.ts:172)",
+        "B1  query          aiUsage.getCostByFeature  (convex/aiUsage.ts:225)"
+      ],
+      "disparition": true,
+      "nApres": 7,
+      "disparition_stricte": true,
+      "ms": 51182
+    },
+    {
+      "id": "brvndlab-03a5d372",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 788,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "C6",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          brandOs.getVideoProgress  (convex/brandOs.ts:84)",
+        "A1  query          brandOs.getClientResponses  (convex/brandOs.ts:589)",
+        "B1  query          brandOs.listVideoDefinitions  (convex/brandOs.ts:21)"
+      ],
+      "disparition": true,
+      "nApres": 8,
+      "disparition_stricte": false,
+      "ms": 46822
+    },
+    {
+      "id": "brvndlab-03cc11c9",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 863,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1b",
+        "C5",
+        "D6"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 21402
+    },
+    {
+      "id": "brvndlab-046ffc6f",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1120,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 37003
+    },
+    {
+      "id": "brvndlab-0a529083",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1111,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "B2",
+        "C1b",
+        "C8",
+        "F1",
+        "F3",
+        "F4",
+        "H5",
+        "I2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 35173
+    },
+    {
+      "id": "brvndlab-0e374041",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 994,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C4"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "C4  messageGroups.listMyGroups  (convex/messageGroups.ts:69)",
+        "C4  messageGroups.getGroup  (convex/messageGroups.ts:168)"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 45398
+    },
+    {
+      "id": "brvndlab-0e708582",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A5",
+        "B2",
+        "C5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 36826
+    },
+    {
+      "id": "brvndlab-11fa09f6",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 746,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/app/api/generate-script/route.ts:307  catch { return null; }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 35997
+    },
+    {
+      "id": "brvndlab-15610a41",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "C4",
+        "G4"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "C6",
+        "C9",
+        "E5",
+        "G4",
+        "G6"
+      ],
+      "extraits": [
+        "B1  mutation       integrations.upsertIntegrationFromServer  (convex/integrations.ts:14)",
+        "B1  query          integrations.getByWebhookSecretFromServer  (convex/integrations.ts:78)",
+        "B1  query          integrations.getMineFullByProvider  (convex/integrations.ts:93)"
+      ],
+      "disparition": true,
+      "nApres": 13,
+      "disparition_stricte": false,
+      "ms": 63670
+    },
+    {
+      "id": "brvndlab-17a7f4fc",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "E2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 44783
+    },
+    {
+      "id": "brvndlab-1a4606e6",
+      "depot": "brvndlab",
+      "famille": "ETAT_PREEXISTANT_IGNORE",
+      "erreur": null,
+      "nItems": 1167,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 45572
+    },
+    {
+      "id": "brvndlab-1c5a5876",
+      "depot": "brvndlab",
+      "famille": "ETAT_PREEXISTANT_IGNORE",
+      "erreur": null,
+      "nItems": 815,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 23827
+    },
+    {
+      "id": "brvndlab-1de85fb1",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 919,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C1c",
+        "H3"
+      ],
+      "reglesLoc": [
+        "C1c",
+        "C1b",
+        "H3"
+      ],
+      "extraits": [
+        "C1c  src/app/api/generate-script/route.ts:228  catch qui répond un succès : // Pas de JSON exploitable : on renvoie le texte ",
+        "C1c  src/app/api/generate-story/route.ts:141  catch qui répond un succès : return NextResponse.json({ message: res.text.trim(",
+        "H3  src/app/api/generate-story/route.ts  « json » appelée 2× avec des périodes différentes dans le même corps :\n         lig"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": true,
+      "ms": 54080
+    },
+    {
+      "id": "brvndlab-24623bc0",
+      "depot": "brvndlab",
+      "famille": "PLANIFIE_INERTE",
+      "erreur": null,
+      "nItems": 910,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 29944
+    },
+    {
+      "id": "brvndlab-25c601d8",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1296,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "H5"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [
+        "H5  « limite » vaut 2 valeurs différentes : 50 (convex/customDomains.ts:259) · 2 (src/app/api/brand-os/interview/route.ts:10"
+      ],
+      "disparition": true,
+      "nApres": 0,
+      "disparition_stricte": true,
+      "ms": 84555
+    },
+    {
+      "id": "brvndlab-28728e72",
+      "depot": "brvndlab",
+      "famille": "PERTE_IRREVERSIBLE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 37739
+    },
+    {
+      "id": "brvndlab-28b0a125",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 854,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 25669
+    },
+    {
+      "id": "brvndlab-28fa8a66",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1303,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 82329
+    },
+    {
+      "id": "brvndlab-2d8b8d59",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1c"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1c"
+      ],
+      "extraits": [
+        "C1c  src/app/api/punctuate/route.ts:78  catch qui répond un succès : // Budget dépassé ou erreur IA : la dictée reste utilisa"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 71289
+    },
+    {
+      "id": "brvndlab-31c68305",
+      "depot": "brvndlab",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 1094,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C4",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B3",
+        "B4",
+        "C1",
+        "C1c",
+        "C1b",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "C9",
+        "E2",
+        "E3",
+        "E5",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "H2",
+        "H3",
+        "H5",
+        "I2"
+      ],
+      "extraits": [
+        "C4  analytics.getDashboardAnalytics  (convex/analytics.ts:191)",
+        "E2  convex/analytics.ts:36  lit « contentItems » sans filtrer sur isShort",
+        "E2  convex/analytics.ts:140  lit « contentItems » sans filtrer sur isShort"
+      ],
+      "disparition": true,
+      "nApres": 6,
+      "disparition_stricte": false,
+      "ms": 51616
+    },
+    {
+      "id": "brvndlab-35645d68",
+      "depot": "brvndlab",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 925,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "B1",
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b"
+      ],
+      "extraits": [
+        "A1  query          _debug.userPhotoByEmail  (convex/_debug.ts:6)",
+        "B1  query          _debug.userPhotoByEmail  (convex/_debug.ts:6)",
+        "C1b  src/lib/avatar.ts:41  catch { /* noop */ }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": true,
+      "ms": 44150
+    },
+    {
+      "id": "brvndlab-37f26ce0",
+      "depot": "brvndlab",
+      "famille": "PORTE_PARALLELE",
+      "erreur": null,
+      "nItems": 850,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/hooks/useSpeechToText.ts:75  catch { // Not supported, will add punctuation p }",
+        "C1b  src/hooks/useSpeechToText.ts:105  catch { /* noop */ }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 28185
+    },
+    {
+      "id": "brvndlab-37f83a1c",
+      "depot": "brvndlab",
+      "famille": "GARDE_EXCESSIVE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "E3"
+      ],
+      "reglesLoc": [
+        "E3"
+      ],
+      "extraits": [
+        "E3  ALLOCATABLE_MODULES (convex/modules.ts:16) et CREATION_ITEMS (src/components/AppSidebar.tsx:93) : absent du second : /pi",
+        "E3  ALLOCATABLE_MODULES (convex/modules.ts:16) et COLLABORATOR_PRODUCTION_ITEMS (src/components/AppSidebar.tsx:114) : absent",
+        "E3  ALLOCATABLE_MODULES (convex/modules.ts:16) et COLLABORATOR_STRATEGIC_ITEMS (src/components/AppSidebar.tsx:135) : absent "
+      ],
+      "disparition": true,
+      "nApres": 5,
+      "disparition_stricte": true,
+      "ms": 62935
+    },
+    {
+      "id": "brvndlab-3c33700a",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1296,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 40153
+    },
+    {
+      "id": "brvndlab-3ec340b0",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 920,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 30699
+    },
+    {
+      "id": "brvndlab-40641345",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 921,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/lib/avatar.ts:26  catch { /* noop */ }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 41593
+    },
+    {
+      "id": "brvndlab-45285d6c",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 724,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 16704
+    },
+    {
+      "id": "brvndlab-4610eb94",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 48735
+    },
+    {
+      "id": "brvndlab-47533440",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 858,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 22639
+    },
+    {
+      "id": "brvndlab-4a0cff9c",
+      "depot": "brvndlab",
+      "famille": "UNITE_DIVERGENTE",
+      "erreur": null,
+      "nItems": 1118,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "D6",
+        "H2"
+      ],
+      "extraits": [
+        "B1  action         instagramAnalytics.getMyInstagramStats  (convex/instagramAnalytics.ts:538)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 56763
+    },
+    {
+      "id": "brvndlab-5205f73f",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B2"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1c"
+      ],
+      "extraits": [
+        "B2  POST /api/punctuate  (src/app/api/punctuate/route.ts:37)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 53349
+    },
+    {
+      "id": "brvndlab-5361acf2",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 921,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/lib/avatar.ts:35  catch { /* noop */ }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 37005
+    },
+    {
+      "id": "brvndlab-53cc9c79",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1243,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          brandOs.getVideoProgress  (convex/brandOs.ts:88)",
+        "A1  query          brandOs.getClientResponses  (convex/brandOs.ts:709)",
+        "B1  query          brandOs.getVideoProgress  (convex/brandOs.ts:88)"
+      ],
+      "disparition": true,
+      "nApres": 6,
+      "disparition_stricte": false,
+      "ms": 68738
+    },
+    {
+      "id": "brvndlab-56c95c4d",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 1009,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "E2",
+        "G4"
+      ],
+      "extraits": [
+        "A1  internalMutation social._setSecret  (convex/social.ts:739)",
+        "C1b  convex/social.ts:238  catch { /* non-json */ }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 48350
+    },
+    {
+      "id": "brvndlab-594e4e0e",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 38918
+    },
+    {
+      "id": "brvndlab-59e7191a",
+      "depot": "brvndlab",
+      "famille": "ACTION_MUETTE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [
+        "C1b  src/app/api/brand-os/interview/route.ts:113  catch { return null; }",
+        "C1b  src/app/api/brand-os/interview/route.ts:163  catch { /* patch illisible : on garde juste le m }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 57745
+    },
+    {
+      "id": "brvndlab-5a80e956",
+      "depot": "brvndlab",
+      "famille": "PERIODE_DIVERGENTE",
+      "erreur": null,
+      "nItems": 997,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2",
+        "F3"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:992)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 51002
+    },
+    {
+      "id": "brvndlab-5cec4526",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1100,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 35135
+    },
+    {
+      "id": "brvndlab-5e38666d",
+      "depot": "brvndlab",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 796,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "D5",
+        "E2",
+        "G6"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:356)",
+        "B1  query          journey.getState  (convex/journey.ts:177)",
+        "B1  mutation       journey.ensureInitialized  (convex/journey.ts:277)"
+      ],
+      "disparition": true,
+      "nApres": 4,
+      "disparition_stricte": true,
+      "ms": 30987
+    },
+    {
+      "id": "brvndlab-64ee457d",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 911,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:914)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 41300
+    },
+    {
+      "id": "brvndlab-65cc0873",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 723,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "C3",
+        "C4",
+        "E2",
+        "G7"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 19871
+    },
+    {
+      "id": "brvndlab-683ca43f",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B2",
+        "C1c"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1c"
+      ],
+      "extraits": [
+        "B2  POST /api/punctuate  (src/app/api/punctuate/route.ts:32)",
+        "C1c  src/app/api/punctuate/route.ts:57  catch qui répond un succès : // Budget dépassé ou erreur IA : la dictée reste utilisa"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": true,
+      "ms": 67910
+    },
+    {
+      "id": "brvndlab-68ee909f",
+      "depot": "brvndlab",
+      "famille": "VOCABULAIRE",
+      "erreur": null,
+      "nItems": 1491,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "C1b",
+        "C5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 66788
+    },
+    {
+      "id": "brvndlab-6a6e3787",
+      "depot": "brvndlab",
+      "famille": "FILTRE_TEXTE_INEXACT",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A5",
+        "B2"
+      ],
+      "reglesLoc": [
+        "A5",
+        "B2"
+      ],
+      "extraits": [
+        "A5  GROQ_API_KEY                       src/app/api/transcribe/route.ts:9",
+        "B2  POST /api/transcribe  (src/app/api/transcribe/route.ts:44)"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 61159
+    },
+    {
+      "id": "brvndlab-6af25a33",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 800,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:374)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 32732
+    },
+    {
+      "id": "brvndlab-6df62e7a",
+      "depot": "brvndlab",
+      "famille": "GESTE_INERTE",
+      "erreur": null,
+      "nItems": 923,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/hooks/usePullToRefresh.ts:69  catch {  }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 44125
+    },
+    {
+      "id": "brvndlab-7039aad7",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 995,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "C1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:992)",
+        "C1  convex/social.ts:1835  catch { /* optionnel */ }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 56231
+    },
+    {
+      "id": "brvndlab-71e261ff",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1098,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "H5"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [
+        "H5  « limite » vaut 2 valeurs différentes : 50 (convex/customDomains.ts:259) · 2 (src/app/api/brand-os/interview/route.ts:20"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 50565
+    },
+    {
+      "id": "brvndlab-7509b559",
+      "depot": "brvndlab",
+      "famille": "ORDRE_IMPLICITE",
+      "erreur": null,
+      "nItems": 1009,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "C5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:939)",
+        "C5  convex/social.ts:99  appel externe sans filet"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 46444
+    },
+    {
+      "id": "brvndlab-76eb583c",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1010,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C4"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "C4  messageGroups.listMyGroups  (convex/messageGroups.ts:69)",
+        "C4  messageGroups.getGroup  (convex/messageGroups.ts:168)"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 47463
+    },
+    {
+      "id": "brvndlab-77d7b3ae",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1111,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 39446
+    },
+    {
+      "id": "brvndlab-796c02b9",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 1010,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       coach.addClient  (convex/coach.ts:58)",
+        "A1  mutation       coach.updateClientStatus  (convex/coach.ts:78)"
+      ],
+      "disparition": false,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 47665
+    },
+    {
+      "id": "brvndlab-7aaeb419",
+      "depot": "brvndlab",
+      "famille": "VOCABULAIRE",
+      "erreur": null,
+      "nItems": 1026,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1"
+      ],
+      "extraits": [
+        "B1  query          angles.getById  (convex/angles.ts:32)",
+        "B1  query          angles.listNeedingBackfill  (convex/angles.ts:212)",
+        "B1  query          angles.listFolders  (convex/angles.ts:287)"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": false,
+      "ms": 73457
+    },
+    {
+      "id": "brvndlab-7bb39e2e",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 858,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 27011
+    },
+    {
+      "id": "brvndlab-7c71327e",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1403,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C3",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       contentItems.dedupeAngleContents  (convex/contentItems.ts:194)",
+        "A1  query          contentItems.previewDedupe  (convex/contentItems.ts:245)",
+        "A1  query          contentItems.previewDedupeByEmail  (convex/contentItems.ts:286)"
+      ],
+      "disparition": true,
+      "nApres": 16,
+      "disparition_stricte": false,
+      "ms": 89003
+    },
+    {
+      "id": "brvndlab-7ce6a643",
+      "depot": "brvndlab",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 1027,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B3",
+        "B4",
+        "C1",
+        "C1c",
+        "C1b",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "C9",
+        "E2",
+        "E3",
+        "E5",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "H2",
+        "H3",
+        "H5",
+        "I2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 45742
+    },
+    {
+      "id": "brvndlab-7ecc8d15",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 911,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:914)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 49009
+    },
+    {
+      "id": "brvndlab-7f6d7b10",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 866,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 28613
+    },
+    {
+      "id": "brvndlab-7fc6a27c",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 42954
+    },
+    {
+      "id": "brvndlab-80a2a1dd",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1402,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C3",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          contentItems.previewDedupe  (convex/contentItems.ts:243)",
+        "A1  query          contentItems.previewDedupeByEmail  (convex/contentItems.ts:284)",
+        "A1  query          contentItems.listUpcoming  (convex/contentItems.ts:348)"
+      ],
+      "disparition": true,
+      "nApres": 16,
+      "disparition_stricte": false,
+      "ms": 77069
+    },
+    {
+      "id": "brvndlab-80ae1f5d",
+      "depot": "brvndlab",
+      "famille": "GARDE_EXCESSIVE",
+      "erreur": null,
+      "nItems": 800,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:356)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 42797
+    },
+    {
+      "id": "brvndlab-83071372",
+      "depot": "brvndlab",
+      "famille": "TYPE_DIVERGENT",
+      "erreur": null,
+      "nItems": 1384,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 41550
+    },
+    {
+      "id": "brvndlab-87b33321",
+      "depot": "brvndlab",
+      "famille": "CONTRAT",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:452)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 68697
+    },
+    {
+      "id": "brvndlab-89d96ac8",
+      "depot": "brvndlab",
+      "famille": "CODE_MORT",
+      "erreur": null,
+      "nItems": 910,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "B1",
+        "G7"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A3",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "C6",
+        "C8",
+        "C9",
+        "E2",
+        "E5",
+        "G7"
+      ],
+      "extraits": [
+        "A1  mutation       tracking.clearAllMyLinks  (convex/tracking.ts:151)",
+        "A1  mutation       tracking.recordConversion  (convex/tracking.ts:252)",
+        "A1  query          tracking.listLinks  (convex/tracking.ts:349)"
+      ],
+      "disparition": true,
+      "nApres": 5,
+      "disparition_stricte": true,
+      "ms": 41308
+    },
+    {
+      "id": "brvndlab-8e48f6d5",
+      "depot": "brvndlab",
+      "famille": "ENTREE_NON_VALIDEE",
+      "erreur": null,
+      "nItems": 1172,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       brandOs.createVideoDefinition  (convex/brandOs.ts:36)",
+        "A1  mutation       brandOs.deleteVideoDefinition  (convex/brandOs.ts:76)",
+        "A1  mutation       brandOs.recordVideoWatch  (convex/brandOs.ts:109)"
+      ],
+      "disparition": true,
+      "nApres": 10,
+      "disparition_stricte": true,
+      "ms": 84749
+    },
+    {
+      "id": "brvndlab-8e4d2d90",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 920,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 22269
+    },
+    {
+      "id": "brvndlab-966a41ba",
+      "depot": "brvndlab",
+      "famille": "RATTRAPAGE_INERTE",
+      "erreur": null,
+      "nItems": 1351,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 55694
+    },
+    {
+      "id": "brvndlab-9fcec5ae",
+      "depot": "brvndlab",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 910,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "A5",
+        "B1",
+        "B3",
+        "C1",
+        "C1b",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "E2",
+        "G4"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B3",
+        "B4",
+        "C1",
+        "C1c",
+        "C1b",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "C9",
+        "D6",
+        "E2",
+        "E3",
+        "E5",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "H2",
+        "H3",
+        "H5",
+        "I2"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:399)",
+        "A1  mutation       instagramTokens.saveFromServer  (convex/instagramTokens.ts:9)",
+        "A1  internalAction social._importForUser  (convex/social.ts:696)"
+      ],
+      "disparition": true,
+      "nApres": 81,
+      "disparition_stricte": true,
+      "ms": 44194
+    },
+    {
+      "id": "brvndlab-a1a62e8b",
+      "depot": "brvndlab",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 768,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "D5",
+        "E2",
+        "G6"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:336)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 37232
+    },
+    {
+      "id": "brvndlab-a37a433a",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1476,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 53137
+    },
+    {
+      "id": "brvndlab-a6bee763",
+      "depot": "brvndlab",
+      "famille": "CONTRAT",
+      "erreur": null,
+      "nItems": 854,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 22780
+    },
+    {
+      "id": "brvndlab-a6d2ffd9",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 51482
+    },
+    {
+      "id": "brvndlab-ab8e46f8",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1280,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E2",
+        "F1",
+        "F3",
+        "F4"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 51974
+    },
+    {
+      "id": "brvndlab-aee1f827",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1184,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "C5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:1051)",
+        "A1  action         social.getCompetitorChannel  (convex/social.ts:1666)",
+        "C5  convex/social.ts:1613  appel externe sans filet"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": false,
+      "ms": 73793
+    },
+    {
+      "id": "brvndlab-aff94ea3",
+      "depot": "brvndlab",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 1489,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "E2",
+        "H1"
+      ],
+      "extraits": [
+        "A1  internalMutation contentMetrics.recordAccountSnapshotInternal  (convex/contentMetrics.ts:361)",
+        "A1  internalMutation contentMetrics.purgeOrphanMetrics  (convex/contentMetrics.ts:596)",
+        "A1  internalMutation social._setSecret  (convex/social.ts:879)"
+      ],
+      "disparition": true,
+      "nApres": 8,
+      "disparition_stricte": true,
+      "ms": 107702
+    },
+    {
+      "id": "brvndlab-b048ab87",
+      "depot": "brvndlab",
+      "famille": "CASCADE_MANQUANTE",
+      "erreur": null,
+      "nItems": 1090,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          contentMetrics.getLatestForContent  (convex/contentMetrics.ts:214)",
+        "A1  query          contentMetrics.getTimeSeriesForContent  (convex/contentMetrics.ts:229)",
+        "A1  query          contentMetrics.listLatestForUser  (convex/contentMetrics.ts:243)"
+      ],
+      "disparition": true,
+      "nApres": 8,
+      "disparition_stricte": false,
+      "ms": 61973
+    },
+    {
+      "id": "brvndlab-b0f57e70",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1002,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "C5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D1b",
+        "E2"
+      ],
+      "extraits": [
+        "B1  query          social.listMine  (convex/social.ts:41)",
+        "B1  query          social.listMyBenchmarkChannels  (convex/social.ts:1764)",
+        "C5  convex/social.ts:1554  appel externe sans filet"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": false,
+      "ms": 47616
+    },
+    {
+      "id": "brvndlab-b1c6cc5d",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 921,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/lib/avatar.ts:38  catch { /* noop */ }"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 44731
+    },
+    {
+      "id": "brvndlab-b311308b",
+      "depot": "brvndlab",
+      "famille": "ETAT_ECRASE",
+      "erreur": null,
+      "nItems": 1102,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 29256
+    },
+    {
+      "id": "brvndlab-b47c87b3",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 917,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C1c",
+        "H3"
+      ],
+      "reglesLoc": [
+        "C1c",
+        "C1b",
+        "H3"
+      ],
+      "extraits": [
+        "C1c  src/app/api/generate-carousel/route.ts:283  catch qui répond un succès : return NextResponse.json({ message: res.text.tr",
+        "H3  src/app/api/generate-carousel/route.ts  « json » appelée 2× avec des périodes différentes dans le même corps :\n         "
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": true,
+      "ms": 53925
+    },
+    {
+      "id": "brvndlab-b561dfbf",
+      "depot": "brvndlab",
+      "famille": "CONTRAT",
+      "erreur": null,
+      "nItems": 1165,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1"
+      ],
+      "extraits": [
+        "B1  query          inspirations.list  (convex/inspirations.ts:57)",
+        "B1  mutation       inspirations.add  (convex/inspirations.ts:96)",
+        "B1  query          inspirations.listTags  (convex/inspirations.ts:275)"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": false,
+      "ms": 56905
+    },
+    {
+      "id": "brvndlab-b68338eb",
+      "depot": "brvndlab",
+      "famille": "PERTE_IRREVERSIBLE",
+      "erreur": null,
+      "nItems": 754,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A2"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 22788
+    },
+    {
+      "id": "brvndlab-bb39780c",
+      "depot": "brvndlab",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 909,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "D6"
+      ],
+      "extraits": [
+        "B1  action         youtubeComments.fetchTopComments  (convex/youtubeComments.ts:27)"
+      ],
+      "disparition": true,
+      "nApres": 0,
+      "disparition_stricte": true,
+      "ms": 45001
+    },
+    {
+      "id": "brvndlab-c148108c",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1b",
+        "H3",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 45260
+    },
+    {
+      "id": "brvndlab-c56c63ef",
+      "depot": "brvndlab",
+      "famille": "ECRITURE_PARTIELLE",
+      "erreur": null,
+      "nItems": 863,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       socialPosts.createPost  (convex/socialPosts.ts:47)",
+        "A1  mutation       socialPosts.updatePost  (convex/socialPosts.ts:76)",
+        "A1  mutation       socialPosts.setStatus  (convex/socialPosts.ts:97)"
+      ],
+      "disparition": true,
+      "nApres": 5,
+      "disparition_stricte": false,
+      "ms": 38014
+    },
+    {
+      "id": "brvndlab-c5c073c0",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C3",
+        "C4",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          collaborators.myAllowedModules  (convex/collaborators.ts:446)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 54201
+    },
+    {
+      "id": "brvndlab-c9f1cac7",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 854,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C1c",
+        "C1b",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "C9",
+        "E2",
+        "E3",
+        "E5",
+        "F2",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "H2",
+        "H3",
+        "H5",
+        "I2"
+      ],
+      "extraits": [
+        "C1b  src/app/api/content/problemes/route.ts:127  catch { /* fallback ci-dessous */ }"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 46895
+    },
+    {
+      "id": "brvndlab-cd22d2b2",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1111,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [
+        "B2  POST /api/brand-os/interview  (src/app/api/brand-os/interview/route.ts:197)",
+        "C1b  src/app/api/brand-os/interview/route.ts:125  catch { return null; }",
+        "C1b  src/app/api/brand-os/interview/route.ts:190  catch { /* patch illisible : on garde juste le m }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": true,
+      "ms": 53470
+    },
+    {
+      "id": "brvndlab-cf359262",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1195,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1c"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1c"
+      ],
+      "extraits": [
+        "C1c  src/app/api/punctuate/route.ts:86  catch qui répond un succès : // Budget dépassé ou erreur IA : la dictée reste utilisa"
+      ],
+      "disparition": true,
+      "nApres": 0,
+      "disparition_stricte": true,
+      "ms": 64898
+    },
+    {
+      "id": "brvndlab-d15668f0",
+      "depot": "brvndlab",
+      "famille": "CONTRAT",
+      "erreur": null,
+      "nItems": 917,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  internalMutation social._setSecret  (convex/social.ts:710)",
+        "A1  action         social.refreshEngagement  (convex/social.ts:944)"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 42862
+    },
+    {
+      "id": "brvndlab-d1d31914",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1299,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 44297
+    },
+    {
+      "id": "brvndlab-d43ad428",
+      "depot": "brvndlab",
+      "famille": "TYPE_DIVERGENT",
+      "erreur": null,
+      "nItems": 1243,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B2",
+        "C1",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 41670
+    },
+    {
+      "id": "brvndlab-d5e48b1c",
+      "depot": "brvndlab",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 994,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "C6",
+        "D6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  action         social.refreshEngagement  (convex/social.ts:949)"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 53767
+    },
+    {
+      "id": "brvndlab-d629176f",
+      "depot": "brvndlab",
+      "famille": "LIEN_EXTERNE_PERISSABLE",
+      "erreur": null,
+      "nItems": 1126,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1",
+        "C1b",
+        "C4",
+        "C6"
+      ],
+      "extraits": [
+        "C1  convex/instagramCapture.ts:305  catch { /* média indisponible : on garde au moin }"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 63768
+    },
+    {
+      "id": "brvndlab-da5130ae",
+      "depot": "brvndlab",
+      "famille": "ETAT_PERIME",
+      "erreur": null,
+      "nItems": 1422,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "H3"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 51420
+    },
+    {
+      "id": "brvndlab-dbea1e72",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1111,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H3",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 40838
+    },
+    {
+      "id": "brvndlab-de87477a",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1402,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C3",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       contentItems.dedupeAngleContents  (convex/contentItems.ts:190)",
+        "A1  query          contentItems.previewDedupe  (convex/contentItems.ts:241)",
+        "A1  query          contentItems.previewDedupeByEmail  (convex/contentItems.ts:282)"
+      ],
+      "disparition": true,
+      "nApres": 14,
+      "disparition_stricte": true,
+      "ms": 91423
+    },
+    {
+      "id": "brvndlab-dfe8f1e6",
+      "depot": "brvndlab",
+      "famille": "SOURCE_PARTIELLE",
+      "erreur": null,
+      "nItems": 1200,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "C1",
+        "C5"
+      ],
+      "extraits": [
+        "C5  src/app/api/auth/instagram/callback/route.ts:129  appel externe sans filet"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 54670
+    },
+    {
+      "id": "brvndlab-e139d9c0",
+      "depot": "brvndlab",
+      "famille": "ACTION_MUETTE",
+      "erreur": null,
+      "nItems": 1003,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "A5",
+        "B1",
+        "C4",
+        "C5",
+        "G4"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1",
+        "C4",
+        "C5",
+        "G4"
+      ],
+      "extraits": [
+        "A1  mutation       instagramTokens.saveFromServer  (convex/instagramTokens.ts:9)",
+        "A1  route          GET /api/auth/instagram/callback  (src/app/api/auth/instagram/callback/route.ts:6)",
+        "A5  INSTAGRAM_APP_ID                   src/app/api/auth/instagram/callback/route.ts:47"
+      ],
+      "disparition": true,
+      "nApres": 11,
+      "disparition_stricte": false,
+      "ms": 61036
+    },
+    {
+      "id": "brvndlab-e43cf8aa",
+      "depot": "brvndlab",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 865,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C5"
+      ],
+      "reglesLoc": [
+        "A5",
+        "C1b",
+        "C5"
+      ],
+      "extraits": [
+        "C5  convex/social.ts:315  appel externe sans filet",
+        "C5  convex/social.ts:358  appel externe sans filet"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 38811
+    },
+    {
+      "id": "brvndlab-e6ea24a3",
+      "depot": "brvndlab",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 1280,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C6",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "C6  convex/brandOs.ts:636  collecte de « brandOsModuleDefinitions » sans index ni limite",
+        "E2  convex/brandOs.ts:636  lit « brandOsModuleDefinitions » sans filtrer sur isActive"
+      ],
+      "disparition": false,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 50816
+    },
+    {
+      "id": "brvndlab-e96f2df8",
+      "depot": "brvndlab",
+      "famille": "DEFINITION_DOUBLE",
+      "erreur": null,
+      "nItems": 1384,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C3",
+        "C4",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  mutation       contentItems.dedupeAngleContents  (convex/contentItems.ts:187)",
+        "A1  query          contentItems.previewDedupe  (convex/contentItems.ts:238)",
+        "A1  query          contentItems.previewDedupeByEmail  (convex/contentItems.ts:279)"
+      ],
+      "disparition": true,
+      "nApres": 14,
+      "disparition_stricte": true,
+      "ms": 65217
+    },
+    {
+      "id": "brvndlab-eb3e2504",
+      "depot": "brvndlab",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 921,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A3",
+        "A5",
+        "B1",
+        "B3",
+        "B4",
+        "C1",
+        "C1c",
+        "C1b",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C8",
+        "C9",
+        "E2",
+        "E3",
+        "E5",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "H2",
+        "H3",
+        "H5",
+        "I2"
+      ],
+      "extraits": [
+        "B1  query          homeObjectives.getMine  (convex/homeObjectives.ts:10)",
+        "B1  mutation       homeObjectives.saveMine  (convex/homeObjectives.ts:24)"
+      ],
+      "disparition": true,
+      "nApres": 0,
+      "disparition_stricte": true,
+      "ms": 31571
+    },
+    {
+      "id": "brvndlab-ec81600f",
+      "depot": "brvndlab",
+      "famille": "ETAT_TRANSITOIRE_TROMPEUR",
+      "erreur": null,
+      "nItems": 920,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 33516
+    },
+    {
+      "id": "brvndlab-ee5630c8",
+      "depot": "brvndlab",
+      "famille": "RECHERCHE_MUETTE",
+      "erreur": null,
+      "nItems": 1290,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "A5",
+        "B1",
+        "C1b",
+        "C4",
+        "E2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A3",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "C1",
+        "C1b",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "E2"
+      ],
+      "extraits": [
+        "A1  query          contentItems.listUpcoming  (convex/contentItems.ts:106)",
+        "A1  query          contentItems.listAssignedToMe  (convex/contentItems.ts:403)",
+        "A1  query          contentItems.searchMemory  (convex/contentItems.ts:463)"
+      ],
+      "disparition": true,
+      "nApres": 36,
+      "disparition_stricte": false,
+      "ms": 73606
+    },
+    {
+      "id": "brvndlab-f1fdae7b",
+      "depot": "brvndlab",
+      "famille": "GESTE_INERTE",
+      "erreur": null,
+      "nItems": 834,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  src/hooks/useSpeechToText.ts:75  catch { // Not supported, will add punctuation p }"
+      ],
+      "disparition": false,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 26727
+    },
+    {
+      "id": "brvndlab-f49163ff",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1111,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "H5"
+      ],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "H5"
+      ],
+      "extraits": [
+        "H5  « limite » vaut 2 valeurs différentes : 50 (convex/customDomains.ts:259) · 2 (src/app/api/brand-os/interview/route.ts:41"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 56703
+    },
+    {
+      "id": "brvndlab-f86639c0",
+      "depot": "brvndlab",
+      "famille": "CONSIGNE_IA_NON_TENUE",
+      "erreur": null,
+      "nItems": 1099,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "B2",
+        "C1b",
+        "E2",
+        "H5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 35860
+    },
+    {
+      "id": "qos-01b404bc",
+      "depot": "qos",
+      "famille": "ECRITURE_PARTIELLE",
+      "erreur": null,
+      "nItems": 716,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "C6",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C6",
+        "E6"
+      ],
+      "extraits": [
+        "A1  mutation       integrityCleanup.realign  (convex/integrityCleanup.ts:6)",
+        "A1  mutation       integrityCleanup.purgeTestHusks  (convex/integrityCleanup.ts:77)",
+        "B1  mutation       integrityCleanup.realign  (convex/integrityCleanup.ts:6)"
+      ],
+      "disparition": true,
+      "nApres": 11,
+      "disparition_stricte": false,
+      "ms": 20185
+    },
+    {
+      "id": "qos-025a1074",
+      "depot": "qos",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 761,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "G6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "G6"
+      ],
+      "extraits": [
+        "A1  mutation       agents.seedAgents  (convex/agents.ts:105)",
+        "B1  mutation       agents.seedAgents  (convex/agents.ts:105)",
+        "B1  query          agents.list  (convex/agents.ts:142)"
+      ],
+      "disparition": true,
+      "nApres": 10,
+      "disparition_stricte": false,
+      "ms": 19595
+    },
+    {
+      "id": "qos-09d5460c",
+      "depot": "qos",
+      "famille": "ACCES_NON_AUTORISE",
+      "erreur": null,
+      "nItems": 1021,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "B1",
+        "B2",
+        "C6",
+        "C9",
+        "E3",
+        "G4",
+        "G6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B2",
+        "C1b",
+        "C5",
+        "C6",
+        "C9",
+        "E3",
+        "G4",
+        "G6"
+      ],
+      "extraits": [
+        "A1  mutation       users.create  (convex/users.ts:31)",
+        "A1  route          GET /api/knowledge/docs  (src/app/api/knowledge/docs/route.ts:6)",
+        "A1  route          POST /api/knowledge/docs  (src/app/api/knowledge/docs/route.ts:34)"
+      ],
+      "disparition": true,
+      "nApres": 23,
+      "disparition_stricte": true,
+      "ms": 17597
+    },
+    {
+      "id": "qos-0e2a6868",
+      "depot": "qos",
+      "famille": "ACTION_MUETTE",
+      "erreur": null,
+      "nItems": 491,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "B2",
+        "C6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B2",
+        "C6"
+      ],
+      "extraits": [
+        "B1  mutation       sync.syncAllContacts  (convex/sync.ts:5)",
+        "B1  mutation       sync.syncContactToPipeline  (convex/sync.ts:65)",
+        "B2  POST /api/crm/sync  (src/app/api/crm/sync/route.ts:8)"
+      ],
+      "disparition": false,
+      "nApres": 4,
+      "disparition_stricte": false,
+      "ms": 4940
+    },
+    {
+      "id": "qos-1770c63e",
+      "depot": "qos",
+      "famille": "ECRITURE_PARTIELLE",
+      "erreur": null,
+      "nItems": 1212,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "C6",
+        "C7",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C6",
+        "C7",
+        "E2",
+        "E6",
+        "G6"
+      ],
+      "extraits": [
+        "A1  internalMutation leadIngest.markStep  (convex/leadIngest.ts:204)",
+        "C6  convex/leadIngest.ts:91  collecte de « crm_contacts » sans index ni limite",
+        "C7  leadIngest.fromLeadForm  (convex/leadIngest.ts:53)"
+      ],
+      "disparition": true,
+      "nApres": 4,
+      "disparition_stricte": false,
+      "ms": 32064
+    },
+    {
+      "id": "qos-2cdb5417",
+      "depot": "qos",
+      "famille": "DONNEE_DEGRADEE",
+      "erreur": null,
+      "nItems": 1142,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "B3",
+        "C1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C1",
+        "C1b",
+        "D6"
+      ],
+      "extraits": [
+        "B1  action         metaAds.creatives  (convex/metaAds.ts:23)",
+        "B1  action         metaAds.syncCreatives  (convex/metaAds.ts:212)",
+        "B3  convex/metaAds.ts:217  → api.metaAds.creatives (doit être internal.*)"
+      ],
+      "disparition": true,
+      "nApres": 5,
+      "disparition_stricte": false,
+      "ms": 14296
+    },
+    {
+      "id": "qos-361f3208",
+      "depot": "qos",
+      "famille": "LOCATAIRE",
+      "erreur": null,
+      "nItems": 250,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "A5",
+        "C1b"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 2287
+    },
+    {
+      "id": "qos-3e385d6d",
+      "depot": "qos",
+      "famille": "CHIFFRE_INVENTE",
+      "erreur": null,
+      "nItems": 702,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 7941
+    },
+    {
+      "id": "qos-4dad019b",
+      "depot": "qos",
+      "famille": "IDEMPOTENCE",
+      "erreur": null,
+      "nItems": 262,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A5"
+      ],
+      "reglesLoc": [
+        "A5",
+        "B2"
+      ],
+      "extraits": [
+        "A5  GHL_ACQUISITION_PIPELINE_ID        src/app/api/leads/capture/route.ts:29",
+        "A5  GHL_NOUVEAU_STAGE_ID               src/app/api/leads/capture/route.ts:30",
+        "A5  GATEWAY_INTERNAL_URL               src/app/api/leads/capture/route.ts:62"
+      ],
+      "disparition": true,
+      "nApres": 2,
+      "disparition_stricte": true,
+      "ms": 4585
+    },
+    {
+      "id": "qos-51844e87",
+      "depot": "qos",
+      "famille": "ENTREE_NON_VALIDEE",
+      "erreur": null,
+      "nItems": 83,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "A5",
+        "B2",
+        "C5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B2",
+        "C5"
+      ],
+      "extraits": [
+        "A1  route          GET /api/contact/[id]  (src/app/api/contact/[id]/route.ts:3)",
+        "A1  route          GET /api/contact/attribution  (src/app/api/contact/attribution/route.ts:6)",
+        "A1  route          POST /api/contact/attribution  (src/app/api/contact/attribution/route.ts:22)"
+      ],
+      "disparition": true,
+      "nApres": 9,
+      "disparition_stricte": false,
+      "ms": 1623
+    },
+    {
+      "id": "qos-54addb99",
+      "depot": "qos",
+      "famille": "VOCABULAIRE",
+      "erreur": null,
+      "nItems": 1200,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B2"
+      ],
+      "extraits": [
+        "B1  mutation       prospectionObjectives.set  (convex/prospectionObjectives.ts:42)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 25151
+    },
+    {
+      "id": "qos-57a4c4dc",
+      "depot": "qos",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 252,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 1154
+    },
+    {
+      "id": "qos-58639ed0",
+      "depot": "qos",
+      "famille": "ORDRE_IMPLICITE",
+      "erreur": null,
+      "nItems": 1021,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C1b"
+      ],
+      "extraits": [
+        "C1b  convex/zernioAds.ts:41  catch { return null }"
+      ],
+      "disparition": false,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 22388
+    },
+    {
+      "id": "qos-6ae6d089",
+      "depot": "qos",
+      "famille": "CASCADE_MANQUANTE",
+      "erreur": null,
+      "nItems": 762,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "C6",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E6"
+      ],
+      "extraits": [
+        "B1  mutation       sync.syncContactToPipeline  (convex/sync.ts:77)",
+        "B1  mutation       sync.syncAllContacts  (convex/sync.ts:83)",
+        "C6  convex/sync.ts:85  collecte de « crm_contacts » sans index ni limite"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": true,
+      "ms": 9677
+    },
+    {
+      "id": "qos-70f40f54",
+      "depot": "qos",
+      "famille": "ECRITURE_PARTIELLE",
+      "erreur": null,
+      "nItems": 761,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "C6",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1b",
+        "C6",
+        "E6"
+      ],
+      "extraits": [
+        "B1  query          crm_contacts.list  (convex/crm_contacts.ts:8)",
+        "B1  query          crm_contacts.get  (convex/crm_contacts.ts:14)",
+        "B1  query          crm_contacts.distinctMetiersNiches  (convex/crm_contacts.ts:20)"
+      ],
+      "disparition": true,
+      "nApres": 13,
+      "disparition_stricte": true,
+      "ms": 10570
+    },
+    {
+      "id": "qos-78f8d8d2",
+      "depot": "qos",
+      "famille": "IDEMPOTENCE",
+      "erreur": null,
+      "nItems": 262,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A5"
+      ],
+      "reglesLoc": [
+        "A5",
+        "B2"
+      ],
+      "extraits": [
+        "A5  GHL_ACQUISITION_PIPELINE_ID        src/app/api/leads/capture/route.ts:29",
+        "A5  GHL_NOUVEAU_STAGE_ID               src/app/api/leads/capture/route.ts:30"
+      ],
+      "disparition": false,
+      "nApres": 2,
+      "disparition_stricte": false,
+      "ms": 3357
+    },
+    {
+      "id": "qos-7a62b561",
+      "depot": "qos",
+      "famille": "REGLAGE_INERTE",
+      "erreur": null,
+      "nItems": 261,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B2",
+        "C3"
+      ],
+      "extraits": [
+        "B2  PATCH /api/settings/company  (src/app/api/settings/company/route.ts:14)"
+      ],
+      "disparition": false,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 4451
+    },
+    {
+      "id": "qos-811a135f",
+      "depot": "qos",
+      "famille": "ALERTE_FAUSSE",
+      "erreur": null,
+      "nItems": 630,
+      "localisation": false,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [],
+      "extraits": [],
+      "disparition": null,
+      "ms": 6849
+    },
+    {
+      "id": "qos-84b69299",
+      "depot": "qos",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 69,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "A5",
+        "B1",
+        "B2"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "C5"
+      ],
+      "extraits": [
+        "A1  route          DELETE /api/calendar-event/[id]  (src/app/api/calendar-event/[id]/route.ts:17)",
+        "A1  route          PUT /api/calendar-event/[id]  (src/app/api/calendar-event/[id]/route.ts:66)",
+        "A1  route          POST /api/webhooks/ghl  (src/app/api/webhooks/ghl/route.ts:5)"
+      ],
+      "disparition": true,
+      "nApres": 12,
+      "disparition_stricte": false,
+      "ms": 638
+    },
+    {
+      "id": "qos-900181f1",
+      "depot": "qos",
+      "famille": "CASCADE_MANQUANTE",
+      "erreur": null,
+      "nItems": 761,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "B1",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B2",
+        "C6",
+        "E6"
+      ],
+      "extraits": [
+        "B1  mutation       crm_contacts.create  (convex/crm_contacts.ts:30)",
+        "B1  mutation       crm_contacts.update  (convex/crm_contacts.ts:77)",
+        "B1  mutation       crm_contacts.remove  (convex/crm_contacts.ts:112)"
+      ],
+      "disparition": false,
+      "nApres": 5,
+      "disparition_stricte": false,
+      "ms": 5336
+    },
+    {
+      "id": "qos-9e739e23",
+      "depot": "qos",
+      "famille": "IDEMPOTENCE",
+      "erreur": null,
+      "nItems": 261,
+      "localisation": true,
+      "precis": false,
+      "diagnostic": false,
+      "regles": [],
+      "reglesLoc": [
+        "C1",
+        "C5"
+      ],
+      "extraits": [],
+      "disparition": null,
+      "ms": 1981
+    },
+    {
+      "id": "qos-a63b4d46",
+      "depot": "qos",
+      "famille": "ACTION_MUETTE",
+      "erreur": null,
+      "nItems": 765,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "A5",
+        "B2",
+        "C1",
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A2",
+        "A5",
+        "B1",
+        "B2",
+        "C1",
+        "C1b",
+        "C3",
+        "C4",
+        "C6",
+        "C7",
+        "C9",
+        "E6",
+        "E3",
+        "G4",
+        "G6",
+        "H2"
+      ],
+      "extraits": [
+        "A1  route          GET /api/auth/google/callback  (src/app/api/auth/google/callback/route.ts:16)",
+        "A5  GOOGLE_CLIENT_ID                   src/lib/google.ts:10",
+        "A5  GOOGLE_CLIENT_SECRET               src/lib/google.ts:11"
+      ],
+      "disparition": true,
+      "nApres": 7,
+      "disparition_stricte": true,
+      "ms": 8688
+    },
+    {
+      "id": "qos-bceef514",
+      "depot": "qos",
+      "famille": "PANNE_DEGUISEE",
+      "erreur": null,
+      "nItems": 284,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A5"
+      ],
+      "reglesLoc": [
+        "A5",
+        "C1b"
+      ],
+      "extraits": [
+        "A5  HERMES_TELEGRAM_CHAT_ID            src/lib/agents/tools.ts:531"
+      ],
+      "disparition": true,
+      "nApres": 1,
+      "disparition_stricte": false,
+      "ms": 3524
+    },
+    {
+      "id": "qos-c4ea2bbd",
+      "depot": "qos",
+      "famille": "ETAT_ECRASE",
+      "erreur": null,
+      "nItems": 1212,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "C6",
+        "E6"
+      ],
+      "reglesLoc": [
+        "B1",
+        "C1",
+        "C1b",
+        "C4",
+        "C6",
+        "E2",
+        "E6",
+        "G6"
+      ],
+      "extraits": [
+        "C6  convex/closing.ts:229  collecte de « crm_leads » sans index ni limite",
+        "E6  convex/closing.ts:229  lit « crm_leads » sans exclure isDemo",
+        "E6  convex/closing.ts:212  lit « prospection_records » sans exclure isDemo"
+      ],
+      "disparition": true,
+      "nApres": 3,
+      "disparition_stricte": false,
+      "ms": 32287
+    },
+    {
+      "id": "qos-df11749b",
+      "depot": "qos",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 493,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C1c",
+        "C1b"
+      ],
+      "extraits": [
+        "A1  route          GET /api/debug-pipeline  (src/app/api/debug-pipeline/route.ts:7)"
+      ],
+      "disparition": true,
+      "nApres": 0,
+      "disparition_stricte": true,
+      "ms": 6358
+    },
+    {
+      "id": "qos-df45574a",
+      "depot": "qos",
+      "famille": "CIBLE_INEXISTANTE",
+      "erreur": null,
+      "nItems": 1185,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "C6",
+        "C7",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "C5",
+        "C6",
+        "C7",
+        "E2",
+        "E6",
+        "G6"
+      ],
+      "extraits": [
+        "A1  internalMutation leadIngest.markStep  (convex/leadIngest.ts:124)",
+        "C6  convex/leadIngest.ts:73  collecte de « crm_contacts » sans index ni limite",
+        "C6  convex/leadIngest.ts:97  collecte de « pipeline_config » sans index ni limite"
+      ],
+      "disparition": true,
+      "nApres": 6,
+      "disparition_stricte": false,
+      "ms": 24702
+    },
+    {
+      "id": "qos-ec8f50cc",
+      "depot": "qos",
+      "famille": "UNITE_DIVERGENTE",
+      "erreur": null,
+      "nItems": 1021,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A5",
+        "B1",
+        "C3",
+        "C4",
+        "C6",
+        "E6",
+        "G4",
+        "G6",
+        "H1"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "C3",
+        "C4",
+        "C6",
+        "E6",
+        "G4",
+        "G6",
+        "H1",
+        "H3"
+      ],
+      "extraits": [
+        "A5  STRIPE_SECRET_KEY                  src/lib/stripe.ts:7",
+        "B1  query          dashboard.getMetrics  (convex/dashboard.ts:18)",
+        "C3  convex/dashboard.ts:74  « crm_leads » filtrée sans index"
+      ],
+      "disparition": true,
+      "nApres": 13,
+      "disparition_stricte": false,
+      "ms": 27196
+    },
+    {
+      "id": "qos-ed27e4f7",
+      "depot": "qos",
+      "famille": "GARDE_EFFACEE",
+      "erreur": null,
+      "nItems": 361,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B2",
+        "C3",
+        "D5"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "C1",
+        "C1b",
+        "C3",
+        "C5",
+        "D1b",
+        "D5",
+        "D6",
+        "D7",
+        "E3",
+        "E5",
+        "F2",
+        "F3",
+        "H2",
+        "H3",
+        "H5"
+      ],
+      "extraits": [
+        "A1  route          POST /api/devis/[id]/send  (src/app/api/devis/[id]/send/route.ts:13)",
+        "B2  POST /api/devis/[id]/send  (src/app/api/devis/[id]/send/route.ts:13)",
+        "C3  src/app/api/devis/[id]/send/route.ts:20  select('*') sans filtre ni limite"
+      ],
+      "disparition": false,
+      "nApres": 4,
+      "disparition_stricte": false,
+      "ms": 4936
+    },
+    {
+      "id": "qos-f11a5144",
+      "depot": "qos",
+      "famille": "SATURATION_VOLUME",
+      "erreur": null,
+      "nItems": 1142,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "B1",
+        "B3",
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "B3",
+        "C1",
+        "C1b",
+        "D6"
+      ],
+      "extraits": [
+        "B1  action         metaAds.creatives  (convex/metaAds.ts:23)",
+        "B1  action         metaAds.syncCreatives  (convex/metaAds.ts:206)",
+        "B3  convex/metaAds.ts:211  → api.metaAds.creatives (doit être internal.*)"
+      ],
+      "disparition": true,
+      "nApres": 4,
+      "disparition_stricte": false,
+      "ms": 23588
+    },
+    {
+      "id": "qos-f23c2e51",
+      "depot": "qos",
+      "famille": "ENV_MANQUANTE",
+      "erreur": null,
+      "nItems": 763,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": true,
+      "regles": [
+        "A1",
+        "A5",
+        "B2",
+        "C1b"
+      ],
+      "reglesLoc": [
+        "A1",
+        "A5",
+        "B1",
+        "B2",
+        "C1c",
+        "C1b",
+        "C7"
+      ],
+      "extraits": [
+        "A1  route          GET /api/auth/google/callback  (src/app/api/auth/google/callback/route.ts:16)",
+        "A5  GOOGLE_CLIENT_ID                   src/lib/google.ts:11",
+        "A5  GOOGLE_CLIENT_SECRET               src/lib/google.ts:12"
+      ],
+      "disparition": true,
+      "nApres": 7,
+      "disparition_stricte": true,
+      "ms": 10067
+    },
+    {
+      "id": "qos-f444d5c5",
+      "depot": "qos",
+      "famille": "REGLAGE_INERTE",
+      "erreur": null,
+      "nItems": 1200,
+      "localisation": true,
+      "precis": true,
+      "diagnostic": false,
+      "regles": [
+        "A1",
+        "B1",
+        "C6",
+        "E6"
+      ],
+      "reglesLoc": [
+        "A1",
+        "B1",
+        "C6",
+        "E6",
+        "E5"
+      ],
+      "extraits": [
+        "A1  query          performance.objectiveForDate  (convex/performance.ts:197)",
+        "B1  query          performance.summary  (convex/performance.ts:70)",
+        "B1  query          performance.funnel  (convex/performance.ts:147)"
+      ],
+      "disparition": true,
+      "nApres": 11,
+      "disparition_stricte": false,
+      "ms": 23089
+    }
+  ],
+  "fam": {
+    "CONSIGNE_IA_NON_TENUE": {
+      "n": 23,
+      "loc": 22,
+      "pre": 7,
+      "diag": 0
+    },
+    "ACCES_NON_AUTORISE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 2
+    },
+    "CHIFFRE_INVENTE": {
+      "n": 9,
+      "loc": 8,
+      "pre": 4,
+      "diag": 0
+    },
+    "PANNE_DEGUISEE": {
+      "n": 9,
+      "loc": 8,
+      "pre": 6,
+      "diag": 4
+    },
+    "DEFINITION_DOUBLE": {
+      "n": 13,
+      "loc": 13,
+      "pre": 13,
+      "diag": 1
+    },
+    "CIBLE_INEXISTANTE": {
+      "n": 8,
+      "loc": 6,
+      "pre": 5,
+      "diag": 2
+    },
+    "ETAT_PREEXISTANT_IGNORE": {
+      "n": 2,
+      "loc": 0,
+      "pre": 0,
+      "diag": 0
+    },
+    "PLANIFIE_INERTE": {
+      "n": 1,
+      "loc": 0,
+      "pre": 0,
+      "diag": 0
+    },
+    "PERTE_IRREVERSIBLE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 0,
+      "diag": 0
+    },
+    "ETAT_TRANSITOIRE_TROMPEUR": {
+      "n": 7,
+      "loc": 4,
+      "pre": 3,
+      "diag": 0
+    },
+    "LOCATAIRE": {
+      "n": 6,
+      "loc": 6,
+      "pre": 4,
+      "diag": 1
+    },
+    "GARDE_EFFACEE": {
+      "n": 8,
+      "loc": 8,
+      "pre": 8,
+      "diag": 6
+    },
+    "PORTE_PARALLELE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "GARDE_EXCESSIVE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 0
+    },
+    "UNITE_DIVERGENTE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 1
+    },
+    "ACTION_MUETTE": {
+      "n": 4,
+      "loc": 4,
+      "pre": 4,
+      "diag": 1
+    },
+    "PERIODE_DIVERGENTE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "VOCABULAIRE": {
+      "n": 3,
+      "loc": 3,
+      "pre": 2,
+      "diag": 0
+    },
+    "FILTRE_TEXTE_INEXACT": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "GESTE_INERTE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 1
+    },
+    "ORDRE_IMPLICITE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 0
+    },
+    "TYPE_DIVERGENT": {
+      "n": 2,
+      "loc": 2,
+      "pre": 0,
+      "diag": 0
+    },
+    "CONTRAT": {
+      "n": 4,
+      "loc": 4,
+      "pre": 3,
+      "diag": 0
+    },
+    "CODE_MORT": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 1
+    },
+    "ENTREE_NON_VALIDEE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 1
+    },
+    "RATTRAPAGE_INERTE": {
+      "n": 1,
+      "loc": 0,
+      "pre": 0,
+      "diag": 0
+    },
+    "CASCADE_MANQUANTE": {
+      "n": 3,
+      "loc": 3,
+      "pre": 3,
+      "diag": 0
+    },
+    "ETAT_ECRASE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 1,
+      "diag": 0
+    },
+    "ECRITURE_PARTIELLE": {
+      "n": 4,
+      "loc": 4,
+      "pre": 4,
+      "diag": 0
+    },
+    "LIEN_EXTERNE_PERISSABLE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "ETAT_PERIME": {
+      "n": 1,
+      "loc": 1,
+      "pre": 0,
+      "diag": 0
+    },
+    "SOURCE_PARTIELLE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "RECHERCHE_MUETTE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "DONNEE_DEGRADEE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 0
+    },
+    "IDEMPOTENCE": {
+      "n": 3,
+      "loc": 3,
+      "pre": 2,
+      "diag": 0
+    },
+    "REGLAGE_INERTE": {
+      "n": 2,
+      "loc": 2,
+      "pre": 2,
+      "diag": 0
+    },
+    "ALERTE_FAUSSE": {
+      "n": 1,
+      "loc": 0,
+      "pre": 0,
+      "diag": 0
+    },
+    "SATURATION_VOLUME": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 1
+    },
+    "ENV_MANQUANTE": {
+      "n": 1,
+      "loc": 1,
+      "pre": 1,
+      "diag": 1
+    }
+  },
+  "regles": {
+    "B1": 36,
+    "C1": 6,
+    "C4": 9,
+    "G4": 6,
+    "G6": 4,
+    "H2": 1,
+    "A1": 43,
+    "C6": 14,
+    "E2": 9,
+    "C1b": 19,
+    "C1c": 5,
+    "H3": 2,
+    "H5": 4,
+    "E3": 2,
+    "B2": 12,
+    "A5": 12,
+    "C5": 8,
+    "G7": 1,
+    "B3": 3,
+    "C3": 3,
+    "E6": 9,
+    "C9": 1,
+    "C7": 2,
+    "H1": 1,
+    "D5": 1
+  },
+  "w": {
+    "loc": {
+      "p": 0.9071428571428571,
+      "bas": 0.8476094089324533,
+      "haut": 0.9449298275756914,
+      "n": 140,
+      "succes": 127
+    },
+    "pre": {
+      "p": 0.6642857142857143,
+      "bas": 0.582600110635557,
+      "haut": 0.7371964233940451,
+      "n": 140,
+      "succes": 93
+    },
+    "diag": {
+      "p": 0.16428571428571428,
+      "bas": 0.11203833531195581,
+      "haut": 0.23446439949711803,
+      "n": 140,
+      "succes": 23
+    }
+  }
+}

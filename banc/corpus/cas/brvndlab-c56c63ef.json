@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-c56c63ef",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "6b3b47a96c220e0f1e152db7996cd2ade1e98273",
+  "commit_repare": "c56c63ef007799d7bc44f7c01e8dcaac89280def",
+  "date": "2026-07-03",
+  "message_humain": "fix(socialPosts): setStatus nettoie les dates croisees (published->clear scheduledAt, draft->clear les deux) - point revue correctness",
+  "famille": "ECRITURE_PARTIELLE",
+  "famille_proposee": "NOUVELLE:ETAT_RESIDUEL",
+  "familles_secondaires": [
+    "ETAT_ECRASE"
+  ],
+  "famille_connue": false,
+  "symptome": "Un post publié restait affiché comme encore programmé, et un post repassé en brouillon gardait sa date de publication.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/socialPosts.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/socialPosts.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/socialPosts.ts": [
+      114,
+      116,
+      117
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/socialPosts.ts": [
+      "setStatus",
+      "mutation"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 3,
+    "supprimees": 1,
+    "total": 4
+  },
+  "preuve": {
+    "avant": "// draft : on nettoie la date de programmation",
+    "apres": "patch.publishedAt = undefined;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 6b3b47a96c220e0f1e152db7996cd2ade1e98273"
+}

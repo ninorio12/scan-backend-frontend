@@ -195,28 +195,45 @@ async function pasDansLapp(page, rep, urlCible) {
   return null;
 }
 
+/* Un état ILLISIBLE n'est pas un état vide : il ne doit jamais faire conclure « l'écran
+   s'est vidé ». `lu: false` le dit, et les comparaisons qui s'appuient dessus s'abstiennent. */
+const ETAT_ILLISIBLE = { url: '', texte: '', taille: -1, principal: -1, hauteur: -1, alertes: [], classes: [], lu: false };
+
 async function etat(page) {
-  return page.evaluate(() => {
-    const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
-    const txt = (e) => (typeof e.innerText === 'string' ? e.innerText : e.textContent || '').trim();
-    const alertes = [...document.querySelectorAll('[role="alert"],[role="status"],[aria-live]')]
-      .filter(vis).map(txt).filter(Boolean);
-    const classes = [...document.querySelectorAll('[class*="error"],[class*="destructive"],[class*="danger"]')]
-      .filter(vis).map(txt).filter(Boolean);
-    /* La zone PRINCIPALE, sans la coquille (barre latérale, en-tête) : c'est elle qui
-       dit si l'écran s'est vidé. <main> quand il existe, sinon le corps moins la coquille. */
-    const main = document.querySelector('main,[role="main"]');
-    const coquille = [...document.querySelectorAll('nav,aside,header,footer')].reduce((n, e) => n + txt(e).length, 0);
-    const principal = main ? txt(main).length : Math.max(0, document.body.innerText.trim().length - coquille);
-    return {
-      url: location.href,
-      texte: document.body.innerText,
-      taille: document.body.innerText.length,
-      principal,
-      hauteur: document.body.scrollHeight,
-      alertes, classes,
-    };
-  });
+  /* Le 12/09/2026, cinq écrans sur vingt ont été perdus ENTIERS parce que `document.body`
+     était null au moment de la lecture (le clic venait de remplacer le document) : la
+     promesse non rattrapée tuait le processus, et avec lui tout le décompte de l'écran.
+     On ne perd plus que la mesure en cours. */
+  try {
+    const e = await page.evaluate(() => {
+      const body = document.body;
+      if (!body) return null;
+      const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+      const txt = (e) => (typeof e.innerText === 'string' ? e.innerText : e.textContent || '').trim();
+      const alertes = [...document.querySelectorAll('[role="alert"],[role="status"],[aria-live]')]
+        .filter(vis).map(txt).filter(Boolean);
+      const classes = [...document.querySelectorAll('[class*="error"],[class*="destructive"],[class*="danger"]')]
+        .filter(vis).map(txt).filter(Boolean);
+      /* La zone PRINCIPALE, sans la coquille (barre latérale, en-tête) : c'est elle qui
+         dit si l'écran s'est vidé. <main> quand il existe, sinon le corps moins la coquille. */
+      const corps = txt(body);
+      const main = document.querySelector('main,[role="main"]');
+      const coquille = [...document.querySelectorAll('nav,aside,header,footer')].reduce((n, e) => n + txt(e).length, 0);
+      const principal = main ? txt(main).length : Math.max(0, corps.length - coquille);
+      return {
+        url: location.href,
+        texte: corps,
+        taille: corps.length,
+        principal,
+        hauteur: body.scrollHeight,
+        alertes, classes, lu: true,
+      };
+    });
+    return e || { ...ETAT_ILLISIBLE, url: page.url() };
+  } catch {
+    let url = ''; try { url = page.url(); } catch { /* page partie */ }
+    return { ...ETAT_ILLISIBLE, url };
+  }
 }
 
 /* Attendre le RENDU RÉEL, pas un délai fixe : réseau calme, puis le nombre d'éléments
@@ -248,6 +265,9 @@ async function attendreRendu(page, max = PLAFOND) {
    L'ancienne version dormait 1 000 ms et lisait l'écran. Sur une route froide, elle
    lisait l'état d'AVANT et écrivait « aucune requête, aucun changement ». */
 function aBouge(avant, apres) {
+  /* Une lecture ratée n'est pas un mouvement : sans ce garde, un état illisible
+     (taille −1) passerait pour « l'écran a changé » et arrêterait l'observation. */
+  if (avant.lu === false || apres.lu === false) return false;
   return apres.url !== avant.url || apres.taille !== avant.taille
     || apres.alertes.length !== avant.alertes.length || apres.classes.length !== avant.classes.length;
 }
@@ -257,7 +277,7 @@ async function observer(page, avant, plafond, depuis = Date.now(), ongletsAvant 
   for (;;) {
     await dormir(150);
     const e = await etat(page).catch(() => null);   // pendant une navigation, le contexte meurt : on repasse
-    if (e) apres = e;
+    if (e && e.lu !== false) apres = e;             // une lecture ratée ne remplace pas la dernière bonne
     if (aBouge(avant, apres)) return apres;
     if (compteurOnglets.n > ongletsAvant) return { ...apres, onglet: compteurOnglets.dernier };
     const ecoule = Date.now() - t0;
@@ -690,7 +710,8 @@ async function chargerPage(page, plafond = null) {
        un filtre, un dossier ouvert, une bascule de vue (liste → graphe) ou un mode focus
        réduisent le texte, et ce n'est pas cassé. La règle « moins de 35 % du texte »
        comptait 49 faux CASSÉ sur les 49 dossiers de la bibliothèque d'un client. */
-    const vide = apres.url === avant.url && avant.principal > 300 && apres.principal < 80;
+    const vide = avant.lu !== false && apres.lu !== false
+      && apres.url === avant.url && avant.principal > 300 && apres.principal < 80;
 
     /* Une exception JavaScript qui ne casse rien à l'écran n'est PAS au même rang qu'un
        message d'erreur lu par le client. Chez un client, la carte Leaflet plante au montage
@@ -814,6 +835,7 @@ async function chargerPage(page, plafond = null) {
         const tV = Date.now();
         try { await h.click({ timeout: 1500 }); } catch { continue; }
         const apres = await observer(page, avant, plafondPour(page.url()), tV);
+        if (avant.lu === false || apres.lu === false) continue;               // lecture ratée : ne prouve rien
         if (apres.url !== avant.url) { await chargerPage(page); continue; }   // ce clic nous sortait de l'écran
         if (apres.taille !== avant.taille) { deplace = true; break; }
       }
@@ -839,7 +861,8 @@ async function chargerPage(page, plafond = null) {
         m.verdict = 'OK'; m.pourquoi = `ouvre un nouvel onglet${u ? ` vers ${u}` : ''}`;
       } else if (sig3 !== null && sig3b !== null && sig3 !== sig3b) {
         m.verdict = 'OK'; m.pourquoi = 'change son état sélectionné (classes ou aria) sans changer le texte de l\'écran';
-      } else if (apres.url !== avant.url || apres.taille !== avant.taille) {
+      } else if (avant.lu !== false && apres.lu !== false
+        && (apres.url !== avant.url || apres.taille !== avant.taille)) {
         m.verdict = 'OK'; m.pourquoi = 'paraissait inerte, mais réagit une fois l\'écran dans un autre état';
       }
     }

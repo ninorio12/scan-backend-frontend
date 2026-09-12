@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-a37a433a",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "5c6c9f58dc1358b055ab8c3be2825780199644a6",
+  "commit_repare": "a37a433aed9a20641a13e66241ac75bd16eff12d",
+  "date": "2026-07-31",
+  "message_humain": "fix(brainstorm): aucune precision non dite dans les faits (annee deduite corrigee, verifie 2/2 au harnais)",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "La fiche de faits verrouillés contenait des précisions que le créateur n'avait jamais données : une année déduite à la place de « cette année », un nombre de clients inventé à la place de « plusieurs ».",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brainstorm-explore/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      321
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brainstorm-explore/route.ts": [
+      "Puis",
+      "JSON",
+      "valide",
+      "avec",
+      "shape",
+      "EXACT"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "Chaque fait est une ligne factuelle NUE, fidèle aux mots du créateur, avec ses précisions",
+    "apres": "AUCUNE précision NON DITE : s'il dit 'cette année' tu écris 'cette année', jamais une année déduite"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 5c6c9f58dc1358b055ab8c3be2825780199644a6"
+}

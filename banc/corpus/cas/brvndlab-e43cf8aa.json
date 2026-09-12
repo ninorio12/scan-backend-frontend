@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-e43cf8aa",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "b7283cf9787a0ba9cf2b4a73fca478ce957b0eb7",
+  "commit_repare": "e43cf8aaa1f8b9dd100db5a494d0e6927eac7c70",
+  "date": "2026-07-04",
+  "message_humain": "fix(social posts): carrousel LinkedIn REPARE - cause diagnostiquee en reproduisant le flux : le proxy Nango ne transmet pas le header LinkedIn-Version (400 VERSION_MISSING) et la version 202401 etait expiree (426). Appels /rest/* en DIRECT avec le token + version active 202606 ; init+upload PDF prouves (200/201) sur la vraie connexion",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "La publication d'un carrousel echouait systematiquement : l'appel partait vers une version d'API expiree, et le proxy utilise ne transmettait meme pas l'entete de version.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      309,
+      311,
+      316,
+      327,
+      333,
+      346
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "publishLinkedInImpl",
+      "LI_VERSION",
+      "init",
+      "iv",
+      "up",
+      "post"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 34,
+    "supprimees": 24,
+    "total": 58
+  },
+  "preuve": {
+    "avant": "const LI_VERSION = \"202401\";",
+    "apres": "const LI_VERSION = \"202606\";"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> b7283cf9787a0ba9cf2b4a73fca478ce957b0eb7"
+}

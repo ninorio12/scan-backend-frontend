@@ -1,0 +1,44 @@
+{
+  "id": "brvndlab-0e708582",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "dd0e40c82112130000558f0f9a560ce8a83bf607",
+  "commit_repare": "0e7085821e6e204adc107d0f7830e47ec8b092a5",
+  "date": "2026-07-12",
+  "message_humain": "fix(inspiration): un reel vu par le relais reste marque 'video' (couverture seule)",
+  "famille": "CHIFFRE_INVENTE",
+  "famille_proposee": "CHIFFRE_INVENTE",
+  "familles_secondaires": [
+    "VOCABULAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "Un reel ajouté en inspiration était renvoyé avec le type « image » écrit en dur, donc affiché comme une photo fixe et au mauvais ratio au lieu d'une vidéo.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/inspiration/ig-media/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/inspiration/ig-media/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/inspiration/ig-media/route.ts": [
+      276,
+      282
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/inspiration/ig-media/route.ts": [
+      "GET",
+      "req",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 6,
+    "supprimees": 2,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "mediaType: \"image\",",
+    "apres": "mediaType: isVideoNoMp4 ? \"video\" : \"image\","
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> dd0e40c82112130000558f0f9a560ce8a83bf607"
+}

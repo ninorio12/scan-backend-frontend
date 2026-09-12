@@ -1,0 +1,52 @@
+{
+  "id": "brvndlab-aee1f827",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "cd2f2471d674d319248464db2fd3fa207e7d8e17",
+  "commit_repare": "aee1f827c58b21ea4d206c07ecd6f45735deb236",
+  "date": "2026-07-15",
+  "message_humain": "fix(analytics YouTube): vraie détection des Shorts (sonde URL + cookie consentement)",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Le rythme de publication d'un concurrent comptait des Shorts comme des vidéos longues : le chiffre affiché était gonflé.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1609,
+      1616,
+      1618,
+      1622,
+      1644,
+      1652,
+      1812
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "competitorVideoMetrics",
+      "uploads",
+      "string",
+      "key",
+      "Promise",
+      "YtV",
+      "refreshMyBenchmarkChannels",
+      "action"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 33,
+    "supprimees": 20,
+    "total": 53
+  },
+  "preuve": {
+    "avant": "if (it.id && secs > 60) longIds.add(it.id);",
+    "apres": "return r.status === 200; // 200 = Short ; 303 (redir /watch) = vidéo classique"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> cd2f2471d674d319248464db2fd3fa207e7d8e17"
+}

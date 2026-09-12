@@ -1,0 +1,43 @@
+{
+  "id": "brvndlab-cf359262",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "554edbd7edad3d2f65dbc28ba5f2be36bd53e541",
+  "commit_repare": "cf359262f20d20d6437a87482ea96595c1e61213",
+  "date": "2026-07-16",
+  "message_humain": "fix(dictée): un mot ou deux = rendu tel quel, pas de paragraphe/morale",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Dicter un mot ou deux renvoyait un paragraphe entier assorti d'une morale, à la place du mot dicté : la mise en forme automatique n'était bornée ni en entrée ni en sortie.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/punctuate/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/punctuate/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      50,
+      82
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/punctuate/route.ts": [
+      "POST",
+      "request",
+      "NextRequest",
+      "looksMeta"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 15,
+    "supprimees": 1,
+    "total": 16
+  },
+  "preuve": {
+    "avant": "const looksMeta = META_RE.test(head) || (inSet.size >= 3 && overlap < 0.5);",
+    "apres": "const tooLong = formatted.length > text.length * 2 + 60;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 554edbd7edad3d2f65dbc28ba5f2be36bd53e541"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-56c95c4d",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "5aa4605d9a72c1665c5d2c80e8ce54b6ebc77d8d",
+  "commit_repare": "56c95c4d634c06185a64201231d95569c0228d98",
+  "date": "2026-07-08",
+  "message_humain": "fix(social): lecture LinkedIn = jamais le token de publication + purge des connexions Nango périmées",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "Les statistiques LinkedIn tombaient en refus d'accès alors que le compte était connecté : la lecture empruntait la connexion de publication, qui n'a jamais le droit de lecture, ou une connexion déjà supprimée côté fournisseur.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      212,
+      248,
+      251,
+      260
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "_upsert",
+      "internalMutation",
+      "readConnection",
+      "ActionCtx",
+      "clerkUserId",
+      "string",
+      "Promise",
+      "readToken"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 29,
+    "supprimees": 4,
+    "total": 33
+  },
+  "preuve": {
+    "avant": "if (pub?.nangoConnectionId) return { connectionId: pub.nangoConnectionId, configKey: \"linkedin\" };",
+    "apres": "await ctx.runMutation(internal.social._purgeConnection, { clerkUserId, provider: conn.configKey });"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 5aa4605d9a72c1665c5d2c80e8ce54b6ebc77d8d"
+}

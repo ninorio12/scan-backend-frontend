@@ -1,0 +1,52 @@
+{
+  "id": "brvndlab-4a0cff9c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "767f474d67f5acfdb711373b34169e1381a7875b",
+  "commit_repare": "4a0cff9ce48ff43cf32183b85b3e08f6686742d7",
+  "date": "2026-07-13",
+  "message_humain": "fix(brand-os/export): plus de '24-28 ans ans' sur la fiche persona (l'age est parfois deja saisi avec le mot)",
+  "famille": "UNITE_DIVERGENTE",
+  "famille_proposee": "UNITE_DIVERGENTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Les heures de forte activité étaient affichées dans le fuseau de la plateforme et non celui du client : le pic du soir tombait à midi.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/instagramAnalytics.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/instagramAnalytics.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/instagramAnalytics.ts": [
+      437,
+      438,
+      451,
+      457,
+      462,
+      470,
+      518,
+      539,
+      674
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/instagramAnalytics.ts": [
+      "fetchActiveHours",
+      "getMyInstagramStats",
+      "action",
+      "sums",
+      "counts",
+      "h"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 12,
+    "total": 48
+  },
+  "preuve": {
+    "avant": "const h = new Date(m.publishedAt).getHours();",
+    "apres": "const h = new Date(m.publishedAt + localOffsetH * 3600000).getUTCHours();"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 767f474d67f5acfdb711373b34169e1381a7875b"
+}

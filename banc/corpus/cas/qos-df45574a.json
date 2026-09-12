@@ -1,0 +1,56 @@
+{
+  "id": "qos-df45574a",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "c4bb8ce17597b994bf8850810b91c71cd1e35e3a",
+  "commit_repare": "df45574a26b8ec031fead01617b86d7a51dd67c6",
+  "date": "2026-07-31",
+  "message_humain": "fix(leads): le lead cree depuis un formulaire Facebook est desormais RELIE a sa fiche contact (il pointait dans le vide quand le contact venait d'etre cree) ; utilitaire de purge des leads de test",
+  "famille": "CIBLE_INEXISTANTE",
+  "famille_proposee": "CIBLE_INEXISTANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un lead venu d'un formulaire publicitaire n'était relié à aucune fiche contact dès que le contact venait d'être créé : la référence restait vide et le lead pointait dans le vide.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/leadIngest.ts",
+    "convex/leadIngestCleanup.ts"
+  ],
+  "fichier_fautif": "convex/leadIngest.ts",
+  "lignes_avant": {
+    "convex/leadIngest.ts": [
+      74,
+      85,
+      88,
+      93,
+      101
+    ],
+    "convex/leadIngestCleanup.ts": [
+      0
+    ]
+  },
+  "symboles": {
+    "convex/leadIngest.ts": [
+      "fromLeadForm",
+      "internalMutation"
+    ],
+    "convex/leadIngestCleanup.ts": [
+      "Nettoyage",
+      "des",
+      "leads",
+      "TEST",
+      "ingestion",
+      "Facebook"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 36,
+    "supprimees": 3,
+    "total": 39
+  },
+  "preuve": {
+    "avant": "      contactId: dup?._id, name, email, phone,",
+    "apres": "      contactId: contactRef, name, email, phone,"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> c4bb8ce17597b994bf8850810b91c71cd1e35e3a"
+}

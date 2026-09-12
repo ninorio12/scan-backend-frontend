@@ -1,0 +1,51 @@
+{
+  "id": "brvndlab-64ee457d",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "89db346453884b4a4c528bd78f8104a3905586f9",
+  "commit_repare": "64ee457da7d8411001d7460d9df5fd8522b936d6",
+  "date": "2026-07-06",
+  "message_humain": "fix(youtube): Analytics lisent la connexion sous l'OWNER (pas identity.subject). Bug: syncConnections enregistre la connexion youtube sous l'owner (partage equipe) mais getMyYouTubeStats/Benchmark/SearchTerms/TopVideos + syncMyYouTubeChannelFromOAuth relisaient sous identity.subject -> OK pour l'owner, VIDE pour un collaborateur/sous-compte. Les 5 lectures utilisent maintenant _ownerOfCurrent -> l'Analytics YouTube marche pour toute l'equipe",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "LOCATAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "La connexion YouTube etait enregistree sous le compte proprietaire mais relue sous l'utilisateur courant : l'Analytics restait vide pour tout collaborateur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/social.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/social.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/social.ts": [
+      1474,
+      1518,
+      1598,
+      1689,
+      1719
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/social.ts": [
+      "getMyYouTubeBenchmark",
+      "action",
+      "syncMyYouTubeChannelFromOAuth",
+      "getMyYouTubeStats",
+      "getMySearchTerms",
+      "getMyTopVideos",
+      "row"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 5,
+    "total": 15
+  },
+  "preuve": {
+    "avant": "const row = await ctx.runQuery(internal.social._getRow, { clerkUserId: identity.subject, provider: \"youtube\" });",
+    "apres": "const _ytOwner = await ctx.runQuery(internal.collaborators._ownerOfCurrent, {});"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 89db346453884b4a4c528bd78f8104a3905586f9"
+}

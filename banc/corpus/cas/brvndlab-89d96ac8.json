@@ -1,0 +1,56 @@
+{
+  "id": "brvndlab-89d96ac8",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "9fcec5aea991f26f564f93708057a3eda87c2c40",
+  "commit_repare": "89d96ac830166f303d18c26eacbd8026f2c23f52",
+  "date": "2026-07-06",
+  "message_humain": "fix(#2 metriques honnetes/audit): Heat Score reellement calcule - cron dailyDecayRecalculate enregistre (recompute quotidien tous visitors) + recalculateAndUpdate appele a chaque recordClick/recordConversion -> scores/avgHeatScore/toContact/atRisk deviennent reels (avant: jamais recalcule, 'temps reel' mensonger)",
+  "famille": "CODE_MORT",
+  "famille_proposee": "CODE_MORT",
+  "familles_secondaires": [
+    "PLANIFIE_INERTE",
+    "CHIFFRE_INVENTE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le score de chaleur affiche comme « temps reel » dans Leads ne bougeait jamais : la fonction de recalcul n'etait appelee ni par une tache planifiee ni par les clics et conversions.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/crons.ts",
+    "brvndlab-app/convex/tracking.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/crons.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/crons.ts": [
+      97
+    ],
+    "brvndlab-app/convex/tracking.ts": [
+      4,
+      247,
+      343
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/crons.ts": [
+      "crons",
+      "interval"
+    ],
+    "brvndlab-app/convex/tracking.ts": [
+      "assertModuleAllowed",
+      "collaborators",
+      "recordClick",
+      "mutation",
+      "recordConversion"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 25,
+    "supprimees": 0,
+    "total": 25
+  },
+  "preuve": {
+    "avant": "",
+    "apres": "await recalculateAndUpdate(ctx, { ownerClerkUserId, visitorId: args.visitorId });"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 9fcec5aea991f26f564f93708057a3eda87c2c40"
+}

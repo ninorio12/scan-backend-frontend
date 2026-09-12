@@ -1,0 +1,46 @@
+{
+  "id": "brvndlab-7fc6a27c",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "21a56c282d3b620dcb67470cca30d9e6e2c3081c",
+  "commit_repare": "7fc6a27ca6608459b727886548733060d6627e97",
+  "date": "2026-07-27",
+  "message_humain": "fix(brand-os): ennemi fédéral = une idéologie combattue, pas un jugement sur les gens",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Le champ « ennemi fédéral » se remplissait d'un jugement sur des personnes du marché au lieu de l'idée combattue : la question posée demandait ce qui était « malhonnête ou stupide ».",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      912
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "FORME",
+      "EXACTE",
+      "CHAQUE",
+      "CHAMP",
+      "imite",
+      "STRUCTURE",
+      "LONGUEUR",
+      "des"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "- Ennemi fédéral : UNE phrase, une IDÉE ou croyance combattue, JAMAIS une personne",
+    "apres": "- Ennemi fédéral : UNE phrase, une IDÉE / un SYSTÈME de pensée / une IDÉOLOGIE combattue"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 21a56c282d3b620dcb67470cca30d9e6e2c3081c"
+}

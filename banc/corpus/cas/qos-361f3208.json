@@ -1,0 +1,47 @@
+{
+  "id": "qos-361f3208",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "3d8954e95d1c82ca77a41edcdb5288bdc478bc65",
+  "commit_repare": "361f32080b67439e1f8e2d5eb2ccccae7b55f3d1",
+  "date": "2026-04-11",
+  "message_humain": "fix(security): RLS bypass, r.ok guards, error states, per-page fade-in",
+  "famille": "LOCATAIRE",
+  "famille_proposee": "LOCATAIRE",
+  "familles_secondaires": [
+    "ACCES_NON_AUTORISE"
+  ],
+  "famille_connue": true,
+  "symptome": "La liste des devis était lue avec la clé de service, qui contourne le cloisonnement : n'importe quel utilisateur connecté voyait les devis des autres.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/devis/list/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/devis/list/route.ts",
+  "lignes_avant": {
+    "src/app/api/devis/list/route.ts": [
+      3,
+      11
+    ]
+  },
+  "symboles": {
+    "src/app/api/devis/list/route.ts": [
+      "getAuthContext",
+      "lib",
+      "auth",
+      "context",
+      "GET",
+      "supabase"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 2,
+    "supprimees": 2,
+    "total": 4
+  },
+  "preuve": {
+    "avant": "const supabase = createAdminClient()",
+    "apres": "const supabase = await createClient()"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 3d8954e95d1c82ca77a41edcdb5288bdc478bc65"
+}

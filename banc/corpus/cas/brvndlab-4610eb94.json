@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-4610eb94",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "17a7f4fc7acac5cef393bf09736ec1f748b93301",
+  "commit_repare": "4610eb94ea08c24457b44dbeffb6f671f71f9b22",
+  "date": "2026-07-27",
+  "message_humain": "fix(brand-os): créer un champ = proposer la DIRECTION, pas réciter le texte",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:DERIVE_MODELE_IA",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Pour créer un champ de fond, l'assistant récitait dans la conversation la formulation finale entre guillemets et demandait de la valider mot à mot, au lieu de proposer une direction en une ligne.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      752,
+      823,
+      1107,
+      1143
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "ponse",
+      "contient",
+      "mati",
+      "pour",
+      "AUTRE",
+      "bloc",
+      "que",
+      "celui"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 4,
+    "supprimees": 4,
+    "total": 8
+  },
+  "preuve": {
+    "avant": "NIVEAU 1 — CONFIRMATION DANS LE CHAT, AVANT D'ÉCRIRE : tu PROPOSES la formulation",
+    "apres": "NIVEAU 1 — TU PROPOSES LA DIRECTION, PAS LE TEXTE FINAL"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 17a7f4fc7acac5cef393bf09736ec1f748b93301"
+}

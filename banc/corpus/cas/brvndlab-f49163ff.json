@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-f49163ff",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "c5a31c99e2a57fd7cd0683c3bc4370fcb45ecf6a",
+  "commit_repare": "f49163ff2be9acc74fbf27a2cb034a6eb286e3b7",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): l'IA n'ecrivait RIEN sur les modules a champs de texte (positionnement, mission, problematiques : 4 tours, zero ligne rangee). Le prompt etait redige pour les fiches et rien ne forcait l'ecriture immediate d'un champ de texte. Regle dure ajoutee (relance ET patch dans le meme message, premiere version des qu'il y a de la matiere) + marqueur de clarte obligatoire dans chaque message (l'anneau se figeait)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Sur les modules à champ de texte, quatre tours de questions et zéro ligne rangée, et l'anneau de progression restait figé.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      359,
+      419
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "Brand",
+      "est",
+      "source",
+      "rit",
+      "marque",
+      "tout",
+      "qui",
+      "crit"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 2,
+    "total": 10
+  },
+  "preuve": {
+    "avant": "À l'écran, il voit un formulaire : une grande question par bloc, et sous chaque question des FICHES",
+    "apres": "TU ÉCRIS DÈS LE PREMIER ÉCHANGE QUI CONTIENT DE LA MATIÈRE (règle non négociable)"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> c5a31c99e2a57fd7cd0683c3bc4370fcb45ecf6a"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "qos-6ae6d089",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "9006eb6f31cecd51a7cd7c1cfd72a7c2bbe2daa5",
+  "commit_repare": "6ae6d089739216a45917dd2067ad9b072f6e70c8",
+  "date": "2026-06-11",
+  "message_humain": "fix: enforce réconcilie la prospection + retrait du squelette calendrier",
+  "famille": "CASCADE_MANQUANTE",
+  "famille_proposee": "CASCADE_MANQUANTE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Quand un contact passait en client, son lead était supprimé mais sa carte de prospection restait active en pointant vers un lead qui n'existait plus.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/sync.ts"
+  ],
+  "fichier_fautif": "convex/sync.ts",
+  "lignes_avant": {
+    "convex/sync.ts": [
+      7,
+      24,
+      49,
+      67,
+      73
+    ]
+  },
+  "symboles": {
+    "convex/sync.ts": [
+      "mutation",
+      "_generated",
+      "server",
+      "enforce",
+      "any",
+      "contactId",
+      "opts",
+      "dealValue"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 20,
+    "supprimees": 0,
+    "total": 20
+  },
+  "preuve": {
+    "avant": "    if (existingLead) await ctx.db.delete(existingLead._id)",
+    "apres": "    await reconcileProspection(ctx, cid, null, 'client')"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 9006eb6f31cecd51a7cd7c1cfd72a7c2bbe2daa5"
+}

@@ -1,0 +1,76 @@
+{
+  "id": "qos-09d5460c",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "ec8f50ccaaba969147f62e928acb0006f27fffd7",
+  "commit_repare": "09d5460c66cb94f0b0543c225f3d58b9794d3833",
+  "date": "2026-06-24",
+  "message_humain": "fix(securite): ferme IDOR users + garde routes d'envoi et knowledge/docs",
+  "famille": "ACCES_NON_AUTORISE",
+  "famille_proposee": "ACCES_NON_AUTORISE",
+  "familles_secondaires": [
+    "GARDE_EFFACEE"
+  ],
+  "famille_connue": true,
+  "symptome": "L'identité de l'utilisateur venait de l'argument envoyé par le client : n'importe quel connecté pouvait lire ou modifier le profil d'un autre, voire récupérer un compte administrateur pré-créé via son email.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "convex/users.ts",
+    "src/app/api/knowledge/docs/route.ts"
+  ],
+  "fichier_fautif": "convex/users.ts",
+  "lignes_avant": {
+    "convex/users.ts": [
+      52,
+      56,
+      70,
+      74,
+      80,
+      85,
+      94,
+      98,
+      106,
+      110,
+      117,
+      218,
+      224,
+      227
+    ],
+    "src/app/api/knowledge/docs/route.ts": [
+      2,
+      34,
+      55
+    ]
+  },
+  "symboles": {
+    "convex/users.ts": [
+      "getCurrent",
+      "query",
+      "syncFromClerk",
+      "mutation",
+      "updateProfile",
+      "computed",
+      "name"
+    ],
+    "src/app/api/knowledge/docs/route.ts": [
+      "createAdminClient",
+      "lib",
+      "supabase",
+      "admin",
+      "POST",
+      "req",
+      "NextRequest",
+      "DELETE"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 30,
+    "supprimees": 13,
+    "total": 43
+  },
+  "preuve": {
+    "avant": "  args: { clerkUserId: v.string() },",
+    "apres": "    const identity = await ctx.auth.getUserIdentity()"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> ec8f50ccaaba969147f62e928acb0006f27fffd7"
+}

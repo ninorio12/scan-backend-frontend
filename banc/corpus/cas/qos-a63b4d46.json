@@ -1,0 +1,68 @@
+{
+  "id": "qos-a63b4d46",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "444419670353e1eeeb8b52fc85faaa67a0d95373",
+  "commit_repare": "a63b4d46c0375a6b3c3cb04a0a354539d2952c57",
+  "date": "2026-06-11",
+  "message_humain": "fix(google): token Google sur Convex (google_accounts), fini Supabase",
+  "famille": "ACTION_MUETTE",
+  "famille_proposee": "ACTION_MUETTE",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "La connexion du calendrier annonçait un succès alors que le jeton n'était enregistré nulle part : l'écriture passait par une base dont les droits manquaient, et une session expirée ne disait rien.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/auth/google/callback/route.ts",
+    "src/lib/google.ts"
+  ],
+  "fichier_fautif": "src/app/api/auth/google/callback/route.ts",
+  "lignes_avant": {
+    "src/app/api/auth/google/callback/route.ts": [
+      4,
+      28,
+      31,
+      37,
+      39
+    ],
+    "src/lib/google.ts": [
+      2,
+      15,
+      17,
+      19,
+      31
+    ]
+  },
+  "symboles": {
+    "src/app/api/auth/google/callback/route.ts": [
+      "ConvexHttpClient",
+      "convex",
+      "browser",
+      "GET",
+      "req",
+      "NextRequest"
+    ],
+    "src/lib/google.ts": [
+      "google",
+      "googleapis",
+      "getOAuth2Client",
+      "getRefreshToken",
+      "Promise",
+      "string",
+      "null",
+      "supabase"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 27,
+    "supprimees": 21,
+    "total": 48
+  },
+  "preuve": {
+    "avant": "      if (userId && convexUrl) {",
+    "apres": "      if (!userId) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 444419670353e1eeeb8b52fc85faaa67a0d95373"
+}

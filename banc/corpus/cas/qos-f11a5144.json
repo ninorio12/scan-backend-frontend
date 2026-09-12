@@ -1,0 +1,45 @@
+{
+  "id": "qos-f11a5144",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "1096457dad155d7406783f80452cc42a12fc64f5",
+  "commit_repare": "f11a5144975f95db48cf74d4b8eadd1c20480276",
+  "date": "2026-07-31",
+  "message_humain": "fix(media buyer): pagination Meta par tranches de 10 (au-dela, Meta refuse creations+insights et le module tombait en repli Zernio sans visuels) ; l'apercu partageable ne sert plus de lien que pour les videos, plus de bouton lecture sur une statique",
+  "famille": "SATURATION_VOLUME",
+  "famille_proposee": "SATURATION_VOLUME",
+  "familles_secondaires": [
+    "PANNE_DEGUISEE"
+  ],
+  "famille_connue": true,
+  "symptome": "Le board publicitaire demandait des pages trop grosses à la régie, qui refusait la réponse : le module basculait alors sur une source de repli et le client voyait ses annonces sans aucun visuel.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "convex/metaAds.ts"
+  ],
+  "fichier_fautif": "convex/metaAds.ts",
+  "lignes_avant": {
+    "convex/metaAds.ts": [
+      35,
+      45,
+      100
+    ]
+  },
+  "symboles": {
+    "convex/metaAds.ts": [
+      "creatives",
+      "action",
+      "limit"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 10,
+    "supprimees": 4,
+    "total": 14
+  },
+  "preuve": {
+    "avant": "    const limit = Math.min(a.limit ?? 30, 100)",
+    "apres": "    const limit = Math.min(wanted, 10)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 1096457dad155d7406783f80452cc42a12fc64f5"
+}

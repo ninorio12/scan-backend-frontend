@@ -1,0 +1,39 @@
+{
+  "id": "qos-57a4c4dc",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "70f92f5fc9bcd5161fbc624c3a1ba42895efef55",
+  "commit_repare": "57a4c4dca845e5474c861c4b0783cf6b5f8792fb",
+  "date": "2026-04-11",
+  "message_humain": "fix(conversations): proper error status + r.ok guard on fetch",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Une panne de chargement des conversations ressortait en liste vide avec un statut de succès : l'écran affichait « aucune conversation » au lieu d'une erreur.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "src/app/api/conversations/list/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/conversations/list/route.ts",
+  "lignes_avant": {
+    "src/app/api/conversations/list/route.ts": [
+      85
+    ]
+  },
+  "symboles": {
+    "src/app/api/conversations/list/route.ts": [
+      "GET"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 1,
+    "supprimees": 1,
+    "total": 2
+  },
+  "preuve": {
+    "avant": "return NextResponse.json({ conversations: [], pipelines: [] })",
+    "apres": "return NextResponse.json({ conversations: [], pipelines: [] }, { status: 500 })"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 70f92f5fc9bcd5161fbc624c3a1ba42895efef55"
+}

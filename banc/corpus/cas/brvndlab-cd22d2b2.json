@@ -1,0 +1,49 @@
+{
+  "id": "brvndlab-cd22d2b2",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "9ec748552ce4388645fc52da0b9f2c6121c76bcd",
+  "commit_repare": "cd22d2b2f2032b2a2a524373c0e5e058c11d0baf",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): fin d'entretien - 'servi' ne veut pas dire 'plein' : elle continue de cocher, d'allonger les listes et d'enrichir les textes tant qu'il parle (avant, tout s'arretait des que les blocs tenaient debout) + UNE seule question a l'ecran, imposee cote serveur (quand le modele en pose deux, on ne garde que la derniere) + limite de longueur resserree (30 mots vises, 40 max)",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_CONTRE_PRODUCTIVE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "En fin d'entretien plus rien ne s'écrivait alors que la personne continuait de parler, et deux questions pouvaient s'afficher à la fois.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      129,
+      194,
+      347,
+      412
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "parseLoose",
+      "raw",
+      "string",
+      "unknown",
+      "splitPatch",
+      "OBLIGATION",
+      "CRITURE",
+      "ICI"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 23,
+    "supprimees": 2,
+    "total": 25
+  },
+  "preuve": {
+    "avant": "return { message: oneParagraph(clean(message)), patch, clarity };",
+    "apres": "return { message: singleQuestion(oneParagraph(clean(message))), patch, clarity };"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 9ec748552ce4388645fc52da0b9f2c6121c76bcd"
+}

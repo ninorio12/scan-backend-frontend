@@ -33,3 +33,11 @@ banc/mesure/sources.json
 
 # Copie de travail de la boucle de réparation (dépôt git imbriqué)
 banc/reparation-essai/
+
+# Le corpus : l'atelier (clones de nos dépôts, worktrees, journaux) vit HORS du skill,
+# dans ../scan-backend-frontend-archives/corpus/ ; cf. banc/corpus/atelier.mjs. Un skill
+# au-dessus de 8 Mo est refusé par le linter, et ces clones sont notre code.
+banc/corpus/clones/
+banc/corpus/travail/
+# La liste des noms réels à effacer : elle sert à anonymiser, elle ne se publie pas.
+banc/corpus/noms-locaux.json

@@ -1,0 +1,43 @@
+{
+  "id": "qos-78f8d8d2",
+  "depot": "qos",
+  "provenance": "historique-git",
+  "commit_casse": "4dad019bc80ad2791dfa5002190611589f94486c",
+  "commit_repare": "78f8d8d2366e6b325bc5853b382d3617b1c8039b",
+  "date": "2026-04-15",
+  "message_humain": "fix: réutilise le contact Supabase existant via ghl_contact_id",
+  "famille": "IDEMPOTENCE",
+  "famille_proposee": "IDEMPOTENCE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un contact déjà connu était recréé ou faisait échouer la capture à chaque nouvelle soumission du formulaire : la clé de déduplication ne dédoublonnait rien.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "src/app/api/leads/capture/route.ts"
+  ],
+  "fichier_fautif": "src/app/api/leads/capture/route.ts",
+  "lignes_avant": {
+    "src/app/api/leads/capture/route.ts": [
+      40,
+      43,
+      48
+    ]
+  },
+  "symboles": {
+    "src/app/api/leads/capture/route.ts": [
+      "POST",
+      "req",
+      "NextRequest"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 19,
+    "supprimees": 10,
+    "total": 29
+  },
+  "preuve": {
+    "avant": "{ onConflict: 'ghl_contact_id', ignoreDuplicates: false }",
+    "apres": ".eq('ghl_contact_id', ghlContactId)"
+  },
+  "rejouer": "git -C banc/corpus/clones/qos worktree add --detach <dossier> 4dad019bc80ad2791dfa5002190611589f94486c"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-b47c87b3",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "1de85fb17cecaaff8ad96cdd4d75376ba6d7b10c",
+  "commit_repare": "b47c87b336a02f1285fb767256d31c38a1e06bd4",
+  "date": "2026-07-07",
+  "message_humain": "fix(carousel chat): meme correctif que script/story - maxTokens 8000 + fallback robuste, plus jamais de JSON brut affiche dans le chat sur reponse tronquee",
+  "famille": "PANNE_DEGUISEE",
+  "famille_proposee": "PANNE_DEGUISEE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Quand la reponse de generation etait coupee, le chat du carrousel affichait le JSON brut tronque comme s'il s'agissait d'un message normal.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/src/app/api/generate-carousel/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/generate-carousel/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/generate-carousel/route.ts": [
+      279,
+      284
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/generate-carousel/route.ts": [
+      "Garde",
+      "nombre",
+      "ordre",
+      "slides",
+      "sauf",
+      "demande",
+      "restruct",
+      "res"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 9,
+    "supprimees": 2,
+    "total": 11
+  },
+  "preuve": {
+    "avant": "return NextResponse.json({ message: res.text.trim() || \"(pas de réponse)\", slides: null });",
+    "apres": "const m = /\"message\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"/.exec(res.text);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 1de85fb17cecaaff8ad96cdd4d75376ba6d7b10c"
+}

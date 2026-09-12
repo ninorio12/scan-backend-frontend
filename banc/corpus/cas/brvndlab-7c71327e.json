@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-7c71327e",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "1f593ba1615f4d066f11ada7ec21848980194e6f",
+  "commit_repare": "7c71327e8e305eb04a9dfe772af95771055bd344",
+  "date": "2026-07-29",
+  "message_humain": "fix(brainstorms): compteur = chaque contenu passe en pipeline (+1), archives inclus, SANS dedup ; la fiche affiche tous les contenus (archives inclus) pour coller au badge",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [],
+  "famille_connue": true,
+  "symptome": "Un angle affichait un badge à 3 contenus alors que sa fiche n'en listait aucun : le compteur et la fiche ne sélectionnaient pas les mêmes contenus (archivés exclus d'un côté, déduplication par format de l'autre).",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/contentItems.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentItems.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentItems.ts": [
+      172,
+      179,
+      182,
+      184
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentItems.ts": [
+      "countsByAngle",
+      "query",
+      "byAngle",
+      "counts"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 10,
+    "total": 18
+  },
+  "preuve": {
+    "avant": "if (it.status === \"brouillon\" || it.status === \"archived\") continue;",
+    "apres": "if (it.status === \"brouillon\") continue;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 1f593ba1615f4d066f11ada7ec21848980194e6f"
+}

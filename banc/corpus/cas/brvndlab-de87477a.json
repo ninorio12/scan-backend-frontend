@@ -1,0 +1,45 @@
+{
+  "id": "brvndlab-de87477a",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "bdb7917f8a48dd4125bee792448193fcc7b34a50",
+  "commit_repare": "de87477a3a09106add5461c38ff5704b3ee00a57",
+  "date": "2026-07-29",
+  "message_humain": "fix(brainstorms): source UNIQUE du compteur = rattachement identique a linkedFor (angleId + fallback sujet/titre) -> badge = nombre de lignes, jamais de divergence possible",
+  "famille": "DEFINITION_DOUBLE",
+  "famille_proposee": "DEFINITION_DOUBLE",
+  "familles_secondaires": [
+    "DRILLDOWN"
+  ],
+  "famille_connue": true,
+  "symptome": "Le badge « contenus créés avec cet angle » annonçait un nombre différent du nombre de lignes listées sur la fiche : deux critères de rattachement pour la même notion.",
+  "confiance_classement": "haute",
+  "fichiers": [
+    "brvndlab-app/convex/contentItems.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/convex/contentItems.ts",
+  "lignes_avant": {
+    "brvndlab-app/convex/contentItems.ts": [
+      172,
+      175,
+      178
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/convex/contentItems.ts": [
+      "countsByAngle",
+      "query",
+      "angleId"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 32,
+    "supprimees": 6,
+    "total": 38
+  },
+  "preuve": {
+    "avant": "const angleId = itemAngleId(it);",
+    "apres": "if (ids) for (const id of ids) counts[id] = (counts[id] ?? 0) + 1;"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> bdb7917f8a48dd4125bee792448193fcc7b34a50"
+}

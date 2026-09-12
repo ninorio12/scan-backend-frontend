@@ -1,0 +1,47 @@
+{
+  "id": "brvndlab-71e261ff",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "1597b60d8d658ab600a0bd308f91120c74d65c60",
+  "commit_repare": "71e261ffa86a5508e3cc8260723528b4b4ef76c9",
+  "date": "2026-07-12",
+  "message_humain": "fix(brand-os/brainstorming): l'IA ECRIT des le premier fait concret (relance ET patch dans le meme message) - elle creusait sans jamais remplir les blocs",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:CONSIGNE_IA_NON_TENUE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Pendant l'entretien, les fiches ne se remplissaient pas à gauche : l'assistant relançait sans jamais écrire ce que le client venait de lui donner.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      186,
+      219
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "Pour",
+      "CHAQUE",
+      "bloc",
+      "dans",
+      "ordre",
+      "jauge",
+      "progresse",
+      "mani"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 8,
+    "supprimees": 4,
+    "total": 12
+  },
+  "preuve": {
+    "avant": "3. Dès qu'un élément tient debout, tu l'écris (patch). Tu vises 1 à 3 fiches par bloc, pas plus",
+    "apres": "ton message contient LA RELANCE **ET** LE PATCH. Les deux, dans le même message."
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 1597b60d8d658ab600a0bd308f91120c74d65c60"
+}

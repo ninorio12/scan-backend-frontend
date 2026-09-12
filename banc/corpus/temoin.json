@@ -1,0 +1,30 @@
+{
+  "graine": 20260912,
+  "tirages": 300,
+  "resultats": [
+    {
+      "depot": "qos",
+      "fichiers": 306,
+      "items": 1522,
+      "N": 300,
+      "loc": 235,
+      "pre": 204
+    },
+    {
+      "depot": "brvndlab",
+      "fichiers": 380,
+      "items": 1867,
+      "N": 300,
+      "loc": 201,
+      "pre": 123
+    },
+    {
+      "depot": "agci",
+      "fichiers": 25,
+      "items": 343,
+      "N": 300,
+      "loc": 255,
+      "pre": 195
+    }
+  ]
+}

@@ -90,6 +90,23 @@ Réparé et prouvé sur un déploiement de développement : export, décompressi
 dossier temporaire, 126 documents suspects dans 14 tables en 4,7 s, rien laissé dans le
 dépôt.
 
+## Ce que l'étape des agents rapporte, et ce qu'elle coûte
+
+12/09/2026, sur un projet public, six agents ont trouvé **les dix défauts les plus graves
+du produit**, dont aucun n'était visible mécaniquement : un écran qui donne trois réponses
+différentes à la même question, un badge « live » vert par défaut quand rien n'est branché,
+une croissance calculée sur 92 jours sans qu'aucune date ne soit affichée. Aucun n'est
+entré au bilan ce jour-là, parce que rien ne lisait les rapports des agents. C'est ce qui a
+fait le canal de l'étape 3 (`banc/audit/chantier-canal.md`) : rejoué sur les mêmes données,
+**28 constats d'agents entrent au bilan**, et **189 faux « boutons morts » sur 256 en
+sortent** (67 restent, 6 démentis n'ont pas tenu).
+
+Le coût, mesuré le même jour : six agents Playwright sur un serveur Next en mode dev ont
+fait monter la charge à **7,9 sur 4 cœurs**, une page mettait **27 secondes** à répondre,
+et le serveur a redémarré tout seul au milieu du travail. D'où la borne dure de trois
+agents en parallèle. La lenteur ne coûte pas que du temps : elle **fabrique de faux
+défauts**, puisqu'un bouton qu'on n'attend pas assez passe pour mort.
+
 ## Ce qui reste honnêtement contre le skill
 
 Le rappel de l'analyse statique seule est faible (à mesurer, pas à citer). Une bonne

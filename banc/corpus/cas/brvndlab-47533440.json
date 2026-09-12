@@ -1,0 +1,48 @@
+{
+  "id": "brvndlab-47533440",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "da9e5ba6fd59920339497b87b0927efd2a45a751",
+  "commit_repare": "4753344021202c2a6ce82ad9f3b438c2fe8e0618",
+  "date": "2026-07-03",
+  "message_humain": "fix(personas): anti-determinisme genereation - graine aleatoire + lettre de prenom imposee (aleatoire) + pays FORCE et alterne France/Suisse ~50/50, pour ne plus retomber sur le meme persona (CLIENT CLIENT) et varier prenom/nom/lieu",
+  "famille": "CONSIGNE_IA_NON_TENUE",
+  "famille_proposee": "NOUVELLE:GENERATION_REPETEE",
+  "familles_secondaires": [],
+  "famille_connue": false,
+  "symptome": "Chaque persona généré revenait identique au précédent (même prénom, même nom, même ville), la variété promise n'existait pas.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/content/personas/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/content/personas/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      190,
+      196,
+      201
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/content/personas/route.ts": [
+      "SORTIE",
+      "seul",
+      "tableau",
+      "JSON",
+      "count",
+      "cha",
+      "nes",
+      "rien"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 18,
+    "supprimees": 4,
+    "total": 22
+  },
+  "preuve": {
+    "avant": "- address : une ville de France OU de Suisse (varie, francophone), plausible",
+    "apres": "const seed = Math.floor(Math.random() * 100000);"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> da9e5ba6fd59920339497b87b0927efd2a45a751"
+}

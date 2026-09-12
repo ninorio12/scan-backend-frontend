@@ -1,0 +1,53 @@
+{
+  "id": "brvndlab-59e7191a",
+  "depot": "brvndlab",
+  "provenance": "historique-git",
+  "commit_casse": "290945222d020e772b8422ac4d5111ed9547c988",
+  "commit_repare": "59e7191a2cec3002735464019deead95e19d4e19",
+  "date": "2026-07-12",
+  "message_humain": "fix(inspiration): plus d'embed 'plus sur Instagram' sur les posts photo/carousel",
+  "famille": "ACTION_MUETTE",
+  "famille_proposee": "ACTION_MUETTE",
+  "familles_secondaires": [
+    "VOCABULAIRE"
+  ],
+  "famille_connue": true,
+  "symptome": "Les blocs à champ de texte et à cases ne recevaient jamais rien : la valeur envoyée n'était pas un tableau et le lecteur la jetait en silence.",
+  "confiance_classement": "moyenne",
+  "fichiers": [
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts"
+  ],
+  "fichier_fautif": "brvndlab-app/src/app/api/brand-os/interview/route.ts",
+  "lignes_avant": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      29,
+      33,
+      35,
+      117,
+      121,
+      124,
+      145
+    ]
+  },
+  "symboles": {
+    "brvndlab-app/src/app/api/brand-os/interview/route.ts": [
+      "BlockSpec",
+      "parseLoose",
+      "raw",
+      "string",
+      "unknown",
+      "splitPatch",
+      "patch"
+    ]
+  },
+  "taille_correctif": {
+    "ajoutees": 24,
+    "supprimees": 3,
+    "total": 27
+  },
+  "preuve": {
+    "avant": "if (!Array.isArray(val)) continue;",
+    "apres": "if (val && typeof val === \"object\" && !Array.isArray(val) && \"value\" in (val as object)) {"
+  },
+  "rejouer": "git -C banc/corpus/clones/brvndlab worktree add --detach <dossier> 290945222d020e772b8422ac4d5111ed9547c988"
+}
