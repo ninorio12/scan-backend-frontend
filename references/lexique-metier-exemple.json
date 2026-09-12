@@ -1,0 +1,10 @@
+{
+  "_lisez-moi": "Copier dans <depot>/.backend/lexique.json et adapter au métier du produit. Chaque ligne dit : ce mot désigne CE concept. Deux mots qui pointent le même concept doivent lire la même source de données.",
+  "visite": "rdv", "agenda": "rdv", "evenement": "rdv", "calendrier": "rdv", "seance": "rdv",
+  "propriete": "bien", "annonce": "bien", "lot": "bien", "objet": "bien",
+  "mandat": "mandat", "mission": "mandat",
+  "proprietaire": "contact", "vendeur": "contact", "acheteur": "contact", "personne": "contact",
+  "courtier": "membre", "collaborateur": "membre",
+  "estimation": "estimation", "evaluation": "estimation", "expertise": "estimation",
+  "affaire": "affaire", "deal": "affaire", "opportunite": "affaire"
+}

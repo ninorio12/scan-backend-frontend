@@ -1,0 +1,22 @@
+{
+  "name": "scan-backend-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Audit d'un SaaS de bout en bout : le code (désaccords entre écrans et données), les écrans (boutons, liens, apparence), la base (fausses données), et un seul verdict.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "scan": "node scripts/couverture.mjs",
+    "mesure": "node banc/mesure/mesurer.mjs --fige",
+    "test:ecrans": "node --test tests/ecrans/*.test.mjs",
+    "test:tout": "node --test tests/"
+  },
+  "dependencies": {
+    "playwright": "^1.50.0",
+    "typescript": "^5.6.0"
+  }
+}

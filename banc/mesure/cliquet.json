@@ -1,0 +1,69 @@
+{
+  "pose_le": "2026-09-11T16:45:26.758Z",
+  "mesure": {
+    "date": "2026-09-11T16:37:21.700Z",
+    "graine": 4242,
+    "rappel": {
+      "s": 13,
+      "n": 57
+    },
+    "rappel_localisation": {
+      "s": 38,
+      "n": 57
+    },
+    "justesse": {
+      "s": 88,
+      "n": 95
+    },
+    "rappel_fige": {
+      "s": 9,
+      "n": 26
+    },
+    "justesse_fige": {
+      "s": 77,
+      "n": 83
+    },
+    "sceaux": {
+      "banc2": "37e7842ea2aedd3a"
+    },
+    "auditeur_sha": "75689b6e1526f892"
+  },
+  "sceaux": {
+    "verite/banc2.json": "d0cd699cff240cb8",
+    "verdicts/banc2.json": "f6a13827bcc3e16f",
+    "lib/appariement.mjs": "8c941ab35b765b9a",
+    "familles.mjs": "157a8175b03f4c46",
+    "mutateurs/operateurs.mjs": "6fb4d29df59f54c2"
+  },
+  "defauts": {
+    "banc2": [
+      "B2-01",
+      "B2-02",
+      "B2-03",
+      "B2-04",
+      "B2-05",
+      "B2-06",
+      "B2-07",
+      "B2-08",
+      "B2-09",
+      "B2-10",
+      "B2-11",
+      "B2-12",
+      "B2-13",
+      "B2-14",
+      "B2-15",
+      "B2-16",
+      "B2-17",
+      "B2-18",
+      "B2-19",
+      "B2-20",
+      "B2-21",
+      "B2-22",
+      "B2-23",
+      "B2-24",
+      "B2-25",
+      "B2-26"
+    ]
+  },
+  "note": "Plancher. Toute mesure ultérieure significativement plus basse est une régression."
+}

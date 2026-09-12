@@ -1,0 +1,10 @@
+{
+  "_": "Ce que reconnaitre.mjs doit lire dans le projet figé (banc/fige, copie de /root/banc2 : 17 fichiers, Next.js + Convex). Relevé à la main dans app/ et convex/schema.ts, pas copié d'une sortie du script.",
+  "cadre": "Next.js",
+  "base": "Convex",
+  "auth": null,
+  "pages": 5,
+  "pagesDynamiques": 1,
+  "tables": 5,
+  "nomsTables": ["biens", "proprietaires", "visites", "offres", "journal"]
+}

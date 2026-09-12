@@ -1,0 +1,476 @@
+{
+  "cas": "banc2",
+  "repo": "../../fige",
+  "provenance": "releve-a-la-lecture",
+  "ecrit_le": "2026-09-11",
+  "methode": "Les 17 fichiers de banc/fige (1 842 lignes) ont été lus ligne à ligne AVANT toute exécution de l'auditeur. Aucun défaut n'a été ajouté ni retiré après avoir vu une sortie de détecteur : c'est la seule discipline qui distingue une vérité terrain d'une photographie du détecteur. Les défauts n'ont pas été plantés, ils étaient déjà là : banc2 a été écrit comme un SaaS plausible, pas comme un piège.",
+  "remplace": "piege3 + verite3.md (20 défauts), perdus dans le redémarrage du 11/09/2026 parce qu'ils vivaient dans un dossier temporaire. C'est la raison d'être de ce dossier persistant.",
+  "exhaustive": true,
+  "defauts": [
+    {
+      "id": "B2-01",
+      "familles": [
+        "DEFINITION_DOUBLE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "lister",
+        "estArchive"
+      ],
+      "lignes": [
+        23,
+        28,
+        30
+      ],
+      "resume": "l'onglet « Tous » ne filtre pas les archivés, les trois autres onglets si : le même parc change de taille selon l'onglet"
+    },
+    {
+      "id": "B2-02",
+      "familles": [
+        "RECHERCHE_MUETTE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "recherche",
+        "reference"
+      ],
+      "lignes": [
+        36,
+        39
+      ],
+      "resume": "le terme est passé en minuscules mais bien.reference ne l'est pas : chercher une référence en majuscules ne trouve jamais rien"
+    },
+    {
+      "id": "B2-03",
+      "familles": [
+        "DEFINITION_DOUBLE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "PROPRIETAIRE_DEMO",
+        "estDemo"
+      ],
+      "lignes": [
+        13,
+        33,
+        86
+      ],
+      "resume": "deux définitions de « bien de démonstration » : estDemo dans lister, un identifiant de propriétaire écrit en dur dans indicateurs"
+    },
+    {
+      "id": "B2-04",
+      "familles": [
+        "CHIFFRE_INVENTE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "prixMoyen",
+        "valeurPortefeuille"
+      ],
+      "lignes": [
+        96,
+        102
+      ],
+      "resume": "prix moyen = valeur des biens EN VENTE divisée par le nombre de TOUS les biens actifs : numérateur et dénominateur sur deux populations"
+    },
+    {
+      "id": "B2-05",
+      "familles": [
+        "UNITE_DIVERGENTE"
+      ],
+      "fichiers": [
+        "convex/biens.ts",
+        "app/page.tsx"
+      ],
+      "symboles": [
+        "valeurPortefeuille",
+        "formatMontant"
+      ],
+      "lignes": [
+        97,
+        8
+      ],
+      "resume": "les prix sont additionnés sans regarder bien.devise, et l'écran affiche le total en CHF quoi qu'il arrive"
+    },
+    {
+      "id": "B2-06",
+      "familles": [
+        "ACTION_MUETTE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "modifier",
+        "ville"
+      ],
+      "lignes": [
+        146,
+        155
+      ],
+      "resume": "modifier accepte l'argument ville et ne l'écrit jamais dans le patch : le formulaire dit enregistré, la ville ne change pas"
+    },
+    {
+      "id": "B2-07",
+      "familles": [
+        "PANNE_DEGUISEE"
+      ],
+      "fichiers": [
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "archiver"
+      ],
+      "lignes": [
+        172,
+        182
+      ],
+      "resume": "archiver avale son erreur dans un catch et retourne { ok: true } : l'écran retire la carte, la base garde le bien"
+    },
+    {
+      "id": "B2-08",
+      "familles": [
+        "DRILLDOWN"
+      ],
+      "fichiers": [
+        "convex/proprietaires.ts"
+      ],
+      "symboles": [
+        "nombreBiens",
+        "biensDuProprietaire"
+      ],
+      "lignes": [
+        22,
+        30
+      ],
+      "resume": "le compteur « nombreBiens » exclut les archivés, la liste qu'on ouvre en cliquant les inclut : le chiffre cliqué ne se retrouve pas"
+    },
+    {
+      "id": "B2-09",
+      "familles": [
+        "UNITE_DIVERGENTE"
+      ],
+      "fichiers": [
+        "convex/proprietaires.ts"
+      ],
+      "symboles": [
+        "valeurTotale"
+      ],
+      "lignes": [
+        23
+      ],
+      "resume": "valeurTotale additionne des prix de devises différentes"
+    },
+    {
+      "id": "B2-10",
+      "familles": [
+        "PLANIFIE_INERTE"
+      ],
+      "fichiers": [
+        "convex/visites.ts",
+        "convex/crons.ts"
+      ],
+      "symboles": [
+        "rappelVisitesDemain",
+        "requireCourtier"
+      ],
+      "lignes": [
+        178,
+        181,
+        10
+      ],
+      "resume": "le cron quotidien vise une mutation qui appelle requireCourtier : un cron n'a pas d'identité, le rappel échoue tous les soirs en silence"
+    },
+    {
+      "id": "B2-11",
+      "familles": [
+        "CHIFFRE_INVENTE"
+      ],
+      "fichiers": [
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "tauxTransformation"
+      ],
+      "lignes": [
+        146,
+        166,
+        172
+      ],
+      "resume": "zéro visite réalisée donne Infinity ou, via le garde NaN, un taux de transformation de 100 %"
+    },
+    {
+      "id": "B2-12",
+      "familles": [
+        "PORTE_PARALLELE"
+      ],
+      "fichiers": [
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "planifier",
+        "requireCourtier"
+      ],
+      "lignes": [
+        48,
+        55
+      ],
+      "resume": "trois mutations de l'agenda sur quatre sont gardées ; planifier ne l'est pas et reste appelable directement depuis le navigateur"
+    },
+    {
+      "id": "B2-13",
+      "familles": [
+        "ETAT_ECRASE"
+      ],
+      "fichiers": [
+        "convex/offres.ts"
+      ],
+      "symboles": [
+        "refuser"
+      ],
+      "lignes": [
+        84,
+        98
+      ],
+      "resume": "refuser une offre repasse le bien en « disponible » sans regarder son état : un bien déjà vendu redevient disponible"
+    },
+    {
+      "id": "B2-14",
+      "familles": [
+        "DEFINITION_DOUBLE"
+      ],
+      "fichiers": [
+        "convex/tableauBord.ts",
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "tauxTransformation"
+      ],
+      "lignes": [
+        39,
+        146
+      ],
+      "resume": "deux « taux de transformation » dans le même produit : acceptées/reçues-en-cours au tableau de bord, offres/visites réalisées dans l'agenda"
+    },
+    {
+      "id": "B2-15",
+      "familles": [
+        "DEFINITION_DOUBLE"
+      ],
+      "fichiers": [
+        "convex/tableauBord.ts",
+        "convex/biens.ts"
+      ],
+      "symboles": [
+        "valeurPortefeuille"
+      ],
+      "lignes": [
+        25,
+        97
+      ],
+      "resume": "deux « valeur du portefeuille » : avec les biens vendus au tableau de bord, sans eux dans le module Biens"
+    },
+    {
+      "id": "B2-16",
+      "familles": [
+        "CHIFFRE_INVENTE"
+      ],
+      "fichiers": [
+        "convex/tableauBord.ts"
+      ],
+      "symboles": [
+        "variation"
+      ],
+      "lignes": [
+        7,
+        62
+      ],
+      "resume": "variation() divise par le mois précédent sans garde : un mois précédent à zéro affiche Infinity % de croissance"
+    },
+    {
+      "id": "B2-17",
+      "familles": [
+        "PERIODE_DIVERGENTE"
+      ],
+      "fichiers": [
+        "convex/tableauBord.ts",
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "debutDuMois",
+        "debutDeSemaine"
+      ],
+      "lignes": [
+        12,
+        20
+      ],
+      "resume": "une grille de jours en heure locale au tableau de bord, une grille UTC dans l'agenda : les deux modules ne découpent pas la même journée"
+    },
+    {
+      "id": "B2-18",
+      "familles": [
+        "DRILLDOWN"
+      ],
+      "fichiers": [
+        "convex/tableauBord.ts",
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "visitesSemaine",
+        "visitesDeLaSemaine"
+      ],
+      "lignes": [
+        29,
+        121
+      ],
+      "resume": "« Visites cette semaine » compte les 7 derniers jours glissants, l'agenda affiche la semaine calendaire du lundi : deux chiffres pour la même phrase"
+    },
+    {
+      "id": "B2-19",
+      "familles": [
+        "PANNE_DEGUISEE",
+        "IDEMPOTENCE"
+      ],
+      "fichiers": [
+        "app/api/webhooks/portail/route.ts"
+      ],
+      "symboles": [
+        "POST"
+      ],
+      "lignes": [
+        46,
+        49
+      ],
+      "resume": "le webhook répond { ok: true } sur échec pour ne pas faire rejouer le portail : la demande de visite est perdue et personne ne le sait"
+    },
+    {
+      "id": "B2-20",
+      "familles": [
+        "GARDE_EFFACEE"
+      ],
+      "fichiers": [
+        "app/api/webhooks/portail/route.ts"
+      ],
+      "symboles": [
+        "POST"
+      ],
+      "lignes": [
+        14
+      ],
+      "resume": "aucune vérification de signature ni de secret sur le webhook public : n'importe qui planifie des visites dans l'agenda de l'agence"
+    },
+    {
+      "id": "B2-21",
+      "familles": [
+        "CODE_MORT"
+      ],
+      "fichiers": [
+        "convex/schema.ts"
+      ],
+      "symboles": [
+        "journal"
+      ],
+      "lignes": [
+        43
+      ],
+      "resume": "la table journal est écrite par dix chemins et lue par aucun : aucun écran, aucune query"
+    },
+    {
+      "id": "B2-22",
+      "familles": [
+        "CHIFFRE_INVENTE"
+      ],
+      "fichiers": [
+        "app/page.tsx"
+      ],
+      "symboles": [
+        "VENTES_RECENTES",
+        "variation"
+      ],
+      "lignes": [
+        22,
+        75,
+        124
+      ],
+      "resume": "la courbe des ventes retombe sur six mois de chiffres écrits en dur pendant le chargement, et la variation du portefeuille est figée à 8,4 %"
+    },
+    {
+      "id": "B2-23",
+      "familles": [
+        "DEFINITION_DOUBLE"
+      ],
+      "fichiers": [
+        "app/modules/biens/page.tsx"
+      ],
+      "symboles": [
+        "prixMoyen"
+      ],
+      "lignes": [
+        39,
+        57
+      ],
+      "resume": "sur la même rangée de cartes, « Prix moyen » est calculé sur la liste filtrée côté écran et « Valeur du portefeuille » sur tout le parc côté serveur"
+    },
+    {
+      "id": "B2-24",
+      "familles": [
+        "PERIODE_DIVERGENTE"
+      ],
+      "fichiers": [
+        "app/modules/visites/page.tsx",
+        "convex/visites.ts"
+      ],
+      "symboles": [
+        "colonnes"
+      ],
+      "lignes": [
+        26,
+        20
+      ],
+      "resume": "les colonnes de l'agenda sont construites en heure locale, la fenêtre serveur en UTC : une visite du lundi matin tombe hors de toutes les colonnes"
+    },
+    {
+      "id": "B2-25",
+      "familles": [
+        "DRILLDOWN"
+      ],
+      "fichiers": [
+        "app/modules/visites/page.tsx"
+      ],
+      "symboles": [
+        "semaine"
+      ],
+      "lignes": [
+        60
+      ],
+      "resume": "la carte « Visites cette semaine » compte les visites annulées, la grille du dessous les retire"
+    },
+    {
+      "id": "B2-26",
+      "familles": [
+        "CONTRAT"
+      ],
+      "fichiers": [
+        "app/page.tsx",
+        "convex/tableauBord.ts"
+      ],
+      "symboles": [
+        "tauxTransformation"
+      ],
+      "lignes": [
+        145,
+        39
+      ],
+      "resume": "la légende dit « offres acceptées rapportées aux offres reçues » ; le serveur divise par les seules offres encore en cours, donc le taux dépasse 100 % dès qu'une offre est refusée"
+    }
+  ],
+  "note_sur_la_justesse": "Vérité EXHAUSTIVE au sens de : tout ce que la lecture a trouvé. Elle ne prétend pas être complète. Tout signalement de l'auditeur qui ne tombe sur aucun de ces 26 défauts part au seau « non arbitré » et n'est PAS compté en faux positif tant qu'un verdict écrit, avec preuve, ne l'a pas tranché."
+}

@@ -1,0 +1,5 @@
+{
+  "name": "backend-sous-test",
+  "description": "Enveloppe de mesure : expose le skill backend TEL QUEL (lien symbolique, jamais une copie, jamais une modification) pour que `claude plugin eval` puisse monter un bras AVEC et un bras SANS et rapporter le delta.",
+  "version": "0.0.0"
+}

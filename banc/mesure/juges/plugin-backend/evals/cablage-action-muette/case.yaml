@@ -1,0 +1,33 @@
+schema_version: "1.0"
+name: cablage-action-muette
+description: >
+  Le défaut fondateur, celui de l'écran Paramètres d'un projet client : un formulaire dont un champ
+  n'est jamais écrit. Ici c'est biens.modifier, qui accepte « ville » et ne la patche pas.
+  L'agent n'apprend jamais ce qu'il doit trouver : on lui donne le symptôme client.
+tags: [cablage, action-muette]
+runs: 1
+max_turns: 14
+allowed_tools: [Read, Glob, Grep, Skill]
+execution:
+  scaffold_script: |
+    pwd > /tmp/ou-tourne-le-scaffold.txt
+    rsync -a --exclude node_modules "${SKILL_FIGE:-$HOME/.claude/skills/scan-backend-frontend/banc/fige}/" ./banc2/
+    ls ./banc2 >> /tmp/ou-tourne-le-scaffold.txt
+  prompt: |
+    Le dépôt ./banc2 (dans ton répertoire de travail) est un SaaS immobilier (Next.js 15 + Convex).
+    Un courtier se plaint : quand il corrige la VILLE d'un bien dans la fiche et qu'il
+    enregistre, l'écran confirme, mais la ville revient à l'ancienne valeur au rechargement.
+    L'adresse et le prix, eux, se corrigent bien.
+    Dis-moi exactement pourquoi, en citant le fichier et le numéro de ligne.
+graders:
+  - name: pointe-le-bon-fichier
+    type: regex
+    target: last_message
+    pattern: "convex/biens\\.ts"
+  - name: comprend-que-la-ville-n-est-jamais-patchee
+    type: llm
+    weight: 2
+    criteria: >
+      La réponse identifie que la mutation « modifier » déclare l'argument ville dans ses
+      args mais ne l'affecte jamais à l'objet de patch (aucune ligne « maj.ville = »), et
+      non pas un problème de cache, de rechargement, de réactivité ou de validation.

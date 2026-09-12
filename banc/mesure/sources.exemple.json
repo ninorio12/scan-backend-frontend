@@ -1,0 +1,3 @@
+[
+  { "nom": "mon-saas", "chemin": "/chemin/absolu/vers/mon-saas", "stack": "Next.js + Convex", "note": "un dépôt réel à toi, jamais celui d'un client ; sert de source de mutation au banc génératif" }
+]

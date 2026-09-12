@@ -1,0 +1,176 @@
+{
+  "cas": "banc2",
+  "arbitre": "interne, contestable, chaque verdict porte sa preuve reproductible",
+  "pourquoi": "Un banc ne liste que les défauts que la LECTURE a trouvés. Compter « non listé = faux positif » est une erreur de méthode qui coûte cher : sur le banc précédent elle transformait 94 % de justesse en 50 %. Tout signalement non apparié part donc au seau « non arbitré » et attend un verdict écrit. Ce fichier est ce verdict.",
+  "regle_dure": "Un défaut RÉEL découvert PAR l'auditeur reçoit un verdict « vrai » (crédit de justesse, légitime) mais n'entre JAMAIS dans verite/banc2.json. L'y mettre ferait monter le rappel par auto-confirmation : le détecteur aurait écrit sa propre épreuve. C'est le cas de G1 ci-dessous, qui est pourtant le plus gros défaut du dépôt.",
+  "verdicts": [
+    {
+      "regle": "A1",
+      "motif": "offres.enregistrer",
+      "verdict": "vrai",
+      "preuve": "grep 'offres.enregistrer' sur *.tsx : aucun appel depuis l'interface"
+    },
+    {
+      "regle": "A1",
+      "motif": "offres.accepter",
+      "verdict": "vrai",
+      "preuve": "idem : mutation exposée, jamais appelée"
+    },
+    {
+      "regle": "A1",
+      "motif": "proprietaires.modifier",
+      "verdict": "vrai",
+      "preuve": "idem : aucun écran ne modifie un propriétaire"
+    },
+    {
+      "regle": "A2",
+      "motif": "journal",
+      "verdict": "vrai",
+      "preuve": "c'est le défaut B2-21, vu par l'autre bout. Non apparié parce que le libellé ne cite aucun fichier : le rappel publié est donc une borne BASSE."
+    },
+    {
+      "regle": "B1",
+      "motif": "proprietaires.lister",
+      "verdict": "vrai",
+      "preuve": "query publique sans garde sur un carnet de clients nominatif"
+    },
+    {
+      "regle": "C3",
+      "motif": "biens.ts:52",
+      "verdict": "vrai",
+      "preuve": "obtenir() fait un .filter() sans index sur toute la table biens"
+    },
+    {
+      "regle": "C6",
+      "motif": "proprietaires.ts:7",
+      "verdict": "vrai",
+      "preuve": "collect() sans borne"
+    },
+    {
+      "regle": "C6",
+      "motif": "proprietaires.ts:8",
+      "verdict": "vrai",
+      "preuve": "collect() de toute la table biens pour compter des sous-ensembles"
+    },
+    {
+      "regle": "C6",
+      "motif": "tableauBord.ts:76",
+      "verdict": "vrai",
+      "preuve": "collect() de toutes les offres à chaque rendu du tableau de bord"
+    },
+    {
+      "regle": "D1",
+      "motif": "+41 22 501 40 12",
+      "verdict": "vrai",
+      "preuve": "app/modules/proprietaires/page.tsx:133 defaultValue : un numéro de maquette pré-rempli en production"
+    },
+    {
+      "regle": "D9",
+      "motif": "app/error.tsx",
+      "verdict": "vrai",
+      "preuve": "ls : absent. Une panne de query rend une page blanche"
+    },
+    {
+      "regle": "D9",
+      "motif": "app/loading.tsx",
+      "verdict": "vrai",
+      "preuve": "ls : absent"
+    },
+    {
+      "regle": "D9",
+      "motif": "app/not-found.tsx",
+      "verdict": "vrai",
+      "preuve": "ls : absent"
+    },
+    {
+      "regle": "E6",
+      "motif": "sans exclure estDemo",
+      "verdict": "vrai",
+      "preuve": "proprietaires.lister compte les biens de démonstration que biens.lister exclut : c'est la seconde face du défaut B2-03"
+    },
+    {
+      "regle": "E4",
+      "motif": "\"sous_offre\" hors vocabulaire",
+      "verdict": "faux",
+      "preuve": "offres.ts:47 écrit \"sous_offre\" dans la table BIENS (ctx.db.patch(args.bienId)), pas dans offres. Le détecteur attribue la valeur à la mauvaise table : faux positif franc"
+    },
+    {
+      "regle": "E4",
+      "motif": "\"vendu\" hors vocabulaire",
+      "verdict": "faux",
+      "preuve": "même erreur d'attribution, offres.ts:66 patche le bien"
+    },
+    {
+      "regle": "E5",
+      "motif": "biens/[ref]/page.tsx:56",
+      "verdict": "vrai",
+      "preuve": "somme de montants d'offres de devises potentiellement différentes sur la fiche du bien"
+    },
+    {
+      "regle": "F2",
+      "motif": "/modules/proprietaires/",
+      "verdict": "vrai",
+      "preuve": "find app/modules/proprietaires : seul page.tsx existe, aucun segment [id]. Le lien de la fiche bien mène à un 404"
+    },
+    {
+      "regle": "G1",
+      "motif": "identité qui sera toujours nulle",
+      "verdict": "vrai",
+      "preuve": "ls convex/auth.config.ts : absent. getUserIdentity() rend toujours null, donc proprietaires.creer et modifier lèvent systématiquement. LE PLUS GROS DÉFAUT DU DÉPÔT, et la lecture humaine l'avait manqué : il ne rejoint pas la vérité terrain pour autant (voir regle_dure)"
+    },
+    {
+      "regle": "G1",
+      "motif": "auth.config.ts est absent",
+      "verdict": "vrai",
+      "preuve": "même constat, vu par la configuration"
+    },
+    {
+      "regle": "I3",
+      "motif": "aucune sauvegarde",
+      "verdict": "hors",
+      "preuve": "vrai sur le fond, mais un dépôt de banc de 17 fichiers sans sauvegarde n'est pas un défaut de câblage : hors du territoire annoncé du skill"
+    },
+    {
+      "regle": "E2",
+      "motif": "biens.ts:25",
+      "verdict": "faux",
+      "preuve": "le filtre !bien.estArchive est appliqué trois lignes plus bas (biens.ts:28). La règle lit la ligne du collect et pas le filtre qui suit"
+    },
+    {
+      "regle": "E2",
+      "motif": "biens.ts:30",
+      "verdict": "vrai",
+      "preuve": "branche « Tous » : aucun filtre d'archive nulle part. C'est le défaut B2-01 vu par l'autre bout"
+    },
+    {
+      "regle": "E2",
+      "motif": "biens.ts:53",
+      "verdict": "vrai",
+      "preuve": "obtenir() rend un bien archivé sans le dire : la fiche s'ouvre sur un bien sorti du parc"
+    },
+    {
+      "regle": "E2",
+      "motif": "biens.ts:83",
+      "verdict": "faux",
+      "preuve": "indicateurs filtre !bien.estArchive à la ligne 86"
+    },
+    {
+      "regle": "E2",
+      "motif": "proprietaires.ts:8",
+      "verdict": "faux",
+      "preuve": "filtré explicitement à proprietaires.ts:13"
+    },
+    {
+      "regle": "E2",
+      "motif": "proprietaires.ts:33",
+      "verdict": "vrai",
+      "preuve": "biensDuProprietaire ne filtre rien : c'est la cause du défaut B2-08"
+    },
+    {
+      "regle": "E2",
+      "motif": "tableauBord.ts:22",
+      "verdict": "faux",
+      "preuve": "filtré à tableauBord.ts:23 (auParc)"
+    }
+  ]
+}

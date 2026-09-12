@@ -1,0 +1,24 @@
+# Ce que le skill ne publie jamais
+node_modules/
+*.log
+.backend/
+banc/fige/node_modules/
+banc/fige/.backend/
+banc/fige/package-lock.json.tmp
+
+# Les rapports d'audit internes : noms de clients, chemins machine, clones tiers. Jamais publiés.
+banc/audit/
+
+# Les archives vivent hors du dépôt (../scan-backend-frontend-archives), jamais dedans
+archives/
+*-archives/
+
+# Sorties d'un export de base, si un jour l'une d'elles tombait ici par erreur
+# (banc/mesure/journal/mesures.jsonl est le journal de mesure : il reste)
+*.zip
+export-base*
+
+# Bancs d'essai internes : résultats sur nos projets, noms de clients, chemins machine
+banc/affirmations/
+banc/stacks/
+banc/mesure/sources.json
